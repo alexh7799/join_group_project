@@ -2,6 +2,10 @@
     --color1: rgb(255,255,255);
 }
 
+* {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     background-color: var(--color1);

@@ -1,0 +1,26 @@
+{
+  "name": "join",
+  "version": "1.0.0",
+  "description": "join",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alexh7799/join.git"
+  },
+  "keywords": [
+    "join",
+    "kanban"
+  ],
+  "author": "alex",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexh7799/join/issues"
+  },
+  "homepage": "https://github.com/alexh7799/join#readme",
+  "dependencies": {
+    "jsdoc": "^4.0.4"
+  }
+}
