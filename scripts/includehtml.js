@@ -1,3 +1,5 @@
+//https://www.w3schools.com/howto/howto_html_include.asp
+
 function includeHTML() {
     var z, i, elmnt, file, xhttp;
     /* Loop through a collection of all HTML elements: */
@@ -27,7 +29,8 @@ function includeHTML() {
   }
 
 
-// so sieht ein include aus <div w3-include-html="content.html"></div>
+// so sieht ein include aus 
+//<div w3-include-html="content.html"></div>
 
 
 //wenn die seite aufgebaut ist muss diese funktion aufgrufen werden
