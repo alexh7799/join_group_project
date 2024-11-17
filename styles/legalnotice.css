@@ -55,7 +55,7 @@ ul {
     margin-top: 0px;
 }
 
-span {
+.highlighting {
     color: var(--blue);
     margin-top: 0;
     font-size: 16px;
