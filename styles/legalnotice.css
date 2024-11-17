@@ -30,8 +30,15 @@ h2 {
 }
 
 h3 {
+    margin-top: 0;
     margin-bottom: 0;
-    margin-bottom: 0;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
 }
 
 p {
@@ -53,6 +60,19 @@ ul {
     text-decoration-skip-ink: none;
     padding-left: 25px;
     margin-top: 0px;
+}
+
+ol {
+    padding-left: 32px;
+}
+
+ol li {
+    padding-left: 24px;
+}
+
+ol li::marker {
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .highlighting {
