@@ -34,4 +34,4 @@ function includeHTML() {
 
 
 //wenn die seite aufgebaut ist muss diese funktion aufgrufen werden
-  includeHTML();
+//  includeHTML();

@@ -1,9 +1,9 @@
-.legal-policy {
+.legal-policy-help {
     padding: 30px 16px 16px 16px;
     overflow: auto;
 }
 
-.head-legal-policy {
+.head-legal-policy-help {
     display: flex;
     justify-content: space-between;
     align-items: center;

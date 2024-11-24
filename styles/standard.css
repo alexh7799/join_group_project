@@ -1,6 +1,11 @@
 :root {
-    --color1: rgb(255, 255, 255);
+    --bg: rgb(245, 247, 248);
+    --item-color: rgb(255, 255, 255);
     --blue: #29abe2;
+    --border-grey: #cccccc; 
+    --grey: #A8A8A8;
+    --darkgrey: rgb(43,54,71);
+    --orange: rgb(255,61,6);
 }
 
 * {
@@ -8,8 +13,9 @@
 }
 
 body {
+    height: 100%;
     margin: 0;
-    background-color: var(--color1);
+    background-color: var(--bg);
     font-family: Inter;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
@@ -21,6 +27,83 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #A8A8A8;
+    background: var(--grey);
     border-radius: 25px;
+}
+
+.d-flex-c-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-flex-sb-c {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.d-flex-col-sb-c {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.d-flex-col-c-c {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-flex-col-e-c {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+
+.d-none {
+    display: none;
+}
+
+.pos-r {
+    position: relative;
+}
+
+.m-0 {
+    margin: 0;
+}
+
+.mh-auto {
+    margin: auto 0;
+}
+
+.mb-5 {
+    margin-bottom: 5px;
+}
+
+.mt-5 {
+    margin-top: 5px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.gap-5 {
+    gap: 5px;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.gap-15 {
+    gap: 15px;
+}
+
+.gap-20 {
+    gap: 20px;
 }
