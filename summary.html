@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./styles/summary.css">
 </head>
 
-<body>
+<body onload="initSummary()">
     <header w3-include-html="./templates/header.html"></header>
     <div class="pos-r summary">
         <div class="header-summary">
@@ -24,7 +24,7 @@
             <div class="content-summary gap-15">
                 <div>
                     <div class="d-flex-sb-c gap-15">
-                        <div class="item-summary item-to-done">
+                        <div class="item-summary item-to-done" onclick="goToBoard()">
                             <div class="icon-item icon-item-to-done">
                                 <img src="./assets/icons/edit-white.svg" alt="edit">
                             </div>
@@ -33,7 +33,7 @@
                                 <span class="m-0">To-do</span>
                             </div>
                         </div>
-                        <div class="item-summary item-to-done">
+                        <div class="item-summary item-to-done" onclick="goToBoard()">
                             <div class="icon-item icon-item-to-done">
                                 <img src="./assets/icons/check-white.svg" alt="check">
                             </div>
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="item-summary urgent-container">
+                <div class="item-summary urgent-container" onclick="goToBoard()">
                     <div class="icon-item icon-item-urgent">
                         <img src="./assets/icons/urgent-white.svg" alt="urgent">
                     </div>
@@ -59,15 +59,15 @@
                     </div>
                 </div>
                 <div class="d-flex-sb-c gap-15">
-                    <div class="item-summary d-flex-col-c-c gap-15">
+                    <div class="item-summary d-flex-col-c-c gap-15" onclick="goToBoard()">
                         <p class="num-style">5</p>
                         <span class="m-0">Tasks in Board</span>
                     </div>
-                    <div class="item-summary d-flex-col-c-c gap-15">
+                    <div class="item-summary d-flex-col-c-c gap-15" onclick="goToBoard()">
                         <p class="num-style">2</p>
                         <span class="m-0">Tasks In Progress</span>
                     </div>
-                    <div class="item-summary d-flex-col-c-c gap-15">
+                    <div class="item-summary d-flex-col-c-c gap-15" onclick="goToBoard()">
                         <p class="num-style">2</p>
                         <span class="m-0">Awaiting feedback</span>
                     </div>
@@ -81,6 +81,8 @@
         </div>
     </div>
     <aside w3-include-html="./templates/sidebar.html"></aside>
+
+    <script src="./scripts/summary.js"></script>
 </body>
 
 </html>
