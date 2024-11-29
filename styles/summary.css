@@ -167,6 +167,11 @@ p {
 .date-style {
     font-weight: 700;
     margin: 0;
+    align-self: flex-start;
+}
+
+.task-summary span{
+    height: 35px;
 }
 
 span {
@@ -276,6 +281,31 @@ span {
         display: none;
     }
 
+    .grey-vline {
+        height: 75px;
+        margin: 0 25px 0 25px;
+    }
+
+    .num-style {
+        font-size: 64px;
+    }
+
+    .date-style {
+        font-size: 21px !important;
+    }
+
+    .text-container span{
+        font-size: 20px;
+    }
+
+    .task-summary span{
+        height: 48px;
+    }
+
+    .task-summary {
+        justify-content: end;
+    }
+
     .greeting {
         background-color: transparent;
         animation: none;
@@ -314,7 +344,7 @@ span {
     }
 }
 
-@media (min-width: 1150px) {
+@media (min-width: 1190px) {
     .summary {
         padding:  200px 80px 90px 310px;
     }
