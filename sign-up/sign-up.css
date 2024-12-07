@@ -1,0 +1,274 @@
+* {
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #F6F7F8;
+  --turq: #29ABE2;
+  --base: #ffffff;
+  --darkblue: #2A3647;
+  --input-text: #D1D1D1;
+  --imprint-link: #A8A8A8;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  position: relative;
+  background-color: var(--bg);
+  width: 100%;
+  height: 100vh;
+  font-family: Inter;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.d-none {
+  display: none;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  background-color: var(--darkblue);
+  color: var(--base);
+  padding: 15px 16px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: Inter;
+}
+
+button:hover {
+  box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.1);
+  background-color: var(--turq);
+}
+
+.inverted-btn:hover {
+  color: var(--turq);
+  background-color: var(--base);
+  border: 1px solid var(--turq);
+}
+
+.login-form button {
+  padding: 15px 24px;
+  font-size: 21px;
+}
+
+.btn-row {
+  display: flex;
+  flex-direction: row;
+  gap: 35px;
+}
+
+.flexer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  max-width: 420px;
+  width: 100%;
+  ;
+}
+
+.login-text-input {
+  border: 1px solid var(--input-text);
+  border-radius: 10px;
+  font-size: 21px;
+  padding: 10px 21px;
+  outline: none;
+  width: 100%;
+}
+
+#name-input {
+  position: relative;
+  background: url(../assets/user.svg) no-repeat scroll 420px;
+  background-position-x: 94%;
+  background-position-y: center;
+  background-size: 25px 25px;
+  padding-right: 20px;
+}
+
+#email-input {
+  position: relative;
+  background: url(../assets/letter.svg) no-repeat scroll 420px;
+  background-position-x: 94%;
+  background-position-y: center;
+  background-size: 25px 25px;
+  padding-right: 20px;
+}
+
+#password-icon-1,
+#password-icon-2 {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translate(-5%, -50%);
+  z-index: 9999;
+  height: 25px;
+  width: 25px;
+  flex: 1 1 0px;
+}
+
+.password-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.login-text-input:focus {
+  border: 1px solid var(--turq);
+}
+
+::placeholder {
+  color: var(--input-text);
+}
+
+.login-form {
+  background-color: var(--base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 48px 80px;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 16px;
+  border-radius: 30px;
+  gap: 40px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.log-in {
+  font-size: 56px;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+}
+
+.log-in::after {
+  content: "";
+  width: 90%;
+  height: 3px;
+  background: var(--turq);
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.imprint {
+  position: fixed;
+  bottom: 0px;
+  padding: 32px 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.imprint a {
+  color: var(--imprint-link);
+  text-decoration: none;
+}
+
+.imprint a:hover {
+  transition: all 0.1s ease-in-out;
+  color: var(--turq);
+  scale: 1.025;
+}
+
+.login-logo .login-svg {
+  background: url("../assets/login-logo-blue.svg");
+  background-size: contain;
+  height: 122px;
+  width: 101px;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  top: 50px;
+  left: 70px;
+  z-index: 1000;
+}
+
+
+@media screen and (min-width: 0px) and (max-width: 1024px) {
+
+  body {
+    gap: none;
+  }
+
+  .log-in {
+    font-size: 47px;
+  }
+
+  .login-form {
+    padding: 32px 24px;
+    margin: 0;
+    gap: 30px;
+  }
+
+  .flexer {
+    gap: 16px;
+  }
+
+  .login-logo .login-svg {
+    position: fixed;
+    top: 37px;
+    left: 38px;
+    height: 78px !important;
+    width: 64px !important;
+    z-index: 999;
+  }
+}
+
+#false {
+  position: absolute;
+  color: #FF8190;
+  font-size: 12px;
+  padding-top: 4px;
+  display: none;
+}
+
+/*-------------------------------------------------*/
+.custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ppcb {
+  padding-left: 8px;
+  color: var(--imprint-link);
+}
+
+.ppcb a {
+  color: var(--turq);
+  text-decoration: none;
+}
+
+.ppcb a:hover {
+  text-decoration: underline;
+}
+
+.custom-checkbox input {
+  display: none;
+}
+
+.custom-checkbox .checkbox-icon {
+  width: 22px;
+  height: 22px;
+  background: url('../assets/unchecked.svg') no-repeat center center;
+  background-size: contain;
+  transition: all 0.3s ease;
+}
+
+.custom-checkbox input:checked + .checkbox-icon {
+  background: url('../assets/checked.svg') no-repeat center center;
+  background-size: contain;
+}
