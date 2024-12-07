@@ -13,7 +13,7 @@ async function loadUserCount() {
     let response = await fetch(BASE_URL + ".json");
     let responseToJson = await response.json();
     users = responseToJson.results;
-    console.log(users);    
+    console.log(users);
 }
 
 async function signUp() {
