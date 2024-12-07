@@ -98,7 +98,7 @@ button:hover {
 
 #name-input {
   position: relative;
-  background: url(../assets/user.svg) no-repeat scroll 420px;
+  background: url(../assets/icons/user.svg) no-repeat scroll 420px;
   background-position-x: 94%;
   background-position-y: center;
   background-size: 25px 25px;
@@ -107,7 +107,7 @@ button:hover {
 
 #email-input {
   position: relative;
-  background: url(../assets/letter.svg) no-repeat scroll 420px;
+  background: url(../assets/icons/letter.svg) no-repeat scroll 420px;
   background-position-x: 94%;
   background-position-y: center;
   background-size: 25px 25px;
@@ -204,7 +204,7 @@ button:hover {
 }
 
 .login-logo .login-svg {
-  background: url("../assets/login-logo-blue.svg");
+  background: url("../assets/icons/login-logo-blue.svg");
   background-size: contain;
   height: 122px;
   width: 101px;
@@ -277,7 +277,7 @@ button:hover {
   }
 
   .login-logo .login-svg {
-    background: url("../assets/login-logo-white.svg");
+    background: url("../assets/icons/login-logo-white.svg");
     background-size: contain;
     background-repeat: no-repeat;
     height: 78px;
@@ -293,7 +293,7 @@ button:hover {
 
   @keyframes logoMoveMobile {
     0% {
-      background: url("../assets/login-logo-white.svg");
+      background: url("../assets/icons/login-logo-white.svg");
       background-size: contain;
       scale: 2.1;
       top: 50%;
@@ -301,7 +301,7 @@ button:hover {
       transform: translate(-60%, -50%);
     }
     100% {
-      background: url("../assets/login-logo-blue.svg");
+      background: url("../assets/icons/login-logo-blue.svg");
       background-size: contain;
       scale: 1;
       top: 37px;

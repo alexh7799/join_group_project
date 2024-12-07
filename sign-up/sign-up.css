@@ -87,7 +87,7 @@ button:hover {
 
 #name-input {
   position: relative;
-  background: url(../assets/user.svg) no-repeat scroll 420px;
+  background: url(../assets/icons/user.svg) no-repeat scroll 420px;
   background-position-x: 94%;
   background-position-y: center;
   background-size: 25px 25px;
@@ -96,7 +96,7 @@ button:hover {
 
 #email-input {
   position: relative;
-  background: url(../assets/letter.svg) no-repeat scroll 420px;
+  background: url(../assets/icons/letter.svg) no-repeat scroll 420px;
   background-position-x: 94%;
   background-position-y: center;
   background-size: 25px 25px;
@@ -184,7 +184,7 @@ button:hover {
 }
 
 .login-logo .login-svg {
-  background: url("../assets/login-logo-blue.svg");
+  background: url("../assets/icons/login-logo-blue.svg");
   background-size: contain;
   height: 122px;
   width: 101px;
@@ -263,12 +263,12 @@ button:hover {
 .custom-checkbox .checkbox-icon {
   width: 22px;
   height: 22px;
-  background: url('../assets/unchecked.svg') no-repeat center center;
+  background: url('../assets/icons/unchecked.svg') no-repeat center center;
   background-size: contain;
   transition: all 0.3s ease;
 }
 
 .custom-checkbox input:checked + .checkbox-icon {
-  background: url('../assets/checked.svg') no-repeat center center;
+  background: url('../assets/icons/checked.svg') no-repeat center center;
   background-size: contain;
 }
