@@ -1,3 +1,6 @@
+/**
+ * Globale Variable the url from database
+ */
 const BASE_URL ="https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/";
 
 /**
@@ -64,7 +67,6 @@ async function loadingNumbers() {
     awaitNum.innerText = tasks.awaiting.length;
     loadUrgentTasks(tasks);
 }
-
 
 /**
  * loading the urgent number and date
