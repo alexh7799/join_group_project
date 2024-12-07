@@ -80,7 +80,6 @@ function changeType() {
 }
 
 function guestLogin() {
-    currentUser = "Guest";
     sessionStorage.setItem('username', 'Guest');
 
     //weiterleiteung auf Startseite window.location
