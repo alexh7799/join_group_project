@@ -30,7 +30,7 @@ function signUp() {
     console.log(password);
     console.log(id);
     
-    postData("/users/", {"name": name, "email": email, "password": password, "id": id});
+    postData(`/users/`, {"name": name, "email": email, "password": password, "id": id});
 }
 
 async function postData(path="", data="") { // Anlegen von Daten 
