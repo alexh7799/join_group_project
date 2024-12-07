@@ -1,23 +1,35 @@
-const BASE_URL =
-    "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL ="https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/";
 
+/**
+ * Init function for summary
+ */
 function initSummary() {
-    sessionStorage.setItem("userName", "Alex");
     loadingNumbers();
     generateGreets();
 }
 
+/**
+ * generate the greets
+ */
 function generateGreets() {
     let greetingTime = getGreeting();
     let userName = sessionStorage.getItem("userName");
+    if (userName == null) {
+        window.location.href = "login.html"
+    }else {
     let content = document.getElementById("greeting");
     content.innerHTML =
         userName === "Guest"
             ? `<p>Good ${greetingTime}!</p>`
             : `<p>Good ${greetingTime},</p>
         <p class="name-summary">${userName}</p>`;
+    }
 }
 
+/**
+ * return the timevalue
+ * @returns {string}
+ */
 function getGreeting() {
     let now = new Date();
     let hours = now.getHours();
@@ -27,10 +39,16 @@ function getGreeting() {
     return "night";
 }
 
+/**
+ * go to board
+ */
 function goToBoard() {
     window.location.href = "board.html";
 }
 
+/**
+ * loading the numbers for der summary page of the database
+ */
 async function loadingNumbers() {
     let response = await fetch(BASE_URL + ".json");
     let tasks = await response.json();
@@ -39,11 +57,7 @@ async function loadingNumbers() {
     let doneNum = document.getElementById("doneNum");
     doneNum.innerText = tasks.done.length;
     let allTasks = document.getElementById("allTasks");
-    allTasks.innerText =
-        tasks.toDos.length +
-        tasks.done.length +
-        tasks.progress.length +
-        tasks.awaiting.length;
+    allTasks.innerText = tasks.toDos.length + tasks.done.length + tasks.progress.length + tasks.awaiting.length;
     let progressNum = document.getElementById("progressNum");
     progressNum.innerText = tasks.progress.length;
     let awaitNum = document.getElementById("awaitNum");
@@ -51,6 +65,11 @@ async function loadingNumbers() {
     loadUrgentTasks(tasks);
 }
 
+
+/**
+ * loading the urgent number and date
+ * @param {json} tasks 
+ */
 function loadUrgentTasks(tasks) {
     let urgentNum = document.getElementById("urgentNum");
     let urgentDate = document.getElementById("urgentDate");
