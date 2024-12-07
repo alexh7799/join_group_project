@@ -10,21 +10,27 @@ async function init() {
 }
 
 async function loadUserCount() {
-    let response = await fetch(BASE_URL + ".json");
-    let responseToJson = await response.json();
-    users = responseToJson.results;
-    console.log(users);
+    let response = await fetch(BASE_URL + "users/.json");
+    let responseToJson = await response.json();  
+    users = responseToJson;
 }
 
-async function signUp() {
-    console.log("funktioniet");
+document.getElementById("login-form-container").addEventListener("submit", async function (event){
+    event.preventDefault();
+})
+
+function signUp() {
+    console.log("funktioniert");
     let name = document.getElementById("name-input").value;
     let email = document.getElementById("email-input").value;
     let password = document.getElementById("password-input-1").value;
+    let id = users.length + 1;
     console.log(email);
     console.log(name);
     console.log(password);
-    //await postData("/users", {"name": name, "email": email, "password": password});
+    console.log(id);
+    
+    postData("/users/", {"name": name, "email": email, "password": password, "id": id});
 }
 
 async function postData(path="", data="") { // Anlegen von Daten 
