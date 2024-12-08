@@ -85,3 +85,67 @@ ol li::marker {
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
 }
+
+.policy-container {
+    padding: 100px 16px 90px 16px;
+}
+
+@media (min-width: 550px) {
+    .policy-container {
+        padding: 100px 25px 90px 25px;
+    }
+}
+
+@media (min-width: 600px) {
+    .policy-container {
+        padding: 100px 30px 90px 30px;
+    }
+}
+
+@media (min-width: 650px) {
+    .policy-container {
+        padding: 100px 40px 90px 40px;
+    }
+}
+
+@media (min-width: 700px) {
+    .policy-container {
+        padding: 100px 50px 90px 50px;
+    }
+}
+
+@media (min-width: 780px) {
+    .policy-container {
+        padding: 100px 60px 90px 60px;
+    }
+}
+
+@media (min-width: 827px) {
+    .policy-container {
+        padding: 150px 16px 0 245px;
+    }
+}
+
+@media (min-width: 1080px) {
+    .policy-container {
+        padding:  180px 50px 50px 280px;
+    }
+}
+
+@media (min-width: 1190px) {
+    .policy-container {
+        padding:  200px 80px 90px 310px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .policy-container {
+        padding:  220px 95px 90px 325px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .container-policy-container {
+        width: 1500px !important;
+    }
+}

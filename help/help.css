@@ -1,0 +1,151 @@
+.legal-policy-help {
+    padding: 30px 16px 16px 16px;
+    overflow: auto;
+}
+
+.head-legal-policy-help {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 47px;
+    font-weight: 700;
+    line-height: 56.4px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin: 20px 0;
+}
+
+h2 {
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 32.4px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin: 10px 0;
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+p {
+    margin-top: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+ul {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    padding-left: 25px;
+    margin-top: 0px;
+}
+
+ol {
+    padding-left: 32px;
+}
+
+ol li {
+    padding-left: 24px;
+}
+
+ol li::marker {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.highlighting {
+    color: var(--blue);
+    margin-top: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.help-container {
+    padding: 100px 16px 90px 16px;
+}
+
+@media (min-width: 550px) {
+    .help-container {
+        padding: 100px 25px 90px 25px;
+    }
+}
+
+@media (min-width: 600px) {
+    .help-container {
+        padding: 100px 30px 90px 30px;
+    }
+}
+
+@media (min-width: 650px) {
+    .help-container {
+        padding: 100px 40px 90px 40px;
+    }
+}
+
+@media (min-width: 700px) {
+    .help-container {
+        padding: 100px 50px 90px 50px;
+    }
+}
+
+@media (min-width: 780px) {
+    .help-container {
+        padding: 100px 60px 90px 60px;
+    }
+}
+
+@media (min-width: 827px) {
+    .help-container {
+        padding: 150px 16px 0 245px;
+    }
+}
+
+@media (min-width: 1080px) {
+    .help-container {
+        padding:  180px 50px 50px 280px;
+    }
+}
+
+@media (min-width: 1190px) {
+    .help-container {
+        padding:  200px 80px 90px 310px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .help-container {
+        padding:  220px 95px 90px 325px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .container-help-container {
+        width: 1500px !important;
+    }
+}

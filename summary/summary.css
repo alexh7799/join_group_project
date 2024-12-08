@@ -64,7 +64,7 @@ p {
 }
 
 .summary {
-    padding: 100px 16px 0 16px;
+    padding: 100px 16px 90px 16px;
 }
 
 .header-summary {
@@ -220,31 +220,31 @@ span {
 
 @media (min-width: 550px) {
     .summary {
-        padding: 100px 25px 0 25px;
+        padding: 100px 25px 90px 25px;
     }
 }
 
 @media (min-width: 600px) {
     .summary {
-        padding: 100px 30px 0 30px;
+        padding: 100px 30px 90px 30px;
     }
 }
 
 @media (min-width: 650px) {
     .summary {
-        padding: 100px 40px 0 40px;
+        padding: 100px 40px 90px 40px;
     }
 }
 
 @media (min-width: 700px) {
     .summary {
-        padding: 100px 50px 0 50px;
+        padding: 100px 50px 90px 50px;
     }
 }
 
 @media (min-width: 780px) {
     .summary {
-        padding: 100px 60px 0 60px;
+        padding: 100px 60px 90px 60px;
     }
 }
 
@@ -322,8 +322,6 @@ span {
         color: var(--blue);
     }
 }
-
-
 
 @media (min-width: 1080px) {
     .summary {
