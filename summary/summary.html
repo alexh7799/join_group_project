@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JOIN Summary</title>
-    <link rel="shortcut icon" href="./assets/icons/logo1.svg" type="image/x-icon">
-    <link rel="stylesheet" href="./styles/font.css">
-    <link rel="stylesheet" href="./styles/standard.css">
-    <link rel="stylesheet" href="./styles/summary.css">
+    <link rel="shortcut icon" href="../assets/icons/logo1.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/font.css">
+    <link rel="stylesheet" href="../styles/standard.css">
+    <link rel="stylesheet" href="./summary.css">
 </head>
 
 <body onload="initSummary()">
@@ -26,7 +26,7 @@
                     <div class="d-flex-sb-c gap-15">
                         <div class="item-summary item-to-done" onclick="goToBoard()">
                             <div class="icon-item icon-item-to-done">
-                                <img src="./assets/icons/edit-white.svg" alt="edit">
+                                <img src="../assets/icons/edit-white.svg" alt="edit">
                             </div>
                             <div class="text-container d-flex-col-e-c gap-15 mt-20">
                                 <p id="toDoNum" class="num-style">0</p>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="item-summary item-to-done" onclick="goToBoard()">
                             <div class="icon-item icon-item-to-done">
-                                <img src="./assets/icons/check-white.svg" alt="check">
+                                <img src="../assets/icons/check-white.svg" alt="check">
                             </div>
                             <div class="text-container d-flex-col-e-c gap-15 mt-20">
                                 <p id="doneNum" class="num-style">0</p>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="item-summary urgent-container" onclick="goToBoard()">
                     <div class="icon-item icon-item-urgent">
-                        <img src="./assets/icons/urgent-white.svg" alt="urgent">
+                        <img src="../assets/icons/urgent-white.svg" alt="urgent">
                     </div>
                     <div class="text-container d-flex-col-e-c gap-15 mt-20">
                         <p id="urgentNum" class="num-style">0</p>
@@ -75,14 +75,12 @@
             </div>
 
             <div id="greeting" class="greeting">
-                <!-- <p>Good Morning!</p>
-                <p class="name-summary">Sofia Müller</p> -->
             </div>
         </div>
     </div>
-    <aside w3-include-html="./templates/sidebar.html"></aside>
-    <script src="./script.js"></script>
-    <script src="./scripts/summary.js"></script>
+    <aside w3-include-html="../templates/sidebar.html"></aside>
+    <script src="../script.js"></script>
+    <script src="./summary.js"></script>
 </body>
 
 </html>

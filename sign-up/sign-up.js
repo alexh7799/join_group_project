@@ -3,7 +3,7 @@ let pass2 = document.getElementById("password-input-2");
 let errorMsg = document.getElementById("false"); 
 let signUpBtn = document.getElementById("signUpBtn");
 let users;
-const BASE_URL = "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app";
+const BASE_URL = "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/";
 
 async function init() {
     await loadUserCount();

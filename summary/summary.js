@@ -16,9 +16,9 @@ function initSummary() {
  */
 function generateGreets() {
     let greetingTime = getGreeting();
-    let userName = sessionStorage.getItem("userName");
+    let userName = sessionStorage.getItem("username");
     if (userName == null) {
-        window.location.href = "login.html"
+        window.location.href = "../login/login.html"
     }else {
     let content = document.getElementById("greeting");
     content.innerHTML =
@@ -46,7 +46,7 @@ function getGreeting() {
  * go to board
  */
 function goToBoard() {
-    window.location.href = "board.html";
+    window.location.href = "../board/board.html";
 }
 
 /**
