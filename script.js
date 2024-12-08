@@ -1,7 +1,14 @@
+/**
+ * go back to the last page
+ */
 function goBack() {
   window.history.back();
 }
 
+/**
+ * loading include html elements
+ * @returns - html
+ */
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
   z = document.getElementsByTagName("*");
