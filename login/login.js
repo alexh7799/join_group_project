@@ -1,6 +1,12 @@
+const BASE_URL = "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/users/";
+
+function goToSignUp() {
+    window.location.assign("../sign-up/sign-up.html")
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const passwordInput = document.getElementById("password-input");
-    
+
     passwordInput.addEventListener("input", () => {
         if (passwordInput.value) {
             hiddenImg();
@@ -60,7 +66,7 @@ function changeType() {
         `;
     } else {
         passwordInput.type = "password";
-            passwordSVG.innerHTML = `
+        passwordSVG.innerHTML = `
             <svg style="cursor: pointer;" onclick="changeType()" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_69960_5191" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="25">
                 <rect x="0.144531" y="0.80835" width="24" height="24" fill="#D9D9D9"/>
@@ -73,23 +79,47 @@ function changeType() {
     }
 }
 
-function goToSignUp() {
-    window.location.assign("../sign-up/sign-up.html")
+function guestLogin() {
+    sessionStorage.setItem('username', 'Guest');
+
+    //weiterleiteung auf Startseite window.location
 }
 
+let container = document.getElementById("login-form-container");
+container.addEventListener("submit", async function (event){
+    event.preventDefault();
+})
 
+async function checkUser() {
+    const emailInput = document.getElementById('email-input').value;
+    const resultDiv = document.getElementById('result');
 
-let acc = document.getElementsByClassName("accordion");
-let i;
+    try {
+        // Abrufen aller Nutzer aus der Firebase-Datenbank
+        const response = await fetch(`${BASE_URL}.json`);
+        if (!response.ok) throw new Error("Fehler beim Abrufen der Datenbank.");
+        const users = await response.json();
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function () {
-    this.classList.toggle("active");
-    let panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
+        // Überprüfung auf eine Übereinstimmung
+        let foundUser = null;
+        for (const key in users) {
+            if (users[key].email === emailInput) {
+                foundUser = users[key];
+                break;
+            }
+        }
+
+        if (foundUser) {
+            sessionStorage.setItem('username', foundUser.name);
+            sessionStorage.setItem('email', foundUser.email);
+        } else {
+            console.error("keine Mailadresse gefunden")
+            resultDiv.innerHTML = `No matching Account found. <a href="">Join us</a> now!`;
+
+            //weiterleiteung auf Startseite window.location
+        }
+    } catch (error) {
+        console.error(error);
+        resultDiv.innerHTML = "Fehler bei der Suche.";
     }
-  });
-}
+};

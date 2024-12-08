@@ -2,29 +2,48 @@ let pass1 = document.getElementById("password-input-1");
 let pass2 = document.getElementById("password-input-2");
 let errorMsg = document.getElementById("false"); 
 let signUpBtn = document.getElementById("signUpBtn");
-let users;
+let usercount;
 const BASE_URL = "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/";
 
 async function init() {
-    await loadUserCount();
+    await loadUserCounter();
 }
 
-async function loadUserCount() {
-    let response = await fetch(BASE_URL + ".json");
-    let responseToJson = await response.json();
-    users = responseToJson.results;
-    console.log(users);
+async function loadUserCounter() {
+    let response = await fetch(BASE_URL + "usercount.json");
+    let responseToJson = await response.json();  
+    usercount = responseToJson;
 }
 
-async function signUp() {
-    console.log("funktioniet");
+document.getElementById("login-form-container").addEventListener("submit", async function (event){
+    event.preventDefault();
+})
+
+function signUp() {
+    console.log("funktioniert");
     let name = document.getElementById("name-input").value;
     let email = document.getElementById("email-input").value;
     let password = document.getElementById("password-input-1").value;
     console.log(email);
     console.log(name);
     console.log(password);
-    //await postData("/users", {"name": name, "email": email, "password": password});
+    
+    postData(`/users/`, {"name": name, "email": email, "password": password, "id": usercount + 1});
+    usercount++;
+    putUsercount(`usercount`, usercount);   
+}
+
+async function putUsercount(path="", data="") { // Anlegen von Daten 
+    let response = await fetch(BASE_URL + path + ".json",{
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    });
+    console.log("posted");
+    
+    return responseToJson = await response.json();
 }
 
 async function postData(path="", data="") { // Anlegen von Daten 
