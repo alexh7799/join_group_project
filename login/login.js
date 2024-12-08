@@ -81,8 +81,9 @@ function changeType() {
 
 function guestLogin() {
     sessionStorage.setItem('username', 'Guest');
-
+    
     //weiterleiteung auf Startseite window.location
+    window.location.href = '../summary/summary.html';
 }
 
 let container = document.getElementById("login-form-container");
@@ -112,11 +113,11 @@ async function checkUser() {
         if (foundUser) {
             sessionStorage.setItem('username', foundUser.name);
             sessionStorage.setItem('email', foundUser.email);
+            //weiterleiteung auf Startseite window.location
+            window.location.href = '../summary/summary.html';
         } else {
             console.error("keine Mailadresse gefunden")
             resultDiv.innerHTML = `No matching Account found. <a href="">Join us</a> now!`;
-
-            //weiterleiteung auf Startseite window.location
         }
     } catch (error) {
         console.error(error);
