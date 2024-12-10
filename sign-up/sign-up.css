@@ -129,6 +129,7 @@ button:hover {
 }
 
 .login-form {
+  position: relative;
   background-color: var(--base);
   display: flex;
   align-items: center;
@@ -141,6 +142,21 @@ button:hover {
   border-radius: 30px;
   gap: 40px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#back-to-login {
+  position: absolute;
+  top: 78px;
+  left: 48px;
+}
+
+#back-to-login img {
+  border-radius: 50px;
+  padding: 2px;
+}
+
+#back-to-login img:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .log-in {
@@ -211,6 +227,12 @@ button:hover {
     padding: 32px 24px;
     margin: 0;
     gap: 30px;
+  }
+
+  #back-to-login {
+    position: absolute;
+    top: 48px;
+    left: 24px;
   }
 
   .flexer {
