@@ -113,6 +113,10 @@ header h1 {
     padding-left: 10px;
 }
 
+#help-li {
+    display: none;
+}
+
 @media screen and (min-width: 0px) and (max-width: 827px) {
 
     header h1,
@@ -120,7 +124,7 @@ header h1 {
         display: none;
     }
 
-    .mobile-logo {
+    .mobile-logo, #help-li {
         display: block;
     }
 
