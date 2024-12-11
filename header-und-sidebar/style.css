@@ -13,7 +13,7 @@ body {
 }
 
 header {
-    box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
     padding: 20px 40px 20px 348px;
     display: flex;
     align-items: center;
@@ -55,7 +55,7 @@ header h1 {
 }
 
 #profile:hover {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
 
@@ -77,12 +77,24 @@ header h1 {
     flex-direction: column;
     gap: 4px;
     width: 150px;
+    z-index: 1001;
+    transition: all 0.25s ease-in-out;
+}
+
+.overlay-container {
+    position: fixed;
+    color: #121212;
+    height: 100vh;
+    width: 100vw;
+    right: -100vw;
+    z-index: 1000;
+    padding: 0;
+    margin: 0;
+    transition: all 0.25s ease-in-out;
 }
 
 .into-view {
-    /*top: 96px;*/
     left: calc(100vw - 166px) !important;
-    /*right: 16px !important;*/
 }
 
 #profile-pop-up a {
@@ -102,7 +114,9 @@ header h1 {
 }
 
 @media screen and (min-width: 0px) and (max-width: 827px) {
-    header h1, .info {
+
+    header h1,
+    .info {
         display: none;
     }
 
@@ -111,7 +125,7 @@ header h1 {
     }
 
     header {
-        box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+        box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
         padding: 20px 16px;
     }
 
@@ -123,6 +137,10 @@ header h1 {
         height: 40px;
         width: 40px;
         font-size: 14px;
+    }
+
+    .into-view {
+        left: calc(100vw - 158px) !important;
     }
 }
 
@@ -190,13 +208,15 @@ aside {
 }
 
 @media screen and (min-width: 0px) and (max-width: 827px) {
-    .aside-logo, .aside-imprint {
+
+    .aside-logo,
+    .aside-imprint {
         display: none;
     }
 
     .active {
         padding: 0 !important;
-        
+
     }
 
     aside {
@@ -242,4 +262,3 @@ aside {
         height: 24px;
     }
 }
-
