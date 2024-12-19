@@ -1,6 +1,6 @@
 function initNav() {
     return `
-        <a class="aside-logo" href="./summary.html">
+        <a class="aside-logo" href="../summary/summary.html">
             <svg width="102" height="122" viewBox="0 0 102 122" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M72.655 0H50.4972V25.4923H72.655V0Z" fill="white" />
                 <path
@@ -63,7 +63,7 @@ function initNav() {
 
 function initHeader() {
     return `
-        <a class="mobile-logo" href="#">
+        <a class="mobile-logo" href="../summary/summary.html">
             <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.927 0.492188H15.8389V8.64696H22.927V0.492188Z" fill="#2A3647" />
                 <path
@@ -81,7 +81,7 @@ function initHeader() {
         </a>
         <div class="h1">Kanban Project Management Tool</div>
         <div class="header-info">
-            <a class="info" href="#">
+            <a class="info" href="../help/help.html">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <mask id="mask0_252047_2282" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
                     <rect width="32" height="32" fill="#D9D9D9"/>
@@ -99,9 +99,9 @@ function initHeader() {
 function initProfilePopUp() {
     return `
         <ul id="profile-pop-up" onclick="doNotClose(event), logOut()">
-            <li id="help-li"><a href="#">Help</a></li>
-            <li id="legal-notice-li"><a href="#">Legal Notice</a></li>
-            <li id="privacy-policy-li"><a href="#">Privacy Policy</a></li>
+            <li id="help-li"><a href="../help/help.html">Help</a></li>
+            <li id="legal-notice-li"><a href="../legalnotice/legalnotice.html">Legal Notice</a></li>
+            <li id="privacy-policy-li"><a href="../privacypolicy/privacypolicy.html">Privacy Policy</a></li>
             <li id="log-out-li"><a href="#">Log out</a></li>
         </ul>
     `;
