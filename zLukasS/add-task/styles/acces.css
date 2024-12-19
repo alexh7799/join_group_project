@@ -1,0 +1,229 @@
+.button-container {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: flex; 
+    gap: 5px; 
+}
+
+.icon-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 17px;
+}
+
+.icon-btn img {
+    width: 18px;
+    height: 18px;
+}
+
+.icon-btn:hover {
+    transform: scale(0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-clear {
+    background-color: white;
+    color: #2A3D59;
+    border: 1px solid #2A3D59;
+}
+
+.btn-create {
+    background-color: #2A3D59;
+    border: 1px solid #2A3D59;
+    color: white;
+}
+
+.btn-cre-cle {
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 10px 15px;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.btn-create:hover {
+    transform: translateY(-1px);
+    background-color: #29ABE2;
+    border-color: #29ABE2;
+}
+
+.btn-clear:hover {
+    transform: translateY(-1px);
+    color: #29ABE2 ;
+    border-color: #29ABE2;
+}
+
+.urgent, .medium, .low {
+    background-color: #FFFFFF;
+    border: none;
+}
+
+.urgent:hover, .medium:hover, .low:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.urgent:focus {
+    background-color: #FF3D00;
+    font-weight: bold;
+    color: white;
+    transform: none;
+    box-shadow: none;
+}
+
+.medium:focus {
+    background-color: #FFA800;
+    font-weight: bold;
+    color: white;
+    transform: none;
+    box-shadow: none;
+}
+
+.low:focus {
+    background-color: #7AE229;
+    font-weight: bold;
+    color: white;
+    transform: none;
+    box-shadow: none;
+}
+
+.urgent:focus img, .medium:focus img, .low:focus img {
+    filter: brightness(0) invert(1);
+}
+
+textarea {
+    min-height: 100px;
+    max-height: 250px;
+    resize: vertical;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-wrapper input {
+    padding-right: 80px;
+}
+
+.input-text {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: white !important;
+    height: 30px;
+}
+
+.input-text:focus {
+    border-color: #94D5F0; 
+    box-shadow: 0 0 5px rgba(148, 213, 240, 0.6);
+    outline: none;
+}
+
+select {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    height: 30px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: white !important;
+}
+
+select:focus,
+textarea:focus {
+    border-color: #94D5F0; 
+    box-shadow: 0 0 5px rgba(148, 213, 240, 0.6);
+    outline: none;
+}
+
+
+input[type="date"] {
+    background: url('../img/assets/icons/calander.svg') no-repeat right center;
+    background-size: 20px;
+    cursor: pointer;
+    background-position: calc(100% - 10px)
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+input[type="date"]:focus {
+    border-color: #94D5F0;
+}
+
+
+.dropdown-item input[type="checkbox"] {
+    margin-left: auto;
+    margin-right: 20px;
+    width: 16px;
+    height: 16px;
+}
+ 
+input[type="checkbox"] {
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    background-image: url("../img/assets/icons/checkbox-disabled.svg"); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="checkbox"]:checked {
+    background-image: url("../img/assets/icons/checkbox-checked.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.dropdown-item:hover input.icon[type="checkbox"] {
+    filter: brightness(0) invert(1);
+}
+
+
+.input-double {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: white !important;
+    height: 28px;
+}
+
+.input-double:focus { 
+    border-bottom: 1px solid #007bff; 
+    outline: none;
+}
