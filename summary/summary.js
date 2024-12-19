@@ -17,6 +17,8 @@ function includeHTML() {
     navigation.innerHTML = initNav();
     let header = document.getElementById("header-container");
     header.innerHTML = initHeader();
+    let popUp = document.getElementById("overlay-container");
+    popUp.innerHTML = initProfilePopUp();
 }
 
 /**
