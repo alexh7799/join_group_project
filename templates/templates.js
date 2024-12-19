@@ -55,8 +55,8 @@ function initNav() {
             </a>
         </nav>
         <div class="aside-imprint">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Legal notice</a>
+            <a href="../privacypolicy/privacypolicy.html">Privacy Policy</a>
+            <a href="../legalnotice/legalnotice.html">Legal notice</a>
         </div>
     `;
 }

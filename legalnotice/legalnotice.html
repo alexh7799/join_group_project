@@ -10,9 +10,16 @@
     <link rel="stylesheet" href="../styles/standard.css">
     <link rel="stylesheet" href="./legalnotice.css">
 
+    <link rel="stylesheet" href="../templates/header-sidebar.css">
+    <script src="../templates/header-sidebar.js"></script>
+    <script src="../templates/templates.js"></script>
 </head>
 
-<body>
+<body onload="includeHTML()">
+    <div id="overlay-container" class="overlay-container" onclick="removeOverlay()"></div>
+    <header id="header-container"></header>
+    <aside id="navigation-container"></aside>
+
     <div class="legal-policy-help legal-policy-container container-legal-policy-container">
         <div class="head-legal-policy-help">
             <h1>Legal Notice</h1>
