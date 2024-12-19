@@ -9,6 +9,7 @@ const BASE_URL ="https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.a
 function initSummary() {
     loadingNumbers();
     generateGreets();
+    includeHTML();
 }
 
 /**

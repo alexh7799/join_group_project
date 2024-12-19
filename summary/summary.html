@@ -9,10 +9,15 @@
     <link rel="stylesheet" href="../styles/font.css">
     <link rel="stylesheet" href="../styles/standard.css">
     <link rel="stylesheet" href="./summary.css">
+
+    <link rel="stylesheet" href="../templates/header-sidebar.css">
+    <script src="../templates/header-sidebar.js"></script>
 </head>
 
 <body onload="initSummary()">
-    <header w3-include-html="./templates/header.html"></header>
+    <div w3-include-html="../templates/header.html"></div>
+    <aside w3-include-html="../templates/sidebar.html"></aside>
+    
     <div class="pos-r summary">
         <div class="header-summary">
             <h1>Join 360</h1>
@@ -78,7 +83,6 @@
             </div>
         </div>
     </div>
-    <aside w3-include-html="../templates/sidebar.html"></aside>
     <script src="../script.js"></script>
     <script src="./summary.js"></script>
 </body>
