@@ -1,6 +1,6 @@
 function initNav() {
     return `
-        <a class="aside-logo" href="#">
+        <a class="aside-logo" href="./summary.html">
             <svg width="102" height="122" viewBox="0 0 102 122" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M72.655 0H50.4972V25.4923H72.655V0Z" fill="white" />
                 <path
