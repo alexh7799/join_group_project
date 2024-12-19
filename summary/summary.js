@@ -12,6 +12,13 @@ function initSummary() {
     includeHTML();
 }
 
+function includeHTML() {
+    let navigation = document.getElementById("navigation-container");
+    navigation.innerHTML = initNav();
+    let header = document.getElementById("header-container");
+    header.innerHTML = initHeader();
+}
+
 /**
  * generate the greets
  */

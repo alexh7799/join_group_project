@@ -182,10 +182,6 @@ aside {
     gap: 15px;
 }
 
-.aside-nav img {
-    width: 25px;
-}
-
 .aside-nav a {
     display: flex;
     align-items: center;
