@@ -17,3 +17,8 @@ function removeOverlay() {
 function doNotClose(event) {
     event.stopPropagation();
 };
+
+function logOut() {
+    sessionStorage.clear();
+    location.href='../login/login.html';
+}

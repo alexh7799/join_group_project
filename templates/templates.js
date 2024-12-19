@@ -98,7 +98,7 @@ function initHeader() {
 
 function initProfilePopUp() {
     return `
-        <ul id="profile-pop-up" onclick="doNotClose(event)">
+        <ul id="profile-pop-up" onclick="doNotClose(event), logOut()">
             <li id="help-li"><a href="#">Help</a></li>
             <li id="legal-notice-li"><a href="#">Legal Notice</a></li>
             <li id="privacy-policy-li"><a href="#">Privacy Policy</a></li>

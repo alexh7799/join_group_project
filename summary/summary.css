@@ -200,6 +200,7 @@ span {
 .name-summary {
     font-size: 47px !important;
     color: var(--blue);
+    text-transform: capitalize;
 }
 
 @keyframes fadeOut {
@@ -214,7 +215,7 @@ span {
         height: auto;
         background-color: transparent;
         color: transparent;
-        display: none;
+        display: none !important;
     }
 }
 
