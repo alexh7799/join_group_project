@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="./contacts.css">
+    <link rel="stylesheet" href="./responsive .css">
+    <link rel="stylesheet" href="./components.css">
+    <link rel="stylesheet" href="../styles/standard.css">
+    
+    <link rel="stylesheet" href="../templates/header-sidebar.css">
+    <script src="../templates/header-sidebar.js"></script>
+    <script src="../templates/templates.js"></script>
+</head>
+
+<body onload="includeHTML()">
+    <div id="overlay-container" class="overlay-container" onclick="removeOverlay()"></div>
+    <header id="header-container"></header>
+    <aside id="navigation-container"></aside>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="sidebarcontact">
+                <button class="add-contact-button center">Add new contact
+                    <img src="../assets/icons/person-add-white.svg">
+                </button>
+                <div id="contacts" class="contact-list">
+                    <div class="contact-group">
+                        <h3 class="group-title">A</h3>
+                        <div class="divider-contact"></div>
+                        <div class="contact-item" tabindex="0">
+                            <span class="contact-icon center" style="background-color: #FF5722;">AM</span>
+                            <div class="contact-details">
+                                <span class="contact-name">Anton Mayer</span>
+                                <span class="contact-email">antom@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-item" tabindex="0">
+                            <span class="contact-icon center" style="background-color: #8E44AD;">AS</span>
+                            <div class="contact-details">
+                                <span class="contact-name">Anja Schulz</span>
+                                <span class="contact-email">schulz@hotmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-group">
+                        <h3 class="group-title">B</h3>
+                        <div class="divider-contact"></div>
+                        <div class="contact-item" tabindex="0">
+                            <span class="contact-icon center" style="background-color: #3498DB;">BZ</span>
+                            <div class="contact-details">
+                                <span class="contact-name">Benedikt Ziegler</span>
+                                <span class="contact-email">benedikt@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-group">
+                        <h3 class="group-title">E</h3>
+                        <div class="divider-contact"></div>
+                        <div class="contact-item" tabindex="0">
+                            <span class="contact-icon center" style="background-color: #F1C40F;">EF</span>
+                            <div class="contact-details">
+                                <span class="contact-name">Eva Fischer</span>
+                                <span class="contact-email">eva@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-item" tabindex="0">
+                            <span class="contact-icon center" style="background-color: #1ABC9C;">EM</span>
+                            <div class="contact-details">
+                                <span class="contact-name">Emmanuel Mauer</span>
+                                <span class="contact-email">emmanuelma@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-container-mobile">
+                    <button class="btn-addcontact-mobil">
+                        <img src="../assets/icons/person-add-white.svg">
+                    </button>
+                </div>
+
+                <div class="btn-container-mobile">
+                    <button id="toggle-button" class="btn-addcontact-mobil">
+                        <img src="../assets/icons/more-vert-white.svg">
+                    </button>
+                </div>
+            </div>
+
+            <div class="details" tabindex="0">
+                <div class="details-wrapper">
+                    <h1 class="details-title">Contacts</h1>
+                    <div class="divider"></div>
+                    <p class="details-title-span">Better with a team</p>
+                    <div class="top-right-button">
+                        <button class="arrow-button">
+                            <img src="../assets/icons/arrow-left.svg">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="contact-details">
+                    <div class="contact-header">
+                        <span class="contact-icon-border center" style="background-color: #FF5722;">AM</span>
+                        <div class="contact-info-div">
+                            <h2 class="contact-name">Anton Mayer</h2>
+                            <div class="contact-buttons">
+                                <button class="contact-btn">
+                                    <img src="../assets/icons/edit.svg">
+                                    <p>Edit</p>
+                                </button>
+                                <button class="contact-btn">
+                                    <img src="../assets/icons/delete.svg">
+                                    <p>Delete</p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-info-mag">
+                            <p>Contact Information</p>
+                        </div>
+                        <div class="contact-info-mp">
+                            <p class="contact-bold">Email</p>
+                            <p class="contact-info-mail">anton@gmail.com</p>
+                            <p class="contact-bold">Phone</p>
+                            <p>+49 1111 111 11 1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../script.js"></script>
+</body>
+
+</html>

@@ -16,8 +16,8 @@ function initNav() {
                     fill="white" />
             </svg>
         </a>
-        <nav class="aside-nav">
-            <a href="./summary.html" class="active">
+        <nav class="aside-nav" id="aside-nav">
+            <a href="../summary/summary.html" class="active">
                 <svg width="30" height="31" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                     d="M25.2273 3.48291H4.77273H4.5C3.39543 3.48291 2.5 4.37864 2.5 5.48321C2.5 5.663 2.5 5.79037 2.5 5.82288V26.2774V26.4829C2.5 27.5875 3.39572 28.4829 4.50029 28.4829C4.64377 28.4829 4.74401 28.4829 4.77272 28.4829H25.2273C25.256 28.4829 25.3562 28.4829 25.4997 28.4829C26.6043 28.4829 27.5 27.587 27.5 26.4824C27.5 26.3756 27.5 26.3017 27.5 26.2774V5.82285C27.5 5.79035 27.5 5.66299 27.5 5.48321C27.5 4.37864 26.6043 3.48291 25.4997 3.48291C25.3562 3.48291 25.256 3.48291 25.2273 3.48291ZM17.2727 26.2774H4.77273V17.1865H17.2727V26.2774ZM17.2727 14.9138H4.77273V5.82288L17.2727 5.82285V14.9138ZM25.2273 26.2774H19.5455V5.82288H25.2273V26.2774Z"
@@ -80,8 +80,8 @@ function initHeader() {
             </svg>
         </a>
         <div class="h1">Kanban Project Management Tool</div>
-        <div class="header-info">
-            <a class="info" href="../help/help.html">
+        <div class="header-info" id="header-info">
+            <a class="info" id="info" href="../help/help.html">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <mask id="mask0_252047_2282" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
                     <rect width="32" height="32" fill="#D9D9D9"/>
@@ -98,11 +98,11 @@ function initHeader() {
 
 function initProfilePopUp() {
     return `
-        <ul id="profile-pop-up" onclick="doNotClose(event), logOut()">
+        <ul id="profile-pop-up" onclick="doNotClose(event)">
             <li id="help-li"><a href="../help/help.html">Help</a></li>
             <li id="legal-notice-li"><a href="../legalnotice/legalnotice.html">Legal Notice</a></li>
             <li id="privacy-policy-li"><a href="../privacypolicy/privacypolicy.html">Privacy Policy</a></li>
-            <li id="log-out-li"><a href="#">Log out</a></li>
+            <li id="log-out-li" onclick="logOut()"><a href="#">Log out</a></li>
         </ul>
     `;
 }

@@ -65,7 +65,15 @@ body {
 }
 
 .d-none {
-    display: none;
+    display: none !important;
+}
+
+.no-login-none {
+    display: none !important;
+}
+
+.no-login-sidebar-none {
+    display: none !important;
 }
 
 .pos-r {
@@ -110,4 +118,10 @@ body {
 
 .gap-20 {
     gap: 20px;
+}
+
+@media (min-width: 827px) {
+    .no-login-sidebar-none {
+        display: flex !important;
+    }
 }

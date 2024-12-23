@@ -21,67 +21,72 @@
     <aside id="navigation-container"></aside>
 
     <div class="pos-r summary">
-        <div class="header-summary">
-            <h1>Join 360</h1>
-            <div class="blue-hline deskop-line"></div>
-            <p>Key Metrics at a Glance</p>
-            <div class="blue-vline mobile-line"></div>
+        <div id="greeting" class="greeting">
         </div>
-        <div class="container-summary gap-10">
-            <div class="content-summary gap-15">
-                <div>
-                    <div class="d-flex-sb-c gap-15">
-                        <div class="item-summary item-to-done" onclick="goToBoard()">
-                            <div class="icon-item icon-item-to-done">
-                                <img src="../assets/icons/edit-white.svg" alt="edit">
-                            </div>
-                            <div class="text-container d-flex-col-e-c gap-15 mt-20">
-                                <p id="toDoNum" class="num-style">0</p>
-                                <span class="m-0">To-do</span>
-                            </div>
-                        </div>
-                        <div class="item-summary item-to-done" onclick="goToBoard()">
-                            <div class="icon-item icon-item-to-done">
-                                <img src="../assets/icons/check-white.svg" alt="check">
-                            </div>
-                            <div class="text-container d-flex-col-e-c gap-15 mt-20">
-                                <p id="doneNum" class="num-style">0</p>
-                                <span class="m-0">Done</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-summary urgent-container" onclick="goToBoard()">
-                    <div class="icon-item icon-item-urgent">
-                        <img src="../assets/icons/urgent-white.svg" alt="urgent">
-                    </div>
-                    <div class="text-container d-flex-col-e-c gap-15 mt-20">
-                        <p id="urgentNum" class="num-style">0</p>
-                        <span class="m-0">Urgent</span>
-                    </div>
-                    <div class="grey-vline"></div>
-                    <div class="text-container d-flex-col-c-c gap-5">
-                        <p id="urgentDate" class="date-style"></p>
-                        <span class="m-0">Upcoming Deadline</span>
-                    </div>
-                </div>
-                <div class="d-flex-sb-c gap-15">
-                    <div style="flex: 1 1 calc(100% / 4);" class="item-summary task-summary text-container d-flex-col-c-c gap-15" onclick="goToBoard()">
-                        <p id="allTasks" class="num-style">0</p>
-                        <span class="m-0">Tasks in Board</span>
-                    </div>
-                    <div style="flex: 1 1 calc(100% / 4);" class="item-summary task-summary text-container d-flex-col-c-c gap-15" onclick="goToBoard()">
-                        <p id="progressNum" class="num-style">0</p>
-                        <span class="m-0">Tasks In Progress</span>
-                    </div>
-                    <div style="flex: 1 1 calc(100% / 4);" class="item-summary task-summary text-container d-flex-col-c-c gap-15" onclick="goToBoard()">
-                        <p id="awaitNum" class="num-style">0</p>
-                        <span class="m-0">Awaiting feedback</span>
-                    </div>
-                </div>
-            </div>
+        <div>
 
-            <div id="greeting" class="greeting">
+            <div class="header-summary">
+                <h1>Join 360</h1>
+                <div class="blue-hline deskop-line"></div>
+                <p>Key Metrics at a Glance</p>
+                <div class="blue-vline mobile-line"></div>
+            </div>
+            <div class="container-summary gap-10">
+                <div class="content-summary gap-15">
+                    <div>
+                        <div class="d-flex-sb-c gap-15">
+                            <div class="item-summary item-to-done" onclick="goToBoard()">
+                                <div class="icon-item icon-item-to-done">
+                                    <img src="../assets/icons/edit-white.svg" alt="edit">
+                                </div>
+                                <div class="text-container d-flex-col-e-c gap-15 mt-20">
+                                    <p id="toDoNum" class="num-style">0</p>
+                                    <span class="m-0">To-do</span>
+                                </div>
+                            </div>
+                            <div class="item-summary item-to-done" onclick="goToBoard()">
+                                <div class="icon-item icon-item-to-done">
+                                    <img src="../assets/icons/check-white.svg" alt="check">
+                                </div>
+                                <div class="text-container d-flex-col-e-c gap-15 mt-20">
+                                    <p id="doneNum" class="num-style">0</p>
+                                    <span class="m-0">Done</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-summary urgent-container" onclick="goToBoard()">
+                        <div class="icon-item icon-item-urgent">
+                            <img src="../assets/icons/urgent-white.svg" alt="urgent">
+                        </div>
+                        <div class="text-container d-flex-col-e-c gap-15 mt-20">
+                            <p id="urgentNum" class="num-style">0</p>
+                            <span class="m-0">Urgent</span>
+                        </div>
+                        <div class="grey-vline"></div>
+                        <div class="text-container d-flex-col-c-c gap-5">
+                            <p id="urgentDate" class="date-style"></p>
+                            <span class="m-0">Upcoming Deadline</span>
+                        </div>
+                    </div>
+                    <div class="d-flex-sb-c gap-15">
+                        <div class="item-summary task-summary text-container d-flex-col-c-c gap-15"
+                            onclick="goToBoard()">
+                            <p id="allTasks" class="num-style">0</p>
+                            <span class="m-0">Tasks in <br> Board</span>
+                        </div>
+                        <div class="item-summary task-summary text-container d-flex-col-c-c gap-15"
+                            onclick="goToBoard()">
+                            <p id="progressNum" class="num-style">0</p>
+                            <span class="m-0">Tasks In <br> Progress</span>
+                        </div>
+                        <div class="item-summary task-summary text-container d-flex-col-c-c gap-15"
+                            onclick="goToBoard()">
+                            <p id="awaitNum" class="num-style">0</p>
+                            <span class="m-0">Awaiting <br> feedback</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

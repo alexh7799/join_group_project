@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POPUP</title>
+    <link rel="shortcut icon" href="./img/assets/icons/logo1.svg" type="image/x-icon">
+    <link rel="stylesheet" href="standard.css">
+    <link rel="stylesheet" href="./styles/add_task.css">
+    <link rel="stylesheet" href="./styles/acces.css">
+    <link rel="stylesheet" href="./styles/responsiv_add_task.css">
+    <link rel="stylesheet" href="./styles/popup.css">
+    <script src="scripts.js"></script>
+</head>
+
+<body onload="includeHTML()">
+    <div w3-include-html="index.html"></div>
+
+    <main class="main-content">
+        <div class="main-title">
+            <h1>Add Task</h1>
+        </div>
+        <section class="task-form">
+            <div class="form-left">
+                <p>Title<span class="required">*</span></p>
+                <input class="input-text" type="text" id="title" name="title" placeholder="Enter a title">
+
+                <p>Description</p>
+                <textarea id="description" name="description" placeholder="Enter a Description"></textarea>
+
+                <p>Assigned to</p>
+                <div class="dropdown" id="assigned-to">
+                    <div class="dropdown-header" onclick="toggleDropdown()">
+                        <span id="dropdown-selected">Select contacts to assign</span>
+                        <span class="dropdown-arrow" id="dropdown-arrow">
+                            <img src="img/assets/icons/arrow-dropdown.svg">
+                        </span>
+                    </div>
+                    <ul class="dropdown-options" id="dropdown-options">
+                        <li class="dropdown-item">
+                            <span class="avatar color">SM</span>
+                            <p>Sofia Müller</p>
+                            <input class="icon" type="checkbox" id="sofia" name="assigned_to" value="sofia">
+                        </li>
+                        <li class="dropdown-item">
+                            <span class="avatar color">AM</span>
+                            <p>Anton Mayer</p>
+                            <input class="icon" type="checkbox" id="anton" name="assigned_to" value="anton">
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="avatar color">AM</span>
+                    <span class="avatar color">BM</span>
+                    <span class="avatar color">CM</span>
+                    <span class="avatar color">DM</span>
+                </div>
+            </div>
+
+            <div class="divider_mid"></div>
+
+            <div class="form-right">
+                <p>Date</p>
+                <input class="input-text" type="date" id="due-date" name="due_date">
+
+                <p>Prio</p>
+                <div class="priority">
+                    <button type="button" class="prio urgent">
+                        <p>Urgent</p>
+                        <img src="img/assets/icons/urgent.svg">
+                    </button>
+                    <button type="button" class="prio medium">
+                        <p>Medium</p>
+                        <img src="img/assets/icons/medium.svg">
+                    </button>
+                    <button type="button" class="prio low">
+                        <p>Low</p>
+                        <img src="img/assets/icons/low.svg">
+                    </button>
+                </div>
+
+                <p>Category<span class="required">*</span></p>
+                <select id="category" name="category">
+                    <option value="">Select task category</option>
+                    <option value="technical">Technical Task</option>
+                    <option value="user-story">User Story</option>
+                </select>
+
+                <p>Subtasks</p>
+                <div class="subtasks">
+
+                    <div class="input-wrapper">
+                        <input class="input-text" type="text" id="new-subtask" name="new_subtask"
+                            placeholder="Add new subtask">
+                        <div class="button-container">
+                            <button class="icon-btn"><img src="img/assets/icons/plus-default.svg"></button>
+                        </div>
+                    </div>
+
+
+                    <div class=" input-wrapper">
+                        <input class="input-text" type="text" id="edit-desktop" name="edit_desktop"
+                            value="Bearbeiten Desktop">
+                        <div class="button-container">
+                            <button class="icon-btn"><img src="img/assets/icons/delete.svg"></button>
+                            <div class="divider-btn"></div>
+                            <button class="icon-btn"><img src="img/assets/icons/check.svg"></button>
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <input class="input-text" type="text" id="legal-imprint" name="legal_imprint"
+                            value="Write Legal Imprint">
+                        <div class="button-container">
+                            <button class="icon-btn cancel-btn"><img src="img/assets/icons/close-default.svg"></button>
+                            <div class="divider-btn"></div>
+                            <button class="icon-btn"><img src="img/assets/icons/check.svg"></button>
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper input-double-wrapper ">
+                        <input type="text" class="input-double" id="double" name="double" value="double">
+                        <div class="button-container">
+                            <button class="icon-btn"><img src="img/assets/icons/delete.svg"></button>
+                            <div class="divider-dou"></div>
+                            <button class="icon-btn"><img src="img/assets/icons/check.svg"></button>
+                        </div>
+                    </div>
+
+                    <div class="validation-messages">
+                        <p class="validation-msg">• Subtasks example</p>
+                        <p class="validation-msg">• Subtasks example</p>
+                        <p class="validation-msg">• Subtasks example</p>
+                    </div>
+
+                </div>
+            </div>
+
+            </div>
+
+
+            <!-- HANDY -->
+            <div class="list-item none-handy">
+                <span class="bullet">•</span>
+                <span class="text">Contact Form</span>
+                <div class="actions">
+                    <button class="icon-btn"><img src="img/assets/icons/edit.svg"></button>
+                    <div class="divider-btn"></div>
+                    <button class="icon-btn save-btn"><img src="img/assets/icons/delete.svg"></button>
+                </div>
+            </div>
+            <!-- HANDY -->
+
+        </section>
+        <div class="form-actions">
+            <div class="required-message">
+                <p><span class="required">*</span>This field is required</p>
+            </div>
+            <div>
+                <button class="btn-clear btn-cre-cle">Clear ✕</button>
+                <button class="btn-create btn-cre-cle">Create Task ✔</button>
+            </div>
+        </div>
+    </main>
+
+
+
+</body>
+
+</html>

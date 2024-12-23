@@ -22,3 +22,9 @@ function logOut() {
     sessionStorage.clear();
     location.href='../login/login.html';
 }
+
+function loadProfile() {
+    let profile = document.getElementById('profile');
+    let userName = sessionStorage.getItem("username");
+    
+}

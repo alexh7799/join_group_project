@@ -98,7 +98,7 @@ p {
     flex: 1;
     box-shadow: 0 0 4px 0 var(--border-grey);
     cursor: pointer;
-    min-height: 108px;
+    min-height: 123px;
 }
 
 .item-summary:hover {
@@ -170,10 +170,6 @@ p {
     align-self: flex-start;
 }
 
-.task-summary span{
-    height: 35px;
-}
-
 span {
     font-size: 14px;
     text-align: center;
@@ -182,10 +178,10 @@ span {
 .greeting {
     background-color: var(--bg);
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
-    position: fixed;
+    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
@@ -207,15 +203,15 @@ span {
     0% {
         width: 100%;
         height: 100vh;
-        background-color: var(--bg);
+        background-color: transparent;
+        color: transparent;
     }
 
     100% {
-        width: auto;
-        height: auto;
+        width: 0;
+        height: 0;
         background-color: transparent;
         color: transparent;
-        display: none !important;
     }
 }
 
@@ -252,6 +248,8 @@ span {
 @media (min-width: 827px) {
     .summary {
         padding: 150px 16px 0 245px;
+        display: flex;
+        flex-direction: column-reverse;
     }
 
     .header-summary {
@@ -299,10 +297,6 @@ span {
         font-size: 20px;
     }
 
-    .task-summary span{
-        height: 48px;
-    }
-
     .task-summary {
         justify-content: end;
     }
@@ -326,7 +320,8 @@ span {
 
 @media (min-width: 1080px) {
     .summary {
-        padding:  180px 50px 50px 280px;
+        padding:  180px 20px 0 250px;
+        flex-direction: row-reverse;
     }
 
     .container-summary {
@@ -340,18 +335,36 @@ span {
 
     .greeting {
         flex: 1;
+        height: auto;
+        margin-left: 25px;
     }
+
+    .greeting p {
+        margin: 0;
+        line-height: normal;
+    }
+}
+
+@media (min-width: 1100px) {
+    .summary {
+        padding:  180px 50px 0 280px;
+    }
+
+    .greeting {
+        margin-left: 40px;
+    }
+
 }
 
 @media (min-width: 1190px) {
     .summary {
-        padding:  200px 80px 90px 310px;
+        padding:  200px 80px 0 310px;
     }
 }
 
 @media (min-width: 1440px) {
     .summary {
-        padding:  220px 95px 90px 325px;
+        padding:  220px 95px 0 325px;
     }
 }
 
