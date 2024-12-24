@@ -122,25 +122,25 @@ ol li::marker {
 
 @media (min-width: 827px) {
     .legal-policy-container {
-        padding: 150px 16px 0 245px;
+        padding: 110px 16px 0 245px;
     }
 }
 
 @media (min-width: 1080px) {
     .legal-policy-container {
-        padding:  180px 50px 50px 280px;
+        padding:  120px 50px 50px 280px;
     }
 }
 
 @media (min-width: 1190px) {
     .legal-policy-container {
-        padding:  200px 80px 90px 310px;
+        padding:  140px 80px 90px 310px;
     }
 }
 
 @media (min-width: 1440px) {
     .legal-policy-container {
-        padding:  220px 95px 90px 325px;
+        padding:  160px 95px 90px 325px;
     }
 }
 

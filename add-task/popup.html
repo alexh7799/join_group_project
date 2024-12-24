@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POPUP</title>
-    <link rel="shortcut icon" href="./img/assets/icons/logo1.svg" type="image/x-icon">
-    <link rel="stylesheet" href="standard.css">
-    <link rel="stylesheet" href="./styles/add_task.css">
-    <link rel="stylesheet" href="./styles/acces.css">
-    <link rel="stylesheet" href="./styles/responsiv_add_task.css">
-    <link rel="stylesheet" href="./styles/popup.css">
-    <script src="scripts.js"></script>
+    <link rel="shortcut icon" href="../assets/icons/logo1.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/standard.css">
+    <link rel="stylesheet" href="./add_task.css">
+    <link rel="stylesheet" href="./acces.css">
+    <link rel="stylesheet" href="./responsiv_add_task.css">
+    <link rel="stylesheet" href="./popup.css">
+    
+    <link rel="stylesheet" href="../templates/header-sidebar.css">
+    <script src="../templates/header-sidebar.js"></script>
+    <script src="../templates/templates.js"></script>
 </head>
 
 <body onload="includeHTML()">
-    <div w3-include-html="index.html"></div>
 
     <main class="main-content">
         <div class="main-title">
@@ -34,7 +36,7 @@
                     <div class="dropdown-header" onclick="toggleDropdown()">
                         <span id="dropdown-selected">Select contacts to assign</span>
                         <span class="dropdown-arrow" id="dropdown-arrow">
-                            <img src="img/assets/icons/arrow-dropdown.svg">
+                            <img src="../assets/icons/arrow-dropdown.svg">
                         </span>
                     </div>
                     <ul class="dropdown-options" id="dropdown-options">
@@ -68,15 +70,15 @@
                 <div class="priority">
                     <button type="button" class="prio urgent">
                         <p>Urgent</p>
-                        <img src="img/assets/icons/urgent.svg">
+                        <img src="../assets/icons/urgent.svg">
                     </button>
                     <button type="button" class="prio medium">
                         <p>Medium</p>
-                        <img src="img/assets/icons/medium.svg">
+                        <img src="../assets/icons/medium.svg">
                     </button>
                     <button type="button" class="prio low">
                         <p>Low</p>
-                        <img src="img/assets/icons/low.svg">
+                        <img src="../assets/icons/low.svg">
                     </button>
                 </div>
 
@@ -94,7 +96,7 @@
                         <input class="input-text" type="text" id="new-subtask" name="new_subtask"
                             placeholder="Add new subtask">
                         <div class="button-container">
-                            <button class="icon-btn"><img src="img/assets/icons/plus-default.svg"></button>
+                            <button class="icon-btn"><img src="../assets/icons/plus-default.svg"></button>
                         </div>
                     </div>
 
@@ -103,9 +105,9 @@
                         <input class="input-text" type="text" id="edit-desktop" name="edit_desktop"
                             value="Bearbeiten Desktop">
                         <div class="button-container">
-                            <button class="icon-btn"><img src="img/assets/icons/delete.svg"></button>
+                            <button class="icon-btn"><img src="../assets/icons/delete.svg"></button>
                             <div class="divider-btn"></div>
-                            <button class="icon-btn"><img src="img/assets/icons/check.svg"></button>
+                            <button class="icon-btn"><img src="../assets/icons/check.svg"></button>
                         </div>
                     </div>
 
@@ -113,18 +115,18 @@
                         <input class="input-text" type="text" id="legal-imprint" name="legal_imprint"
                             value="Write Legal Imprint">
                         <div class="button-container">
-                            <button class="icon-btn cancel-btn"><img src="img/assets/icons/close-default.svg"></button>
+                            <button class="icon-btn cancel-btn"><img src="../assets/icons/close-default.svg"></button>
                             <div class="divider-btn"></div>
-                            <button class="icon-btn"><img src="img/assets/icons/check.svg"></button>
+                            <button class="icon-btn"><img src="../assets/icons/check.svg"></button>
                         </div>
                     </div>
 
                     <div class="input-wrapper input-double-wrapper ">
                         <input type="text" class="input-double" id="double" name="double" value="double">
                         <div class="button-container">
-                            <button class="icon-btn"><img src="img/assets/icons/delete.svg"></button>
+                            <button class="icon-btn"><img src="../assets/icons/delete.svg"></button>
                             <div class="divider-dou"></div>
-                            <button class="icon-btn"><img src="img/assets/icons/check.svg"></button>
+                            <button class="icon-btn"><img src="../assets/icons/check.svg"></button>
                         </div>
                     </div>
 
@@ -145,9 +147,9 @@
                 <span class="bullet">•</span>
                 <span class="text">Contact Form</span>
                 <div class="actions">
-                    <button class="icon-btn"><img src="img/assets/icons/edit.svg"></button>
+                    <button class="icon-btn"><img src="../assets/icons/edit.svg"></button>
                     <div class="divider-btn"></div>
-                    <button class="icon-btn save-btn"><img src="img/assets/icons/delete.svg"></button>
+                    <button class="icon-btn save-btn"><img src="../assets/icons/delete.svg"></button>
                 </div>
             </div>
             <!-- HANDY -->
@@ -165,7 +167,7 @@
     </main>
 
 
-
+    <script src="../script.js"></script>
 </body>
 
 </html>
