@@ -1,0 +1,148 @@
+body::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  all: unset;
+}
+
+p {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.legal_notice_p {
+  margin-bottom: 24px;
+}
+
+.pp_content {
+  max-width: 950px;
+}
+
+button {
+  all: unset;
+}
+
+h3 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.sidebar_with_content {
+  display: flex;
+}
+
+.ln_pp_hp_section {
+  padding-bottom: 10px;
+  background-color: #f6f7f8;
+}
+
+.ln_pp_hp_content {
+  max-width: 1014px;
+  padding: 206px 97px 0 328px;
+}
+
+.ln_pp_hp_h1 {
+  margin: 0 0 0 0;
+  font-weight: 700;
+  font-size: 61px;
+  width: 420px;
+}
+
+.ln_pp_hp_headline {
+  height: 73px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 32px;
+}
+
+.legal_notice_span {
+  color: #29abe2;
+  line-height: 19.2px;
+}
+
+.legal_notice_ul {
+  padding-left: 24px;
+  margin-bottom: 24px;
+}
+
+.legal_notice_h2 {
+  margin: 0 0 24px 0;
+  padding-top: 8px;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.legal_notice_h3 {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.back_to_last_page_btn {
+  position: fixed;
+  top: 225px;
+  left: calc(min(1307px, 100% - 133px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 37px;
+  width: 37px;
+  margin: 0 0 0 0;
+}
+
+.back_to_last_page_btn img {
+  width: 21px;
+  height: 21px;
+  padding: 3px;
+}
+
+.back_to_last_page_btn img:hover {
+  transform: scale(1.09);
+  cursor: pointer;
+  background-color: rgb(238, 238, 238);
+  border-radius: 50%;
+}
+
+ol {
+  list-style: none;
+  counter-reset: section;
+  margin: 16px 0px 32px 0;
+}
+
+.hp_li {
+  padding-left: 56px;
+  counter-increment: section;
+  position: relative;
+}
+
+.hp_li::before {
+  content: counter(section) ".";
+  position: absolute;
+  left: 0px;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+@media (max-width: 1000px) {
+  .ln_pp_hp_content {
+    padding: 128px 16px 0 16px;
+  }
+
+  .ln_pp_hp_h1 {
+    font-size: 47px;
+  }
+  .legal_notice_h2 {
+    font-size: 27px;
+  }
+
+  .back_to_last_page_btn {
+    position: unset;
+  }
+
+  .ln_pp_hp_section {
+    padding-bottom: 80px;
+  }
+}

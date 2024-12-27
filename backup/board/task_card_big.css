@@ -1,0 +1,362 @@
+.big_card_bg {
+  z-index: 999;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.big_card {
+  position: relative;
+  max-height: 931px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-right: 20px solid transparent;
+  width: 525px;
+  border-radius: 30px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 48px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 4px 0px #00000029;
+  animation: slideIn 100ms ease-out;
+}
+
+.big_card::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+.big_card::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 8px;
+}
+
+.big_card::-webkit-scrollbar-button:vertical:decrement,
+.big_card::-webkit-scrollbar-button:vertical:increment {
+  height: 60px;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.big_card::-webkit-scrollbar-button:vertical:decrement {
+  height: 120px;
+}
+
+.big_card::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url("../assets/img/scrollbarArrowUp.svg");
+  background-repeat: no-repeat;
+}
+
+.big_card::-webkit-scrollbar-button:vertical:increment {
+  background-image: url("../assets/img/scrollbarArrowDown.svg");
+  background-repeat: no-repeat;
+}
+
+.big_card::-webkit-scrollbar-button:vertical:end:decrement,
+.big_card::-webkit-scrollbar-button:vertical:start:increment {
+  display: none;
+}
+
+.big_card::-webkit-scrollbar-track,
+.big_card::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+
+.d_none {
+  display: none;
+}
+
+.big_card_art_close {
+  width: 445px;
+  height: 36px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 48px;
+}
+
+.big_art {
+  width: 208px;
+  height: 36px;
+  border-radius: 8px;
+  padding: 4px, 24px, 4px, 24px;
+  gap: 10px;
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.big_card_close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.big_card_close_edit {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  right: 5px;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.big_card_close_edit:hover {
+  border-radius: 52px;
+  background-color: #eeeeee;
+}
+
+.title_big {
+  width: 445px;
+  font-size: 61px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.big_description {
+  width: 445px;
+  font-size: 20px;
+  padding-right: 10px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.big_due,
+.big_prio,
+.big_assigned,
+.big_subs {
+  color: #2a3647;
+  display: flex;
+  flex-direction: row;
+  width: 445px;
+  font-size: 20px;
+  gap: 25px;
+}
+
+.big_prio_img {
+  color: #000000;
+  font-size: 20px;
+}
+
+.big_due_date {
+  font-size: 19px;
+  color: #000000;
+}
+
+.big_subs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px !important;
+  margin-top: -10px;
+}
+
+.subtask_item {
+  width: 90%;
+  flex-direction: row;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+  padding: 7px 16px;
+}
+
+.subtask_item:hover {
+  background-color: rgb(238, 238, 238);
+  border-radius: 15px;
+}
+
+.subtask_checkbox {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.subtask_title {
+  width: 90%;
+  text-wrap: wrap;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.subtasks_container {
+  display: flex;
+  flex-direction: column;
+  padding: 7px 16px;
+  margin-bottom: 20px;
+}
+
+.big_del_txt,
+.big_edit_txt {
+  font-size: 16px;
+  font-weight: 400;
+  color: #2a3647;
+}
+
+.big_del_edit {
+  width: 445px;
+  height: 24px;
+  gap: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.big_del {
+  width: 81px;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.big_edit {
+  width: 62px;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.big_del_icon,
+.big_edit_icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+}
+
+.delspan {
+  width: 49px;
+  height: 19px;
+}
+
+.editspan {
+  width: 30px;
+  height: 24px;
+}
+
+.big_assigned {
+  width: 445px;
+  gap: 8px;
+  height: auto !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.big_assigned_txt {
+  width: 445px;
+  height: 24px;
+}
+
+.assigned_div {
+  display: flex;
+  flex-direction: column;
+  padding: 7px 16px;
+}
+
+.big_assigned_user {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 16px;
+}
+
+.assigned_logo_name {
+  height: 42px;
+  gap: 16px;
+  font-weight: 400;
+  font-size: 19px;
+  color: #000000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assigned_big_logo {
+  width: 42px;
+  height: 42px;
+  gap: 10px;
+}
+
+.assigned_big_name {
+  height: 23px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.big_del_edit svg:hover,
+.big_del:hover,
+.big_edit:hover {
+  color: #29abe2;
+}
+
+.big_card_close:hover,
+.search_icon:hover {
+  border-radius: 52px;
+  background-color: #eeeeee;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.big_save_cancel_buttons {
+  position: absolute;
+  right: 40px;
+  bottom: 45px;
+}
+
+.edit_button {
+  height: 32px;
+  border: 1px;
+  bottom: 25px;
+  color: #ffffff;
+  background-color: #2a3647;
+  border-radius: 10px;
+  padding: 8px 16px;
+  gap: 4px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  transition: 100ms;
+}
+
+.edit_button:hover {
+  background-color: #29abe2;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  animation: ease-in-out;
+}

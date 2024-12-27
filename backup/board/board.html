@@ -1,25 +1,163 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POPUP</title>
+    <title>Join - Board</title>
     <link rel="shortcut icon" href="../assets/icons/logo1.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/font.css">
     <link rel="stylesheet" href="../styles/standard.css">
-    <link rel="stylesheet" href="./add_task.css">
-    <link rel="stylesheet" href="./acces.css">
-    <link rel="stylesheet" href="./responsiv_add_task.css">
-    <link rel="stylesheet" href="./popup.css">
-    
+    <link rel="stylesheet" href="./board.css">
+    <link rel="stylesheet" href="../add-task/acces.css">
+    <link rel="stylesheet" href="../add-task/responsiv_add_task.css">
+    <link rel="stylesheet" href="../add-task/popup.css">
+    <link rel="stylesheet" href="./task_card_small.css">
+    <link rel="stylesheet" href="./ln_pp_hp_style.css">
+    <link rel="stylesheet" href="./task_card_big.css">
+    <link rel="stylesheet" href="./board_responsive.css">
+    <link rel="stylesheet" href="./add_task_edit_section.css">
+    <link rel="stylesheet" href="./board_add_task_responsive.css">
+
+
+    <script src="./add_task.js" defer></script>
+    <script src="./add_task_category_dropdown_prio.js"></script>
+    <script src="./add_task_clear_form.js"></script>
+    <script src="./add_task_collectData.js" defer></script>
+    <script src="./add_task_contacts.js" defer></script>
+    <script src="./add_task_validate.js"></script>
+    <script src="./board_edit_task.js"></script>
+    <script src="./board_edit_template.js"></script>
+    <script src="./board_edit_contacts.js"></script>
+    <script src="./board_edit_subtasks.js"></script>
+    <script src="./board_edit_subtasks_database.js"></script>
+    <script src="./add_task_subtask_html_array.js"></script>
+    <script src="./board_category_mobile.js"></script>
+    <script src="./big_task_card_template.js"></script>
+    <script src="./board_render.js" defer></script>
+    <script src="./board_template.js" defer></script>
+    <script src="./search_border.js" defer></script>
+    <script src="./board_drag_and_drop.js" defer></script>
+
     <link rel="stylesheet" href="../templates/header-sidebar.css">
     <script src="../templates/header-sidebar.js"></script>
     <script src="../templates/templates.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="initBoardJs()">
+    <div id="overlay-container" class="overlay-container" onclick="removeOverlay()"></div>
+    <header id="header-container"></header>
+    <aside id="navigation-container"></aside>
 
-    <div class="main-content">
+
+
+
+
+    <div class="board">
+        <div class="big_card_bg d_none" id="big_card_bg"></div>
+        <div class="header-desktop d-flex-sb-c">
+            <span>
+                <h1>Board</h1>
+            </span>
+
+            <div class="d-flex-c-c gap-10">
+
+                <div class="find-tasks">
+                    <input class="search-task-input" id="search_task_input" oninput="filterTasks()" type="search"
+                        placeholder="Find Task">
+                    <div>
+                        <div class="search-icon" onclick="filterTasks(); emptySearchInput()"><img
+                                src="../assets/icons/search-default.svg"></div>
+                    </div>
+                </div>
+
+                <div class="add-task-btn d-flex-sb-c">
+                    <div>
+                        <span>Add Task</span>
+                    </div>
+                    <div>
+                        <img src="../assets/icons/add-white.svg">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="header-mobile">
+
+            <div class="d-flex-sb-c">
+                <span>
+                    <h1>Board</h1>
+                </span>
+
+                <div class="add-task-btn d-flex-sb-c">
+                    <div>
+                        <img src="../assets/icons/add-white.svg">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="find-tasks">
+                <input class="search-task-input" id="search_task_input" oninput="filterTasks()" type="search"
+                    placeholder="Find Task">
+                <div>
+                    <div class="search-icon" onclick="filterTasks(); emptySearchInput()"><img
+                            src="../assets/icons/search-default.svg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tasks">
+            <div class="task_main">
+                <div class="task_topic d-flex-sb-c">To Do<div class="plus_btn d-flex-c-c" onclick="openForm()"><img
+                            src="../assets/icons/add.svg"></div>
+                </div>
+
+                <div id="small_card_todo" class="small_card_row"
+                    ondrop="moveTo('todo'); removeHighlightBorder('small_card_todo')"
+                    ondragover="allowDrop(event); addHighlightBorder('small_card_todo')"
+                    ondragleave="removeHighlightBorder('small_card_todo')">
+                </div>
+
+            </div>
+
+            <div class="task_main">
+                <div class="task_topic d-flex-sb-c">In Progress<div class="plus_btn d-flex-c-c" onclick="openForm()">
+                        <img src="../assets/icons/add.svg"></div>
+                </div>
+                <div id="small_card_progress" class="small_card_row"
+                    ondrop="moveTo('progress'); removeHighlightBorder('small_card_progress')"
+                    ondragover="allowDrop(event); addHighlightBorder('small_card_progress')"
+                    ondragleave="removeHighlightBorder('small_card_progress')">
+                </div>
+            </div>
+
+            <div class="task_main">
+                <div class="task_topic d-flex-sb-c">Await feedback<div class="plus_btn d-flex-c-c" onclick="openForm()">
+                        <img src="../assets/icons/add.svg"></div>
+                </div>
+                <div id="small_card_await" class="small_card_row"
+                    ondrop="moveTo('await'); removeHighlightBorder('small_card_await')"
+                    ondragover="allowDrop(event); addHighlightBorder('small_card_await')"
+                    ondragleave="removeHighlightBorder('small_card_await')">
+                </div>
+            </div>
+
+            <div class="task_main">
+                <div class="task_topic">Done</div>
+                <div id="small_card_done" class="small_card_row"
+                    ondrop="moveTo('done'); removeHighlightBorder('small_card_done')"
+                    ondragover="allowDrop(event); addHighlightBorder('small_card_done')"
+                    ondragleave="removeHighlightBorder('small_card_done')">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="main-content" style="display: none;">
         <div class="main-title">
             <h1>Add Task</h1>
         </div>
@@ -139,7 +277,7 @@
                 </div>
             </div>
 
-            </div>
+
 
 
             <!-- HANDY -->
@@ -166,8 +304,8 @@
         </div>
     </div>
 
-
     <script src="../script.js"></script>
+    <script src="./board.js"></script>
 </body>
 
 </html>

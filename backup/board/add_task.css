@@ -1,0 +1,374 @@
+.form_area {
+  height: 100vh;
+}
+
+.add_task_content {
+  overflow: hidden;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-top: 206px;
+  padding-left: 328px;
+  background-color: #f6f7f8;
+}
+
+.add_task_h1 {
+  height: 73px;
+  width: 278px;
+  margin-bottom: 48px;
+}
+
+.add_task_fillIn_section {
+  display: flex;
+}
+
+.aT_unset {
+  all: unset;
+}
+
+.add_task_form_left {
+  height: 376px;
+  width: 440px;
+  margin-right: 47.5px;
+}
+
+.add_task_seperator {
+  height: 450px;
+  width: 1px;
+  background-color: #d1d1d1;
+  margin-right: 47.5px;
+}
+
+.add_task_form_right {
+  height: 416px;
+  width: 440px;
+}
+
+.add_task_bottom_section {
+  z-index: 999;
+  width: 976px;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  background-color: #f6f7f8;
+  position: fixed;
+  bottom: 0;
+}
+
+.aT_input_title {
+  background-color: white;
+  box-sizing: border-box;
+  padding: 12px 21px;
+  width: 100%;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 20px;
+  border: 1px solid;
+  border-color: #d1d1d1;
+  cursor: pointer;
+  position: relative;
+}
+
+.aT_input_title::placeholder {
+  color: #d1d1d1;
+  font-weight: 300;
+}
+
+.title_input_error_container {
+  height: 52px;
+  margin-bottom: 32px;
+}
+
+sup {
+  color: #ff8190;
+  font-size: 20px;
+  position: relative;
+  top: 7px;
+}
+
+.aT_input_labels {
+  font-size: 20px;
+  color: #2a3647;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.resizable-container {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  margin-bottom: 30px;
+}
+
+.resizable-textarea {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  padding: 12px 21px;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-family: "Inter", sans-serif;
+  resize: none;
+  cursor: pointer;
+}
+
+.resizable-textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.resizable-textarea::placeholder {
+  color: #d1d1d1;
+  font-size: 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+}
+
+.resize-handle {
+  padding-bottom: 6px;
+  padding-right: 6px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 24px;
+  height: 24px;
+  cursor: se-resize;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.aT_input_title:focus,
+.resizable-textarea:focus,
+.aT_input_date:focus {
+  cursor: text;
+  border-color: #29abe2;
+  outline: none;
+}
+
+.aT_select_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.aT_select_dropdown_fields {
+  all: unset;
+  width: 476px;
+  height: 48px;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  background-color: white;
+  padding-left: 21px;
+  padding-right: 35px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 20px;
+  position: relative;
+}
+
+.aT_select_dropdown_fields:hover {
+  border: 1px solid #a8a8a8;
+}
+
+.drop_down_arrow_container {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 16px;
+}
+
+.drop_down_arrow_container:hover {
+  background-color: rgb(238, 238, 238);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.aT_select_container:hover .aT_select_dropdown_fields:not(.active-border) {
+  border: 1px solid #a8a8a8;
+}
+
+.aT_select_dropdown_fields::placeholder {
+  color: black;
+  font-size: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.aT_select_dropdown_fields.active-border::placeholder {
+  opacity: 0;
+}
+
+.aT_select_dropdown_fields.active-border:hover {
+  border: 1px solid #29abe2;
+}
+
+.arrow {
+  transition: transform 0.1s ease;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.contact_list {
+  border-radius: 10px;
+  background-color: white;
+  padding: 55px 7px 7px 7px;
+  margin-top: -48px;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+  overflow: hidden;
+}
+
+#contact_list_name {
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.selected-contacts-container {
+  padding-left: 7px;
+  max-width: 440px;
+  flex-wrap: wrap;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 5px;
+}
+
+.contact-selected {
+  background-color: #2a3647 !important;
+}
+
+.contact-unselected {
+  background-color: #ffffff !important;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+.text-black {
+  color: #000000 !important;
+}
+
+.selected-contact {
+  width: max-content;
+}
+
+.contact-selected:hover {
+  background-color: #091931 !important;
+}
+
+.contact-unselected:hover {
+  background-color: #eeeeee !important;
+}
+
+.contact_container_element {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 15px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.contact_container_element:hover {
+  cursor: pointer;
+}
+
+.scrollable_container {
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.scrollable_container_overlay {
+  max-height: 140px;
+}
+
+.scrollable_container::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+.scrollable_container::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 8px;
+}
+
+.scrollable_container::-webkit-scrollbar-button:vertical:decrement,
+.scrollable_container::-webkit-scrollbar-button:vertical:increment {
+  height: 15px;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.scrollable_container::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url("../assets/img/scrollbarArrowUp.svg");
+  background-repeat: no-repeat;
+}
+
+.scrollable_container::-webkit-scrollbar-button:vertical:increment {
+  background-image: url("../assets/img/scrollbarArrowDown.svg");
+  background-repeat: no-repeat;
+}
+
+.scrollable_container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollable_container::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+
+.seperator_close_check {
+  height: 24px;
+  width: 1px;
+  background-color: #d1d1d1;
+  margin: 0 3.5px;
+}
+
+.close_check_container {
+  width: 56px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 16px;
+}
+
+.c_icon_container {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c_icon_container:hover {
+  background-color: rgb(238, 238, 238);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.button_container {
+  width: 309px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.active-border {
+  border: 1px solid #29abe2;
+}
