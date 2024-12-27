@@ -20,15 +20,12 @@ document.getElementById("login-form-container").addEventListener("submit", async
 })
 
 function signUp() {
-    console.log("funktioniert");
     let name = document.getElementById("name-input").value;
     let email = document.getElementById("email-input").value;
     let password = document.getElementById("password-input-1").value;
-    console.log(email);
-    console.log(name);
-    console.log(password);
+    let color = getRandomColor();
     
-    postData(`/users/`, {"name": name, "email": email, "password": password, "id": usercount + 1});
+    postData(`/users/`, {"name": name, "email": email, "password": password, "id": usercount + 1,"phone": "", "color": `${color}`});
     usercount++;
     putUsercount(`usercount`, usercount);   
 }
@@ -41,7 +38,6 @@ async function putUsercount(path="", data="") { // Anlegen von Daten
         },
         body: JSON.stringify(data)
     });
-    console.log("posted");
     
     return responseToJson = await response.json();
 }
@@ -54,7 +50,6 @@ async function postData(path="", data="") { // Anlegen von Daten
         },
         body: JSON.stringify(data)
     });
-    console.log("posted");
     
     return responseToJson = await response.json();
 }

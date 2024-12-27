@@ -1,7 +1,7 @@
 /**
  * Globale Variable the url from database
  */
-const BASE_URL ="https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL ="https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/tasks";
 
 /**
  * Init function for summary
