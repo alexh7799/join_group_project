@@ -1,30 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join - Board</title>
-    <link rel="shortcut icon" href="../assets/icons/logo1.svg" type="image/x-icon">
-    <link rel="stylesheet" href="../styles/font.css">
-    <link rel="stylesheet" href="../styles/standard.css">
-
-    <link rel="stylesheet" href="../templates/header-sidebar.css">
-    <script src="../templates/header-sidebar.js"></script>
-    <script src="../templates/templates.js"></script>
+    <title>Board</title>
+    <link rel="stylesheet" href="./board.css">
+    <link rel="stylesheet" href="./mobileboard.css">
+    <script src="script.js"></script>
 </head>
 
-<body onload="initBoardJs()">
-    <div id="overlay-container" class="overlay-container" onclick="removeOverlay()"></div>
-    <header id="header-container"></header>
-    <aside id="navigation-container"></aside>
+<body onload="includeHTML()">
+    <div w3-include-html="index.html"></div>
+
+    <main>
+        <div class="head">
+            <div>
+                <h1 class="board">Board</h1>
+            </div>
+            <div class="find-add-task">
+                <div class="find-task" id="findTask" tabindex="0">
+                    <input class="find-task-input" type="text" placeholder="Find Task">
+                    <img src="./img/line.png" alt="">
+                    <button class="find-task-button" type="submit"><img src="./img/search.png" alt=""></button>
+                </div>
+                <div class="add-task">
+                    <h3 style="font-size: 20px; color: white;">Add task</h3>
+                    <img style="height: 18.67px; width: 18.67px;" src="./img/add.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="split">
+            <div>
+                <div class="spliter-header">
+                    <p style="font-size: 18px; font-weight: bold; color: #42526e;">To do</p>
+                    <img src="./img/plus button.png" alt="">
+                </div>
 
 
-    <div class="board">
-       
-    </div>
+            </div>
+            <div class="spliter-header">
+                <p style="font-size: 18px; font-weight: bold; color: #42526e;">In progress</p>
+                <img src="./img/plus button.png" alt="">
+            </div>
+            <div class="spliter-header">
+                <p style="font-size: 18px; font-weight: bold; color: #42526e;">Await feedback</p>
+                <img src="./img/plus button.png" alt="">
+            </div>
+            <div class="spliter-header">
+                <p style="font-size: 18px; font-weight: bold; color: #42526e;">Done</p>
+            </div>
+        </div>
 
-    <script src="../script.js"></script>
+        <div class="split-fields">
+            <div class="spliter-fields" id="toDoTask">
+                <div class="no-task" id="noTask">
+                    <p style="color: #a8a8a8;">No task To do</p>
+                </div>
+            </div>
+
+            <div class="spliter-fields" id="inProgressTask">
+                <div class="task">
+                    <div class="userstory-task-header">
+                        User Story
+                    </div>
+                    <div class="task-text-bold">
+                        Kochwelt Page & Recipe Recommender
+                    </div>
+                    <div class="task-text">
+                        Bulid start page with recipe recommendation bla bla bla bla
+                    </div>
+                    <div class="subtasks">
+                        <progress class="progressbar" value="50" max="100"></progress>
+                        <p style="font-size: 12px;">1/2 Subtasks</p>
+                    </div>
+                    <div class="task-footer">
+                        <div class="avatar-div">
+                            <span class="avatar" style="background-color: blue; margin-left: -18px;">SK</span>
+                            <span class="avatar" style="background-color: red; margin-left: -18px;">LM</span>
+                            <span class="avatar" style="background-color: orange; margin-left: -18px;">DK</span>
+                            <span class="avatar" style="background-color: green; margin-left: -18px;">AM</span>
+                        </div>
+                        <div>
+                            <img src="./img/medium.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="spliter-fields" id="awaitFeedbackTask">
+                <div class="task">
+                    <div class="technical-task-header">
+                        Technical Task
+                    </div>
+                    <div class="task-text-bold">
+                        HTML Base Template Creation
+                    </div>
+                    <div class="task-text">
+                        <p>Create reusable HTML base templates bl bla bla bla bla</p>
+                    </div>
+                    <!-- <div class="subtasks">
+                        <progress class="progressbar" value="50" max="100"></progress>
+                        <p style="font-size: 12px;">1/2 Subtasks</p>
+                    </div> -->
+                    <div class="task-footer">
+                        <div class="avatar-div">
+                            <span class="avatar" style="background-color: blue; margin-left: -18px;">SK</span>
+                            <span class="avatar" style="background-color: orange; margin-left: -18px;">DK</span>
+                            <span class="avatar" style="background-color: green; margin-left: -18px;">AM</span>
+                        </div>
+                        <div>
+                            <img src="./img/low.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="spliter-fields" id="doneTask"></div>
+        </div>
+    </main>
 </body>
 
 </html>
