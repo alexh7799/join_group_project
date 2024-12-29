@@ -21,6 +21,7 @@ body {
     font-family: Inter;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
+    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {

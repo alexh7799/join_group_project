@@ -10,6 +10,7 @@ function initSummary() {
     loadingNumbers();
     generateGreets();
     includeHTML();
+    checkLink()
 }
 
 function includeHTML() {
@@ -63,19 +64,30 @@ function goToBoard() {
  * loading the numbers for der summary page of the database
  */
 async function loadingNumbers() {
-    let response = await fetch(BASE_URL + ".json");
-    let tasks = await response.json();
-    let toDoNum = document.getElementById("toDoNum");
-    toDoNum.innerText = tasks.toDos.length;
-    let doneNum = document.getElementById("doneNum");
-    doneNum.innerText = tasks.done.length;
-    let allTasks = document.getElementById("allTasks");
-    allTasks.innerText = tasks.toDos.length + tasks.done.length + tasks.progress.length + tasks.awaiting.length;
-    let progressNum = document.getElementById("progressNum");
-    progressNum.innerText = tasks.progress.length;
-    let awaitNum = document.getElementById("awaitNum");
-    awaitNum.innerText = tasks.awaiting.length;
-    loadUrgentTasks(tasks);
+    try {
+        let response = await fetch(BASE_URL + ".json");
+        let tasks = await response.json();
+
+        let groupedTasks = {todo: 0, progress: 0, awaiting: 0, done: 0};
+
+        Object.values(tasks).forEach(task => {
+            if (task.type) {
+                groupedTasks[task.type] = (groupedTasks[task.type] || 0) + 1;
+            }
+        });
+
+        document.getElementById("toDoNum").innerText = groupedTasks.todo || 0;
+        document.getElementById("progressNum").innerText = groupedTasks.progress || 0;
+        document.getElementById("awaitNum").innerText = groupedTasks.awaiting || 0;
+        document.getElementById("doneNum").innerText = groupedTasks.done || 0;
+ 
+        const totalTasks = Object.values(groupedTasks).reduce((a, b) => a + b, 0);
+        document.getElementById("allTasks").innerText = totalTasks;
+
+        loadUrgentTasks(tasks);
+    } catch (error) {
+        console.error("Error loading numbers:", error);
+    }
 }
 
 /**

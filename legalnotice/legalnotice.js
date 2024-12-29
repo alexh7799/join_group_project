@@ -1,5 +1,6 @@
 function initLegalNotice() {
     includeHTML();
+    checkLink()
     notLogin();
 }
 

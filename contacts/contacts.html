@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../assets/icons/logo1.svg" type="image/x-icon">
-    <title>Contacts</title>
+    <title>JOIN | Contacts</title>
+    <link rel="stylesheet" href="../styles/font.css">
     <link rel="stylesheet" href="../styles/standard.css">
     <link rel="stylesheet" href="./contacts.css">  
     <link rel="stylesheet" href="./components.css">
     <link rel="stylesheet" href="./add_contactsPopup.css">
-    <link rel="stylesheet" href="./responsive .css">
+    <link rel="stylesheet" href="./responsive.css">
     
     <link rel="stylesheet" href="../templates/header-sidebar.css">
     <script src="../templates/header-sidebar.js"></script>
@@ -39,17 +40,11 @@
                     </button>
                 </div>
 
-                <div class="" id="btn-mobile-popup" style="display: none;">
-                    <button id="toggle-button" class="btn-addcontact-mobil" onclick="toggleSidebar()">
+                <div class="btn-container-mobile d-none" id="btn-mobile-popup">
+                    <button id="toggle-button" class="btn-addcontact-mobil" onclick="toggleEditDeletePopup()">
                         <img src="../assets/icons/more-vert-white.svg">
                     </button>
                 </div>
-
-                <!-- <div class="btn-container-mobile" id="btn-mobile-popup">
-                    <button id="toggle-button" class="btn-addcontact-mobil" onclick="toggleSidebar()">
-                        <img src="../assets/icons/more-vert-white.svg">
-                    </button>
-                </div> -->
             </div>
 
             <div class="details" tabindex="0">
@@ -71,88 +66,14 @@
         </div>
     </main>
 
+    <div id="edit-delete-container" class="edit-delete-container" onclick="removeEditDel()">
+        <ul id="contact-pop-up" class="contact-pop-up" onclick="doNotClose(event)">
+
+        </ul> 
+    </div>
+
     <div class="popup-overlay" id="popup-overlay">
-        <div class="popup">
-            <div class="popup-left">
-
-                <!-- MOBIEL -->
-                <div class="close-btn-mobile">
-                    <button onclick="closeAddContact()">
-                        <img src="../assets/icons/close-white.svg" alt="">
-                    </button>
-                </div>
-                <!-- MOBIEL -->
-
-                <div class="logo">
-                    <img src="../assets/icons/logo2.svg">
-                </div>
-                <h1>Add contact</h1>
-                <p class="text-color">Tasks are better with a team!</p>
-                <div class="divider-add-contact"></div>
-                <!-- EDIT VERSION -->
-                <!-- <h1>Edit contact</h1> -->
-                <!-- EDIT VERSION -->
-            </div>
-
-            <div class="icon-wrapper">
-                <span class="add-contact-icon center" style="background-color: #747474;"><img
-                        src="../assets/icons/person-white.svg"></span>
-            </div>
-
-            <!-- EDIT VERSION -->
-            <!-- <div class="icon-wrapper">
-                <span class="add-contact-icon center" style="background-color: #be0f0f;">AA</span>
-            </div> -->
-            <!-- EDIT VERSION -->
-
-            <div class="popup-right">
-                <div class="close-btn-wrapper">
-                    <button>
-                        <img src="../assets/icons/close-default.svg" alt="">
-                    </button>
-                </div>
-                <form class="popup-form">
-                    <div class="form-group">
-                        <div class="input-icon">
-                            <input type="text" id="name" placeholder="Name" required>
-                            <img src="../assets/icons/person.svg">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-icon">
-                            <input type="email" id="email" placeholder="Email" required>
-                            <img src="../assets/icons/mail.svg">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-icon">
-                            <input type="tel" id="phone" placeholder="Phone">
-                            <img src="../assets/icons/phone.svg">
-                        </div>
-                    </div>
-                    <div class="btn">
-                        <button class="cancel-btn btn-center" onclick="closeAddContact()">
-                            Cancel
-                            <img src="../assets/icons/close-default.svg">
-                        </button>
-                        <button class="create-btn btn-center gap" onsubmit="createContact()">
-                            Create contact
-                            <img src="../assets/icons/check-white.svg">
-                        </button>
-                    </div>
-
-                    <!-- EDIT VERSION -->
-                    <!-- <div class="btn">
-                        <button class="delete-btn btn-center">Delete</button>
-                        <button class="save-btn gap btn-center">
-                            Save
-                            <img src="../assets/icons/check-white.svg">
-                        </button>
-                    </div> -->
-                    <!-- EDIT VERSION -->
-                </form>
-            </div>
-        </div>
+        
     </div>
 
     <script src="../script.js"></script>

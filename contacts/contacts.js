@@ -1,4 +1,5 @@
-const BASE_URL ="https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL = "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/";
+let usercount;
 
 /**
  * initializes the contacts page.
@@ -6,6 +7,7 @@ const BASE_URL ="https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.a
 function initContacts() {
     checkLogin()
     includeHTML()
+    checkLink()
     loadingUsers()
 }
 
@@ -27,24 +29,28 @@ function toggleDropdown() {
  * Fetches users from the database and sorts them alphabetically by name.
  */
 async function loadingUsers() {
-    let response = await fetch(BASE_URL + "users/" + ".json");
-    let user = await response.json();
-    let usersArray = Object.entries(user).map(([key, user]) => ({
-        ...user,
-        firebaseId: key  // Add Firebase key to user object
-    }));
+    try {
+        let response = await fetch(BASE_URL + "users/" + ".json");
+        let user = await response.json();
+        let usersArray = Object.entries(user).map(([key, user]) => ({
+            ...user,
+            firebaseId: key  // Add Firebase key to user object
+        }));
 
-    usersArray.sort((a, b) => a.name.localeCompare(b.name));
-    
-    let groupedUsers = usersArray.reduce((acc, user) => {
-        let firstLetter = user.name.charAt(0).toUpperCase();
-        if (!acc[firstLetter]) {
-            acc[firstLetter] = [];
-        }
-        acc[firstLetter].push(user);
-        return acc;
-    }, {});
-    loadRenderContactList(groupedUsers);
+        usersArray.sort((a, b) => a.name.localeCompare(b.name));
+
+        let groupedUsers = usersArray.reduce((acc, user) => {
+            let firstLetter = user.name.charAt(0).toUpperCase();
+            if (!acc[firstLetter]) {
+                acc[firstLetter] = [];
+            }
+            acc[firstLetter].push(user);
+            return acc;
+        }, {});
+        loadRenderContactList(groupedUsers);
+    } catch (error) {
+        console.error('Fehler:', error);
+    }
 }
 
 /**
@@ -60,90 +66,218 @@ function loadRenderContactList(groupedUsers) {
     });
 }
 
+/**
+ * load the add contact form.
+ */
 function addContact() {
     let popupOverlay = document.getElementById("popup-overlay");
+    popupOverlay.innerHTML = "";
+    popupOverlay.innerHTML = renderNewContact();
     popupOverlay.classList.add("showAddContact");
     document.body.style.overflow = 'hidden';
 }
 
-function closeAddContact() {
+/**
+ * close the add contact form.
+ */
+function closeContactForm() {
     let popupOverlay = document.getElementById("popup-overlay");
     popupOverlay.classList.remove("showAddContact");
     document.body.style.overflow = 'auto';
 }
 
-function createContact() {
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let password = "";
-    let phone = document.getElementById("phone").value;
-    console.log(email);
-    console.log(name);
-    console.log(password);
-    
-    postData(`/users/`, {"name": name, "email": email, "password": "", "id": usercount + 1, "phone": phone, "color": getRandomColor()});
-    usercount++;
-    putUsercount(`usercount`, usercount);   
+function showContactDetails(userId) {
+    try {
+        let contactDetails = document.getElementById("contact-details");
+        let btnMobilePopup = document.getElementById("btn-mobile-popup");
+        contactDetails.innerHTML = "";
+        let selectedUser = userArray.find(user => user.id == userId);
+        if (window.innerWidth <= 826) {
+            contactDetails.parentElement.classList.add('mobile-popup');
+            btnMobilePopup.classList.remove('d-none');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('contact-pop-up').innerHTML = renderEditDeletePopup(selectedUser);
+        }
+        contactDetails.innerHTML = renderContactDetails(selectedUser);
+        return true;
+    } catch (error) {
+        return false;
+    }
 }
 
-async function putUsercount(path="", data="") { // Anlegen von Daten 
-    let response = await fetch(BASE_URL + path + ".json",{
+function toggleEditDeletePopup() {
+    let contactButtons = document.getElementById("edit-delete-container");
+    contactButtons.style.right = "calc(0px)";
+    contactButtons.style.left = "0";
+}
+
+function removeEditDel() {
+    let contactButtons = document.getElementById("edit-delete-container");
+    contactButtons.style.right = "calc(-100vw)";
+    contactButtons.style.left = "";
+}
+
+function closeContactDetails() {
+    let contactDetails = document.getElementById("contact-details");
+    contactDetails.parentElement.classList.remove('mobile-popup');
+    document.body.style.overflow = 'auto';
+}
+
+async function loadUserCounter() {
+    let response = await fetch(BASE_URL + "usercount/.json");
+    let responseToJson = await response.json();
+    usercount = responseToJson;
+}
+
+async function createContact() {
+    try {
+        if (!validateContactForm()) {
+            return;
+        } else {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            await loadUserCounter();
+
+            const response = await postUser(`users/`, {
+                "name": name,
+                "email": email,
+                "password": "",
+                "id": usercount + 1,
+                "phone": phone,
+                "color": getRandomColor(),
+            });
+            if (response.name) {
+                usercount++;
+                await putUsercount(`usercount/`, usercount);
+                await loadingUsers();
+                closeContactForm();
+            }
+        }
+    } catch (error) {
+        console.error('Fehler:', error);
+    }
+}
+
+async function putUsercount(path = "", data = "") { // Anlegen von Daten 
+    let response = await fetch(BASE_URL + "usercount/" + ".json", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data)
     });
-    
     return responseToJson = await response.json();
 }
 
-async function postData(path="", data="") { // Anlegen von Daten 
-    let response = await fetch(BASE_URL + path + ".json",{
+async function postUser(path = "", data = "") { // Anlegen von Daten 
+    let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data)
     });
-    console.log("posted");
-    
-    return responseToJson = await response.json();
+    responseToJson = await response.json();
+    return responseToJson;
 }
 
 async function deleteUser(id) {
     let url = BASE_URL + "users/" + id + "/" + ".json";
-    console.log(url);
     let response = await fetch(url, {
         method: "DELETE"
     });
     let data = await response.json();
-    initContacts();
+    let contactDetails = document.getElementById("contact-details");
+    contactDetails.innerHTML = "";
+    contactDetails.parentElement.classList.remove('mobile-popup');
+    window.location.reload();
 }
 
 function editContact(user) {
-    
+    let popupOverlay = document.getElementById("popup-overlay");
+    popupOverlay.innerHTML = "";
+    popupOverlay.innerHTML = renderEditContact(user);
+    popupOverlay.classList.add("showAddContact");
+    document.body.style.overflow = 'hidden';
 }
 
-async function updateContact(firebaseId, updatedData) {
+async function updateUser(user) {
     try {
-        const url = BASE_URL + "users/" + firebaseId + ".json";
-        const response = await fetch(url, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updatedData)
-        });
-        
-        if (!response.ok) {
-            throw new Error('Fehler beim Aktualisieren des Kontakts');
+        if (!validateContactForm()) {
+            return;
+        } else {
+            const updatedData = { name: document.getElementById("name").value, email: document.getElementById("email").value, phone: document.getElementById("phone").value, color: userArray[user].color, id: userArray[user].id, password: userArray[user].password};
+            let response = await fetch(BASE_URL + "users/" + userArray[user].firebaseId + ".json", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedData)
+            });
+            if (response.ok) {
+                const index = userArray.findIndex(u => u.id === updatedData.id);
+                updatedData.firebaseId = userArray[user].firebaseId;
+                if (index !== -1) userArray[index] = updatedData;
+                await loadingUsers();
+                showContactDetails(updatedData.id);
+                closeContactForm();
+            }
         }
-        const data = await response.json();
-        console.log('Kontakt erfolgreich aktualisiert:', data);
-        initContacts();
-        return data;
     } catch (error) {
         console.error('Fehler:', error);
     }
+}
+
+function validateContactForm() {
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    let phone = document.getElementById('phone').value;
+    let isValid = true;
+
+    clearErrorMessages();
+
+    if (!validateName(name)) {
+        showError('name', 'Name is required and must be at least 2 characters long');
+        isValid = false;
+    }
+
+    if (!validateEmail(email)) {
+        showError('email', 'Email is required and must be a valid email address');
+        isValid = false;
+    }
+
+    if (phone && !validatePhone(phone)) {
+        showError('phone', 'phone is required and must be a valid phone number');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function validateName(name) {
+    return name.trim().length >= 2;
+}
+
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validatePhone(phone) {
+    const phoneRegex = /^[\d\s\+\-\(\)]{6,}$/;
+    return phoneRegex.test(phone);
+}
+
+function showError(fieldId, message) {
+    const errorDiv = document.getElementById('error-div-' + fieldId);
+    if (errorDiv !== null) {
+        errorDiv.classList.remove('d-none');
+        errorDiv.textContent = message;
+    }
+}
+
+function clearErrorMessages() {
+    const errorDiv = document.querySelectorAll('.error-message');
+    errorDiv.forEach(error => {
+        error.classList.add('d-none');
+    });
 }

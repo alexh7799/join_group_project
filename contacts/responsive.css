@@ -71,7 +71,7 @@
 /* Contact Main */
 @media screen and (min-width: 0px) and (max-width: 827px) {
     .btn-container-mobile {
-        display: block !important;
+        display: block;
         position: fixed; 
         right: 20px;
         bottom: 95px;
@@ -147,6 +147,10 @@
     .popup-left {
         width: 100%;
         padding-bottom: 70px;
+    }
+
+    .contact-buttons {
+        display: none !important;
     }
 }
 

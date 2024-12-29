@@ -16,7 +16,9 @@
     }
 
     .divider_mid {
-        display: none;
+        margin: 10px 0;
+        height: 0px;
+        width: 100%;
     }
 
     .task-form {

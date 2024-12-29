@@ -1,5 +1,6 @@
 function initPrivacyPolicy() {
     includeHTML();
+    checkLink()
     notLogin();
 }
 

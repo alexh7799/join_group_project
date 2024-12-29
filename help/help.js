@@ -1,0 +1,4 @@
+function initHelp() {
+    includeHTML();
+    checkLink();
+}

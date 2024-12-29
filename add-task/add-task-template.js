@@ -21,23 +21,10 @@ function getaddtaks() {
                         </span>
                     </div>
                     <div class="dropdown-options" id="dropdown-options">
-                        <div class="dropdown-item">
-                            <span class="avatar color">SM</span>
-                            <p>Sofia Müller</p>
-                            <input class="icon" type="checkbox" id="sofia" name="assigned_to" value="sofia">
-                        </div>
-                        <div class="dropdown-item">
-                            <span class="avatar color">AM</span>
-                            <p>Anton Mayer</p>
-                            <input class="icon" type="checkbox" id="anton" name="assigned_to" value="anton">
-                        </div>
                     </div>
                 </div>
-                <div id="id="avatar-container"">
-                    <span class="avatar color">AM</span>
-                    <span class="avatar color">BM</span>
-                    <span class="avatar color">CM</span>
-                    <span class="avatar color">DM</span>
+                <div id="avatar-container">
+                    
                 </div>
             </div>
 
@@ -45,8 +32,10 @@ function getaddtaks() {
 
             <div class="form-right">
                 <p>Date</p>
-                <input class="input-text" type="date" id="due-date" name="due_date">
-
+                <div class="input-date-container">
+                    <input class="input-text" type="date" id="due-date" name="due_date">
+                    <div class="calendar-icon" onclick="showPicker(this)"></div>
+                </div>
                 <p>Prio</p>
                 <div class="priority">
                     <button type="button" class="prio urgent">
@@ -85,13 +74,35 @@ function getaddtaks() {
                 <p><span class="required">*</span>This field is required</p>
             </div>
             <div>
-                <button class="btn-clear btn-cre-cle">Clear ✕</button>
-                <button class="btn-create btn-cre-cle">Create Task ✔</button>
+                <button class="btn-clear btn-cre-cle" onclick="clearForm()">Clear ✕</button>
+                <button class="btn-create btn-cre-cle" onclick="createTask()">Create Task ✔</button>
             </div>
         </div>
     </main>`;
 }
 
 
+function renderAssignedUser(assigned) {
+    let initials = assigned.name.split(' ').map(name => name.charAt(0).toUpperCase()).join('');
+    let capitalizedUserName = assigned.name.split(' ').map(name => name.charAt(0).toUpperCase() + name.slice(1)).join(' ');
+    return `                        
+        <div class="dropdown-item">
+            <span class="avatar color" style="background-color: ${assigned.color}">${initials}</span>
+            <p>${capitalizedUserName}</p>
+            <input class="icon" type="checkbox" id="${assigned.id}" name="assigned_to" value="0" onclick="toggleAvatar(${assigned.id}, this)">
+        </div>
+    `;
+}
 
-
+function renderAvatar() {
+    let avatarContainer = document.getElementById("avatar-container");
+    avatarContainer.innerHTML = "";
+    
+    newTask.user.forEach(user => {
+        let initials = user.name.split(' ').map(word => word.charAt(0).toUpperCase()).join('');
+        avatarContainer.innerHTML += `
+            <span class="avatar" style="background-color:${user.bgcolor}">
+                ${initials}
+            </span>`;
+    });
+}

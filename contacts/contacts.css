@@ -131,14 +131,6 @@ p {
 
 }
 
-/* .contact-item:focus .details {
-    transform: translateX(0);
-    position: absolute;.details
-    transform: translateX(70%);.details
-    width: 300px; .details
-    height: 100vh; .details
-} */
-
 .details-title {
     font-size: 40px;
 }
@@ -158,6 +150,7 @@ p {
     display: flex;
     flex-direction: column;
     flex: 1;
+    gap: 5px;
 }
 
 .contact-actions {
@@ -211,11 +204,12 @@ p {
 }
 
 .contact-info {
-    margin-top: 50px;
+    margin-top: 20px;
+    margin-left: 2px;
 }
    
 .contact-info-mag {
-    margin-bottom: 50px;
+    margin-bottom: 35px;
 }
 
 .contact-info-mag p{
@@ -229,13 +223,49 @@ p {
    
 .contact-info-mail {
     color: #29ABE2;
-    cursor: pointer;
+    cursor: default;
 }
 
 .contact-bold {
     font-weight: bold;
 }
 
-.d-none {
-    display: none;
+.edit-delete-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -100vw;
+    z-index: 1020;
+    padding: 0;
+    margin: 0;
+    transition: all 0.25s ease-in-out;
+}
+
+.contact-pop-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90px;
+    height: 70px;
+    position: absolute;
+    bottom: 88px;
+    right: 0;
+    list-style: none;
+    background-color: var(--bg);
+    padding: 10px;
+    border-radius: 15px 15px 0 15px;
+    border: 1px solid var(--grey);
+    margin: 10px 5px 0 10px;
+    box-shadow: 0px 4px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+input.error {
+    border-color: red;
 }

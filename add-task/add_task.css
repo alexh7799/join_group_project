@@ -181,3 +181,17 @@ p {
 .required-message {
     margin-top: 50px;
 }
+
+.input-date-container {
+    position: relative;
+}
+
+.calendar-icon {
+    position: absolute;
+    height: 30px;
+    width: 25px;
+    right: 8px;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+}
