@@ -201,11 +201,11 @@ function clearErrorMessages() {
 
 function selectCategory(cat) {
     let selectCategoryText = document.getElementById('dropdown-cat-selected')
-    if (cat == 'technical') {
-        categoryValue = 'technical';
+    if (cat == 'Technical Task') {
+        categoryValue = 'Technical Task';
         selectCategoryText.innerText = 'Technical Task';
-    } else if (cat == 'story') {
-        categoryValue = 'story';
+    } else if (cat == 'User Story') {
+        categoryValue = 'User Story';
         selectCategoryText.innerText = 'User Story';
     }
     toggleCategoryDropdown()

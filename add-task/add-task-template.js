@@ -68,10 +68,10 @@ function getaddtaks() {
                             </span>
                         </div>
                         <div class="dropdown-options" id="dropdown-cat-options">
-                            <div class="dropdown-item" onclick="selectCategory('technical')">
+                            <div class="dropdown-item" onclick="selectCategory('Technical Task')">
                                 <p>Technical Task</p>
                             </div>
-                            <div class="dropdown-item" onclick="selectCategory('story')">
+                            <div class="dropdown-item" onclick="selectCategory('User Story')">
                                 <p>User Story</p>
                             </div>
                         </div>

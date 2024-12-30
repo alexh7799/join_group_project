@@ -59,7 +59,12 @@ function renderTasks(containerId, tasks) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
   tasks.forEach(task => {
-      container.innerHTML += renderTaskCard(task);
+    if (task.subtasks != undefined) {
+      let subtask = subtaskCal(task.subtasks);
+      container.innerHTML += renderTaskCard(task, subtask);
+    } else {
+      container.innerHTML += renderTaskCard(task, 0);
+    }
   });
 }
 
@@ -67,4 +72,25 @@ function renderNoTask(containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
   container.innerHTML += renderNoTaskCard();
+}
+
+function textTrimmer(text, textLength) {
+  return text.length > textLength ? text.substring(0, textLength) + "..." : text;
+}
+
+function subtaskCal(task) {
+  let min = 0
+  for (let i = 0; i < task.length; i++) {
+    if(task[i].completed) {
+      min ++;
+    }
+  }
+  return {
+    "min": min,
+    "max": task.length
+  }
+}
+
+function showEditTask(taskId) {
+  
 }
