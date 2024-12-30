@@ -11,10 +11,6 @@
         height: 40px;
     }
 
-    h3 {
-        display: none;
-    }
-
     .add-task {
         position: relative;
         margin-top: -80px;
@@ -32,18 +28,16 @@
     }
 
     .spliter-header {
-        width: 362px;
-        height: 150px;
+        width: 360px;
     }
 
     .no-task {
         background-color: #e7e7e7;
-
         text-align: center;
         padding-top: 18px;
         padding-bottom: 18px;
         border-radius: 16px;
-        border-style: dotted;
+        border-style: dashed;
         border-color: #a8a8a8;
     }
 

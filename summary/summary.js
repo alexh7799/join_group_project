@@ -10,7 +10,8 @@ function initSummary() {
     loadingNumbers();
     generateGreets();
     includeHTML();
-    checkLink()
+    checkLink();
+    generateInitials();
 }
 
 function includeHTML() {

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../templates/header-sidebar.css">
     <script src="../templates/header-sidebar.js"></script>
     <script src="../templates/templates.js"></script>
+    <script src="./template.js"></script>
 </head>
 
 <body onload="initBoard()">
@@ -45,19 +46,27 @@
                     <p style="font-size: 18px; font-weight: bold; color: #42526e;">To do</p>
                     <img src="./img/plus button.png" alt="">
                 </div>
-
-
+                <div class="task-container" id="todo-container"></div>
             </div>
-            <div class="spliter-header">
-                <p style="font-size: 18px; font-weight: bold; color: #42526e;">In progress</p>
-                <img src="./img/plus button.png" alt="">
+            <div>
+                <div class="spliter-header">
+                    <p style="font-size: 18px; font-weight: bold; color: #42526e;">In progress</p>
+                    <img src="./img/plus button.png" alt="">
+                </div>
+                <div class="task-container" id="progress-container"></div>
             </div>
-            <div class="spliter-header">
-                <p style="font-size: 18px; font-weight: bold; color: #42526e;">Await feedback</p>
-                <img src="./img/plus button.png" alt="">
+            <div>
+                <div class="spliter-header">
+                    <p style="font-size: 18px; font-weight: bold; color: #42526e;">Await feedback</p>
+                    <img src="./img/plus button.png" alt="">
+                </div>
+                <div class="task-container" id="await-container"></div>
             </div>
-            <div class="spliter-header">
-                <p style="font-size: 18px; font-weight: bold; color: #42526e;">Done</p>
+            <div>
+                <div class="spliter-header">
+                    <p style="font-size: 18px; font-weight: bold; color: #42526e;">Done</p>
+                </div>
+                <div class="task-container" id="done-container"></div>
             </div>
         </div>
 

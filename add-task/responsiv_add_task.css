@@ -1,3 +1,19 @@
+@media (max-width: 380px) {
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .required-message {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    .btn-cre-cle {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}
+
 @media screen and (min-width: 0px) and (max-width: 827px) {
     .main-content {
         margin-left: 0;
@@ -122,12 +138,5 @@
     .dropdown-item {
         font-size: 12px;
         padding: 8px;
-    }
-}
-
-@media (max-width: 360px) {
-    .btn-cre-cle {
-        font-size: 8px;
-        padding: 5px 8px;
     }
 }

@@ -99,7 +99,8 @@ main {
 
 .spliter-fields {
     width: 240px;
-    height: 60vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .no-task {

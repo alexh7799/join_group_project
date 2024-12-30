@@ -5,10 +5,11 @@ let usercount;
  * initializes the contacts page.
  */
 function initContacts() {
-    checkLogin()
-    includeHTML()
-    checkLink()
-    loadingUsers()
+    checkLogin();
+    includeHTML();
+    checkLink();
+    generateInitials();
+    loadingUsers();
 }
 
 /**
@@ -119,8 +120,10 @@ function removeEditDel() {
 
 function closeContactDetails() {
     let contactDetails = document.getElementById("contact-details");
+    let btnMobilePopup = document.getElementById("btn-mobile-popup");
     contactDetails.parentElement.classList.remove('mobile-popup');
     document.body.style.overflow = 'auto';
+    btnMobilePopup.classList.add('d-none');
 }
 
 async function loadUserCounter() {
@@ -152,6 +155,8 @@ async function createContact() {
                 await putUsercount(`usercount/`, usercount);
                 await loadingUsers();
                 closeContactForm();
+                await showSuccessMsgTasks();
+                await setTimeout(() => {hiddenSuccessMsgTasks()}, 800)
             }
         }
     } catch (error) {
@@ -220,6 +225,8 @@ async function updateUser(user) {
                 await loadingUsers();
                 showContactDetails(updatedData.id);
                 closeContactForm();
+                await showSuccessMsgTasks();
+                await setTimeout(() => {hiddenSuccessMsgTasks()}, 800)
             }
         }
     } catch (error) {
@@ -280,4 +287,14 @@ function clearErrorMessages() {
     errorDiv.forEach(error => {
         error.classList.add('d-none');
     });
+}
+
+function showSuccessMsgTasks() {
+    let overlayDiv = document.getElementById('overlay-successfull');
+    overlayDiv.classList.add('overlay-suess-contact');
+}
+
+function hiddenSuccessMsgTasks() {
+    let overlayDiv = document.getElementById('overlay-successfull');
+    overlayDiv.classList.remove('overlay-suess-contact');
 }

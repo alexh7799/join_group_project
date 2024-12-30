@@ -25,52 +25,21 @@ function checkLogin() {
  * Generate initials for the top right corner in the header section.
  */
 function generateInitials() {
-  let content = document.getElementById("user-logo");
+  let content = document.getElementById("profile");
 
-  let userName = sessionStorage.getItem("userName");
+  let userName = sessionStorage.getItem("username");
   content.innerHTML = "";
-
-  if (userName) {
-    let nameParts = userName.split(" ");
-    if (nameParts.length >= 2) {
-      let initials = (nameParts[0][0] + nameParts[1][0]).toUpperCase();
-      content.innerHTML = initials;
-    } else if (nameParts.length === 1) {
-      let initials = nameParts[0][0].toUpperCase();
-      content.innerHTML = initials;
-    } else {
-      content.innerHTML = "G";
-    }
+  let nameParts = userName.split(" ");
+  if (nameParts.length >= 2) {
+    let initials = (nameParts[0][0] + nameParts[1][0]).toUpperCase();
+    content.innerHTML = initials;
+  } else if (nameParts.length === 1) {
+    let initials = nameParts[0][0].toUpperCase();
+    content.innerHTML = initials;
   } else {
     content.innerHTML = "G";
   }
 }
-
-/**
- * Ensures that the includeHTML is fully loaded before attempting to access user-logo.
- */
-function awaitGenerateInitials() {
-  const interval = setInterval(() => {
-    const userLogo = document.getElementById("user-logo");
-    const helpUser = document.querySelector(".header_help_icon_container");
-    const sidebarUser = document.querySelector(".sidebar_links_center");
-
-    if (userLogo) {
-      clearInterval(interval);
-      const userName = sessionStorage.getItem("userName");
-
-      if (!userName) {
-        userLogo.style.display = "none";
-        if (helpUser) helpUser.style.display = "none";
-        if (sidebarUser) sidebarUser.style.display = "none";
-      } else {
-        generateInitials();
-        userLogo.style.display = "flex";
-      }
-    }
-  }, 10);
-}
-
 
 function getRandomColor() {
   const r = Math.floor(Math.random() * 256);

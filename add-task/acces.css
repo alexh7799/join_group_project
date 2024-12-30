@@ -66,6 +66,7 @@
 .urgent, .medium, .low {
     background-color: #FFFFFF;
     border: none;
+    max-width: 150px;
 }
 
 .urgent:hover, .medium:hover, .low:hover {
@@ -73,7 +74,7 @@
     transform: translateY(-1px);
 }
 
-.urgent:focus {
+.urgent.selected {
     background-color: #FF3D00;
     font-weight: bold;
     color: white;
@@ -81,7 +82,13 @@
     box-shadow: none;
 }
 
-.medium:focus {
+.urgent.selected img {
+    width: 32px;
+    height: 13px;
+    content: url('../assets/icons/urgent-white.svg');
+}
+
+.medium.selected {
     background-color: #FFA800;
     font-weight: bold;
     color: white;
@@ -89,12 +96,24 @@
     box-shadow: none;
 }
 
-.low:focus {
+.medium.selected img {
+    width: 32px;
+    height: 7px;
+    content: url('../assets/icons/medium-white.svg');
+}
+
+.low.selected {
     background-color: #7AE229;
     font-weight: bold;
     color: white;
     transform: none;
     box-shadow: none;
+}
+
+.low.selected img {
+    width: 32px;
+    height: 13px;
+    content: url('../assets/icons/low-white.svg');
 }
 
 .urgent:focus img, .medium:focus img, .low:focus img {
@@ -225,5 +244,20 @@ input[type="checkbox"]:checked {
 
 .input-double:focus { 
     border-bottom: 1px solid #007bff; 
+    outline: none;
+}
+
+.edit-input {
+    width: 100%;
+    padding: 10px;
+    border: 0px;
+    border-bottom: 1.3px solid var(--blue);
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: white !important;
+    height: 30px;
+}
+
+.edit-input:focus {
     outline: none;
 }

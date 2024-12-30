@@ -7,7 +7,10 @@ function getaddtaks() {
         <section class="task-form">
             <div class="form-left">
                 <p>Title<span class="required">*</span></p>
-                <input class="input-text" type="text" id="title" name="title" placeholder="Enter a title">
+                <div>
+                    <input class="input-text" type="text" id="title" name="title" placeholder="Enter a title">
+                    <div class="error-message" id="error-div-title"> </div>
+                </div>
 
                 <p>Description</p>
                 <textarea id="description" name="description" placeholder="Enter a Description"></textarea>
@@ -31,40 +34,66 @@ function getaddtaks() {
             <div class="divider_mid"></div>
 
             <div class="form-right">
-                <p>Date</p>
-                <div class="input-date-container">
-                    <input class="input-text" type="date" id="due-date" name="due_date">
-                    <div class="calendar-icon" onclick="showPicker(this)"></div>
+                <p>Date<span class="required">*</span></p>
+                <div>
+                    <div class="input-date-container">
+                        <input class="input-text" type="date" id="due-date" name="due_date" onchange=" handleDate(this)">
+                        <div class="calendar-icon" onclick="showPicker()"></div>
+                    </div>
+                    <div class="error-message" id="error-div-due-date"> </div>
                 </div>
                 <p>Prio</p>
                 <div class="priority">
-                    <button type="button" class="prio urgent">
+                    <button type="button" class="prio urgent" id="urgent" onclick="selectPriority('urgent')">
                         <p>Urgent</p>
-                        <img src="../assets/icons/urgent.svg">
+                        <img id="urgent-img" src="../assets/icons/urgent.svg">
                     </button>
-                    <button type="button" class="prio medium">
+                    <button type="button" class="prio medium selected" id="medium" onclick="selectPriority('medium')">
                         <p>Medium</p>
-                        <img src="../assets/icons/medium.svg">
+                        <img id="medium-img" src="../assets/icons/medium.svg">
                     </button>
-                    <button type="button" class="prio low">
+                    <button type="button" class="prio low" id="low" onclick="selectPriority('low')">
                         <p>Low</p>
-                        <img src="../assets/icons/low.svg">
+                        <img id="low-img" src="../assets/icons/low.svg">
                     </button>
                 </div>
 
                 <p>Category<span class="required">*</span></p>
-                <select id="category" name="category">
-                    <option value="">Select task category</option>
-                    <option value="technical">Technical Task</option>
-                    <option value="user-story">User Story</option>
-                </select>
+                <div>
+                    <div class="dropdown" id="category">
+                        <div class="dropdown-header" onclick="toggleCategoryDropdown()">
+                            <span id="dropdown-cat-selected">Select task category</span>
+                            <span class="dropdown-arrow-cat" id="dropdown-cat-arrow">
+                                <img src="../assets/icons/arrow-dropdown.svg">
+                            </span>
+                        </div>
+                        <div class="dropdown-options" id="dropdown-cat-options">
+                            <div class="dropdown-item" onclick="selectCategory('technical')">
+                                <p>Technical Task</p>
+                            </div>
+                            <div class="dropdown-item" onclick="selectCategory('story')">
+                                <p>User Story</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="error-message" id="error-div-category"> </div>
+                </div>
 
                 <p>Subtasks</p>
                 <div class="subtasks">
-                    <div class="validation-messages">
-                        <p class="validation-msg" ondblclick="editSubtask(this)">• Subtasks example</p>
-                        <p class="validation-msg" ondblclick="editSubtask(this)">• Subtasks example</p>
-                        <p class="validation-msg" ondblclick="editSubtask(this)">• Subtasks example</p>
+                    <div class="subtask-input-container">
+                        <input id="subtask-input" maxlength="100" class="input-text" placeholder="Add new subtask" onfocus="focusSubtask()"/>
+                        <div id="new-subtask" onclick="newSubtask(this)">
+                            <img src="../assets/icons/add.svg" alt="plus_icon"/>
+                        </div>                        
+                        <div id="close-check" class="btn-div-sub d-none">
+                            <img onclick="closeSubtask()" class="sub-btn" src="../assets/icons/close.svg" alt="close"/>
+                            <div class="divider-input"></div>
+                            <img onclick="addSubtask()" class="sub-btn" src="../assets/icons/check.svg" alt="check"/>
+                        </div>
+                    </div>
+                    <div id="messages-container" class="messages-container">
+                    
                     </div>
                 </div>
             </div>
@@ -97,7 +126,6 @@ function renderAssignedUser(assigned) {
 function renderAvatar() {
     let avatarContainer = document.getElementById("avatar-container");
     avatarContainer.innerHTML = "";
-    
     newTask.user.forEach(user => {
         let initials = user.name.split(' ').map(word => word.charAt(0).toUpperCase()).join('');
         avatarContainer.innerHTML += `
@@ -105,4 +133,26 @@ function renderAvatar() {
                 ${initials}
             </span>`;
     });
+}
+
+function renderSubtasks(id) {
+    return `<div class="validation" id="validation-messages-div-${id}" >
+                        <div class="d-flex-sb-c validation-messages"onmouseover="handleHover(${id}, this)" onmouseout="handleHoverEnd(${id}, this)">
+                            <p class="validation-msg">• ${newTask.subtasks[id].title}</p>
+                            <div class="btn-div-sub gap-2 d-none" id="subtask-btn-${id}">
+                                <img onclick="editSubtask(${id})" class="sub-btn" src="../assets/icons/edit.svg" alt="edit"/>
+                                <div class="divider-sub-input"></div>
+                                <img onclick="delSubtask(${id})" class="sub-btn" src="../assets/icons/delete.svg" alt="delete"/>
+                            </div>
+                        </div>
+                    </div>`
+}
+
+function renderEditSubtask(id) {
+    return `<input id="edit-input-${id}" maxlength="100" class="edit-input" placeholder="Add new subtask"/>                      
+            <div id="" class="btn-div-sub gap-2 ">
+                <img onclick="delSubtask(${id})" class="sub-btn" src="../assets/icons/delete.svg" alt="delete"/>
+                <div class="divider-input"></div>
+                <img onclick="saveEdit(${id})" class="sub-btn" src="../assets/icons/check.svg" alt="check"/>
+            </div>`
 }

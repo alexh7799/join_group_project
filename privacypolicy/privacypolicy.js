@@ -1,6 +1,7 @@
 function initPrivacyPolicy() {
     includeHTML();
-    checkLink()
+    checkLink();
+    generateInitials();
     notLogin();
 }
 
