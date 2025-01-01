@@ -1,8 +1,14 @@
+@media (max-width:827px) {
+    .add-task-overlay {
+        display: none !important;
+    }
+}
+
 @media(max-width: 1100px) {
     .head {
         align-items: start;
         flex-direction: column;
-        margin-left: 16px;
+        margin: 0 16px;
         padding-top: 100px;
     }
 
@@ -12,23 +18,19 @@
     }
 
     .add-task {
-        position: relative;
-        margin-top: -80px;
-        margin-bottom: 80px;
-        margin-left: -68px;
-        padding-left: 12px;
-        padding-right: 12px;
+        height: 40px;
+        width: 40px;
     }
 
     .split {
         flex-direction: column;
-        gap: 34px;
-        margin-left: 16px;
-        margin-top: 24px;
+        gap: 24px;
+        margin: 24px 16px 0 16px; 
+        overflow-x: hidden !important;
     }
 
     .spliter-header {
-        width: 360px;
+        width: 250px;
     }
 
     .no-task {
@@ -39,6 +41,11 @@
         border-radius: 16px;
         border-style: dashed;
         border-color: #a8a8a8;
+    }
+
+    .task-container {
+        display: flex;
+        gap: 10px;
     }
 
 }

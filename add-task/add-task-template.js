@@ -1,8 +1,11 @@
-function getaddtaks() {
+function getAddTask(type) {
     return `
-    <main class="main-content">
-        <div class="main-title">
+    <main class="main-content" onclick="event.stopPropagation()">
+        <div class="main-title d-flex-sb-c">
             <h1>Add Task</h1>
+            <div class="btn d-flex-c-c d-none" id="popup-btn" onclick="closePopOverlay()">
+                <img src="../assets/icons/close.svg" alt="close">
+            </div>
         </div>
         <section class="task-form">
             <div class="form-left">
@@ -104,7 +107,7 @@ function getaddtaks() {
             </div>
             <div>
                 <button class="btn-clear btn-cre-cle" onclick="clearForm()">Clear ✕</button>
-                <button class="btn-create btn-cre-cle" onclick="createTask()">Create Task ✔</button>
+                <button class="btn-create btn-cre-cle" onclick="createTask('${type}')">Create Task ✔</button>
             </div>
         </div>
     </main>`;

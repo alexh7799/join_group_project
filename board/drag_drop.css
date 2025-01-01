@@ -1,0 +1,29 @@
+.drop-zone {
+    position: relative;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.drop-zone.drag-over {
+    border: 2px dashed #2A3647;
+}
+
+.spliter-fields {
+    pointer-events: all !important;
+    position: relative;
+    z-index: 2;
+}
+
+.task-container {
+    position: relative;
+    z-index: 1;
+}
+
+.spliter-fields.dragging {
+    transform: rotate(3deg);
+    opacity: 0.8;
+    cursor: grabbing;
+    pointer-events: none;
+}

@@ -261,3 +261,137 @@ input[type="checkbox"]:checked {
 .edit-input:focus {
     outline: none;
 }
+
+.task-form {
+    display: flex;
+    gap: 50px;
+    width: 100%;
+    flex: 1;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 20px 20px;
+}
+
+.form-left,
+.form-right {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.priority {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.prio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.prio p {
+    margin: 0;
+    text-align: left;
+}
+
+.required {
+    color: red;
+    font-weight: bold;
+}
+
+.divider_mid {
+    width: 1px;
+    background: #ccc;
+    margin: 0 10px;
+}
+
+
+.dropdown {
+    position: relative;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    user-select: none;
+}
+
+.dropdown:hover {
+    border-color: #94D5F0; 
+    box-shadow: 0 0 5px rgba(148, 213, 240, 0.6);
+    outline: none;
+}
+
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-arrow {
+    font-size: 12px;
+    color: #333;
+}
+
+.dropdown-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 8px; 
+}
+
+.dropdown-options.show {
+    display: block;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #333;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #1A242F;
+    color: white;
+
+}
+
+.dropdown-item span {
+    font-size: 12px;
+}

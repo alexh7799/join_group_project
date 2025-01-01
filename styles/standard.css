@@ -25,8 +25,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 4px;
-
+    width: 5px;
+    height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -34,9 +34,19 @@ body {
     border-radius: 25px;
 }
 
+.btn {
+    cursor: pointer;
+}
+
 .d-flex-c-c {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.d-flex-start-c {
+    display: flex;
+    justify-content: start;
     align-items: center;
 }
 
@@ -57,6 +67,12 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.d-flex-end-c {
+    display: flex;
+    justify-content: end;
     align-items: center;
 }
 
@@ -85,6 +101,14 @@ body {
 
 .m-0 {
     margin: 0;
+}
+
+.mh-2 {
+    margin: 2px 0;
+}
+
+.mh-5 {
+    margin: 5px 0;
 }
 
 .mh-auto {

@@ -1,20 +1,28 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
     <link rel="shortcut icon" href="../assets/icons/logo1.svg" type="image/x-icon">
     <title>JOIN | Board</title>
     <link rel="stylesheet" href="../styles/font.css">
     <link rel="stylesheet" href="../styles/standard.css">
     <link rel="stylesheet" href="./board.css">
     <link rel="stylesheet" href="./mobileboard.css">
+    <link rel="stylesheet" href="./drag_drop.css">
+    <link rel="stylesheet" href="../add-task/acces.css">
+    <link rel="stylesheet" href="./task_popup.css">
+    <link rel="stylesheet" href="../add-task/task-all.css">
 
     <link rel="stylesheet" href="../templates/header-sidebar.css">
     <script src="../templates/header-sidebar.js"></script>
     <script src="../templates/templates.js"></script>
     <script src="./template.js"></script>
+    <script src="../add-task/add-task-template.js"></script>
+    <script src="./add-task.js"></script>
+    <script src="../add-task/add-task_board.js"></script>
 </head>
 
 <body onload="initBoard()">
@@ -23,20 +31,36 @@
     <aside id="navigation-container"></aside>
 
     <main>
-        <div class="head">
+        <div class="head-desktop d-none">
             <div>
                 <h1 class="board">Board</h1>
             </div>
             <div class="find-add-task">
                 <div class="find-task" id="findTask" tabindex="0">
-                    <input class="find-task-input" type="text" placeholder="Find Task">
-                    <img src="./img/line.png" alt="">
+                    <input class="find-task-input" id="find-task-input" type="search" placeholder="Find Task" oninput="filterTasks()">
+                    <img src="../assets/icons/line.svg" alt="">
                     <button class="find-task-button" type="submit"><img src="./img/search.png" alt=""></button>
                 </div>
-                <div class="add-task">
+                <div class="add-task" onclick="showAddTaskDetails('todo')">
                     <h3 style="font-size: 20px; color: white;">Add task</h3>
-                    <img style="height: 18.67px; width: 18.67px;" src="./img/add.png" alt="">
+                    <img style="height: 18.67px; width: 18.67px;" src="../assets/icons/add-white.svg" alt="">
                 </div>
+            </div>
+        </div>
+        <div class="head">
+            <div class="d-flex-sb-c">
+                <h1 class="board">Board</h1>
+                <div class="add-task" onclick="showAddTaskDetails('todo')">
+                    <img style="height: 25px; width: 25px;" src="../assets/icons/add-white.svg" alt="">
+                </div>
+            </div>
+            <div class="find-add-task">
+                <div class="find-task" id="findTask" tabindex="0">
+                    <input class="find-task-input" id="find-task-input" type="search" placeholder="Find Task"  oninput="filterTasks()">
+                    <img src="../assets/icons/line.svg" alt="">
+                    <button class="find-task-button" type="submit"><img src="./img/search.png" alt=""></button>
+                </div>
+                
             </div>
         </div>
 
@@ -44,98 +68,61 @@
             <div>
                 <div class="spliter-header">
                     <p style="font-size: 18px; font-weight: bold; color: #42526e;">To do</p>
-                    <img src="./img/plus button.png" alt="">
+                    <img onclick="showAddTaskDetails('todo')" src="./img/plus button.png" alt="">
                 </div>
-                <div class="task-container" id="todo-container"></div>
+                <div class="task-container drop-zone" id="todo-container" 
+                ondrop="handleDrop(event, 'todo'); handleDragLeave('todo-container')" 
+                ondragover="allowDrop(event); handleDragOver('todo-container')"
+                ondragleave="handleDragLeave('todo-container')"></div>
             </div>
             <div>
                 <div class="spliter-header">
                     <p style="font-size: 18px; font-weight: bold; color: #42526e;">In progress</p>
-                    <img src="./img/plus button.png" alt="">
+                    <img onclick="showAddTaskDetails('progress')" src="./img/plus button.png" alt="">
                 </div>
-                <div class="task-container" id="progress-container"></div>
+                <div class="task-container drop-zone" id="progress-container" 
+                ondrop="handleDrop(event, 'progress'); handleDragLeave('progress-container')" 
+                ondragover="allowDrop(event); handleDragOver('progress-container')"
+                ondragleave="handleDragLeave('progress-container')"></div>
             </div>
             <div>
                 <div class="spliter-header">
                     <p style="font-size: 18px; font-weight: bold; color: #42526e;">Await feedback</p>
-                    <img src="./img/plus button.png" alt="">
+                    <img onclick="showAddTaskDetails('awaiting')" src="./img/plus button.png" alt="">
                 </div>
-                <div class="task-container" id="await-container"></div>
+                <div class="task-container drop-zone" id="await-container" 
+                ondrop="handleDrop(event, 'awaiting'); handleDragLeave('await-container')" 
+                ondragover="allowDrop(event); handleDragOver('await-container')"
+                ondragleave="handleDragLeave('await-container')"></div>
             </div>
             <div>
                 <div class="spliter-header">
                     <p style="font-size: 18px; font-weight: bold; color: #42526e;">Done</p>
                 </div>
-                <div class="task-container" id="done-container"></div>
+                <div class="task-container drop-zone" id="done-container" 
+                ondrop="handleDrop(event, 'done'); handleDragLeave('done-container')" 
+                ondragover="allowDrop(event); handleDragOver('done-container')"
+                ondragleave="handleDragLeave('done-container')"></div>
             </div>
         </div>
-
-        <!-- <div class="split-fields">
-            <div class="spliter-fields" id="toDoTask">
-                <div class="no-task" id="noTask">
-                    <p style="color: #a8a8a8;">No task To do</p>
-                </div>
-            </div>
-
-            <div class="spliter-fields" id="inProgressTask">
-                <div class="task">
-                    <div class="userstory-task-header">
-                        User Story
-                    </div>
-                    <div class="task-text-bold">
-                        Kochwelt Page & Recipe Recommender
-                    </div>
-                    <div class="task-text">
-                        Bulid start page with recipe recommendation bla bla bla bla
-                    </div>
-                    <div class="subtasks">
-                        <progress class="progressbar" value="50" max="100"></progress>
-                        <p style="font-size: 12px;">1/2 Subtasks</p>
-                    </div>
-                    <div class="task-footer">
-                        <div class="avatar-div">
-                            <span class="avatar" style="background-color: blue; margin-left: -18px;">SK</span>
-                            <span class="avatar" style="background-color: red; margin-left: -18px;">LM</span>
-                            <span class="avatar" style="background-color: orange; margin-left: -18px;">DK</span>
-                            <span class="avatar" style="background-color: green; margin-left: -18px;">AM</span>
-                        </div>
-                        <div>
-                            <img src="./img/medium.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="spliter-fields" id="awaitFeedbackTask">
-                <div class="task">
-                    <div class="technical-task-header">
-                        Technical Task
-                    </div>
-                    <div class="task-text-bold">
-                        HTML Base Template Creation
-                    </div>
-                    <div class="task-text">
-                        <p>Create reusable HTML base templates bl bla bla bla bla</p>
-                    </div>
-                    <div class="subtasks">
-                        <progress class="progressbar" value="50" max="100"></progress>
-                        <p style="font-size: 12px;">1/2 Subtasks</p>
-                    </div> 
-                    <div class="task-footer">
-                        <div class="avatar-div">
-                            <span class="avatar" style="background-color: blue; margin-left: -18px;">SK</span>
-                            <span class="avatar" style="background-color: orange; margin-left: -18px;">DK</span>
-                            <span class="avatar" style="background-color: green; margin-left: -18px;">AM</span>
-                        </div>
-                        <div>
-                            <img src="./img/low.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="spliter-fields" id="doneTask"></div>
-        </div> -->
     </main>
+    <div class="overlay-edit-task" id="overlay-edit-task" onclick="closeEditOverlay(event)">
+
+    </div>
+
+    <div id="addtask-tem" class="overlay-edit-task add-task-overlay" onclick="closePopOverlay(event)">
+
+    </div>
+
+    <div id="overlay-to-board" class="overlay-to-board">
+        <div class="info-to-board">
+            <p>Task added to board</p>
+            <img src="../assets/icons/board.svg" alt="">
+        </div>
+    </div>
+
     <script src="../script.js"></script>
+    <script src="./drag_drop.js"></script>
     <script src="./board.js"></script>
 </body>
 
