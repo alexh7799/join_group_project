@@ -9,20 +9,20 @@
     <title>JOIN | Board</title>
     <link rel="stylesheet" href="../styles/font.css">
     <link rel="stylesheet" href="../styles/standard.css">
-    <link rel="stylesheet" href="./board.css">
-    <link rel="stylesheet" href="./mobileboard.css">
-    <link rel="stylesheet" href="./drag_drop.css">
-    <link rel="stylesheet" href="../add-task/acces.css">
-    <link rel="stylesheet" href="./task_popup.css">
-    <link rel="stylesheet" href="../add-task/task-all.css">
+    <link rel="stylesheet" href="./styles/board.css">
+    <link rel="stylesheet" href="./styles/drag_drop.css">
+    <link rel="stylesheet" href="../add-task/styles/acces.css">
+    <link rel="stylesheet" href="../add-task/styles/task-all.css">
+    <link rel="stylesheet" href="./styles/task_popup.css">
+    <link rel="stylesheet" href="./styles/mobileboard.css">
 
     <link rel="stylesheet" href="../templates/header-sidebar.css">
     <script src="../templates/header-sidebar.js"></script>
     <script src="../templates/templates.js"></script>
-    <script src="./template.js"></script>
-    <script src="../add-task/add-task-template.js"></script>
-    <script src="./add-task.js"></script>
-    <script src="../add-task/add-task_board.js"></script>
+    <script src="./scripts/template.js"></script>
+    <script src="../add-task/scripts/add-task-template.js"></script>
+    <script src="./scripts/add-task.js"></script>
+    <script src="../add-task/scripts/add-task_board.js"></script>
 </head>
 
 <body onload="initBoard()">
@@ -31,19 +31,19 @@
     <aside id="navigation-container"></aside>
 
     <main>
-        <div class="head-desktop d-none">
-            <div>
+        <div class="head-desktop">
+            <div class="header-board">
                 <h1 class="board">Board</h1>
-            </div>
-            <div class="find-add-task">
-                <div class="find-task" id="findTask" tabindex="0">
-                    <input class="find-task-input" id="find-task-input" type="search" placeholder="Find Task" oninput="filterTasks()">
-                    <img src="../assets/icons/line.svg" alt="">
-                    <button class="find-task-button" type="submit"><img src="./img/search.png" alt=""></button>
-                </div>
-                <div class="add-task" onclick="showAddTaskDetails('todo')">
-                    <h3 style="font-size: 20px; color: white;">Add task</h3>
-                    <img style="height: 18.67px; width: 18.67px;" src="../assets/icons/add-white.svg" alt="">
+                <div class="find-add-task-container">
+                    <div class="find-task" id="findTask" tabindex="0">
+                        <input class="find-task-input" id="find-task-input" type="search" placeholder="Find Task" oninput="filterTasks()">
+                        <img src="../assets/icons/line.svg" alt="">
+                        <button class="find-task-button" type="submit"><img src="../assets/icons/search-default.svg" alt=""></button>
+                    </div>
+                    <div class="add-task" onclick="showAddTaskDetails('todo')">
+                        Add Task
+                        <img src="../assets/icons/add-white.svg" alt="">
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,8 +57,10 @@
             <div class="find-add-task">
                 <div class="find-task" id="findTask" tabindex="0">
                     <input class="find-task-input" id="find-task-input" type="search" placeholder="Find Task"  oninput="filterTasks()">
-                    <img src="../assets/icons/line.svg" alt="">
-                    <button class="find-task-button" type="submit"><img src="./img/search.png" alt=""></button>
+                    <div class="d-flex-c-c gap-5">
+                        <img src="../assets/icons/line.svg" alt="">
+                        <button class="find-task-button" type="submit"><img src="../assets/icons/search-default.svg" alt=""></button>
+                    </div>
                 </div>
                 
             </div>
@@ -68,7 +70,7 @@
             <div>
                 <div class="spliter-header">
                     <p style="font-size: 18px; font-weight: bold; color: #42526e;">To do</p>
-                    <img onclick="showAddTaskDetails('todo')" src="./img/plus button.png" alt="">
+                    <img class="btn" onclick="showAddTaskDetails('todo')" src="../assets/icons/plus-default.svg" alt="">
                 </div>
                 <div class="task-container drop-zone" id="todo-container" 
                 ondrop="handleDrop(event, 'todo'); handleDragLeave('todo-container')" 
@@ -78,7 +80,7 @@
             <div>
                 <div class="spliter-header">
                     <p style="font-size: 18px; font-weight: bold; color: #42526e;">In progress</p>
-                    <img onclick="showAddTaskDetails('progress')" src="./img/plus button.png" alt="">
+                    <img class="btn" onclick="showAddTaskDetails('progress')" src="../assets/icons/plus-default.svg" alt="">
                 </div>
                 <div class="task-container drop-zone" id="progress-container" 
                 ondrop="handleDrop(event, 'progress'); handleDragLeave('progress-container')" 
@@ -88,7 +90,7 @@
             <div>
                 <div class="spliter-header">
                     <p style="font-size: 18px; font-weight: bold; color: #42526e;">Await feedback</p>
-                    <img onclick="showAddTaskDetails('awaiting')" src="./img/plus button.png" alt="">
+                    <img class="btn" onclick="showAddTaskDetails('awaiting')" src="../assets/icons/plus-default.svg" alt="">
                 </div>
                 <div class="task-container drop-zone" id="await-container" 
                 ondrop="handleDrop(event, 'awaiting'); handleDragLeave('await-container')" 
@@ -110,7 +112,7 @@
 
     </div>
 
-    <div id="addtask-tem" class="overlay-edit-task add-task-overlay" onclick="closePopOverlay(event)">
+    <div id="addtask-tem" class="overlay-edit-task" onclick="closePopOverlay(event)">
 
     </div>
 
@@ -122,8 +124,8 @@
     </div>
 
     <script src="../script.js"></script>
-    <script src="./drag_drop.js"></script>
-    <script src="./board.js"></script>
+    <script src="./scripts/drag_drop.js"></script>
+    <script src="./scripts/board.js"></script>
 </body>
 
 </html>

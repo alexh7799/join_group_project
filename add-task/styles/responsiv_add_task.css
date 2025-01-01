@@ -1,0 +1,152 @@
+@media (max-width: 380px) {
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .required-message {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    .btn-cre-cle {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 827px) {
+    .main-content {
+        margin-left: 0;
+        height: 100%;
+        margin-bottom: 80px;
+        font-size: 15px;
+    }
+
+    .required-message {
+        margin-top: 20px;
+        font-size: 15px;
+    }
+
+    textarea {
+        max-height: 180px;
+    }
+
+    .divider_mid {
+        margin: 10px 0;
+        height: 0px;
+        width: 100%;
+    }
+
+    .task-form {
+        flex-direction: column; 
+        gap: 0px;
+    }
+
+    .form-left, .form-right {
+        width: 100%;
+    }
+
+    .list-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0; 
+        gap: 10px;
+    }
+    
+    .bullet {
+        font-size: 20px;
+        margin-right: 10px;
+        color: black;
+    }
+    
+    .text {
+        flex: 1;
+        font-size: 16px;
+        color: #333;
+    }
+    
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+@media (min-width: 827px) {
+    .none-handy {
+        display: none;
+    }
+
+    h1 {
+        font-size: 61px;
+    }
+}
+
+@media (max-width: 900px) {
+    .task-form {
+        gap: 0;
+    }
+}
+
+@media (min-width: 1920px) {
+    #addtask-tem {
+        width: 1920px;
+    }
+}
+
+@media (max-width: 350px) {
+    .priority {
+        display: flex;
+        gap: 5px;
+        margin: 0 !important;
+    }
+
+    .prio {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        padding: 0;
+        gap: 0px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+}
+
+@media (max-width: 480px) {
+    input, select, textarea {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .required-message {
+        margin-top: 10px;
+        font-size: 10px;
+    }
+
+    .text {
+        font-size: 12px;
+    }
+
+    .validation-msg {
+        font-size: 12px;
+    }
+
+    .btn-cre-cle {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .dropdown-header {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .dropdown-item {
+        font-size: 12px;
+        padding: 8px;
+    }
+}

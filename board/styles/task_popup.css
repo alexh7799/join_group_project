@@ -1,0 +1,49 @@
+.main-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 15px;
+    border: 1px solid var(--grey);
+    padding: 15px 20px;
+    overflow: hidden;
+    width: 400px;
+    height: 700px;
+}
+
+#addtask-tem .main-content {
+    width: 800px !important;
+    height: 600px !important;
+}
+
+.form-actions {
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.task-form {
+    flex-direction: column;
+    gap: 0;
+    overflow-y: auto;
+    height: 600px;
+}
+
+.form-left {
+    margin-right: 5px;
+}
+
+.form-right {
+    margin-right: 5px;
+}
+
+#addtask-tem .task-form {
+    flex-direction: row !important;
+}
+
+#addtask-tem .subtasks {
+    overflow: hidden;
+}
+
+#addtask-tem .messages-container {
+    overflow-y: auto;
+    height: 100px;
+}

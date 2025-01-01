@@ -7,13 +7,15 @@
     <title>JOIN | Login</title>
 
     <link rel="shortcut icon" href="../assets/icons/logo1.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/font.css">
+    <link rel="stylesheet" href="../styles/standard.css">
     <link rel="stylesheet" href="login.css">
 
 </head>
 
 <body>
     <div class="login-logo">
-        <a class="login-svg" href="../login.html"></a>
+        <a class="login-svg" href="./login.html"></a>
     </div>
 
 
@@ -42,9 +44,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="remember-me-container">
+                    <div class="remember-me-check-box">
+                      <img src="../assets/icons/checkbox-disabled.svg" class="btn" id="remember-me-btn" onclick="toggleRememberMeBtn()"/>
+                    </div>
+                    <div>
+                      <p>Remember me</p>
+                    </div>
+                  </div>
                 <div id="result"></div>
             </section>
-
+            
 
 
             <div class="btn-row">
@@ -65,6 +75,7 @@
     </div>
 
     <script src="login.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

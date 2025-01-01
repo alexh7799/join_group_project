@@ -19,6 +19,7 @@ function doNotClose(event) {
 };
 
 function logOut() {
+    localStorage.clear();
     sessionStorage.clear();
     location.href='../login/login.html';
 }

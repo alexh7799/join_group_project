@@ -178,7 +178,7 @@ span {
 .greeting {
     background-color: var(--bg);
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: absolute;
@@ -366,10 +366,14 @@ span {
     .summary {
         padding:  160px 95px 0 325px;
     }
+
+    .summary-container {
+        width: 800px;
+    }
 }
 
 @media (min-width: 1920px) {
-    .container-summary {
-        width: 1500px !important;
+    .summary {
+        width: 1920px !important;
     }
 }

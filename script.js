@@ -15,9 +15,32 @@ function includeHTML() {
 }
 
 function checkLogin() {
-  let userName = sessionStorage.getItem("username");
-    if (userName == null) {
-        window.location.href = "../login/login.html"
+  const isLoginPage = window.location.pathname.includes("join/login/login.html");
+  const isSignUp = window.location.pathname.includes("join/sign-up/sign-up.html");
+    const sessionUser = sessionStorage.getItem("username");
+    const localUser = localStorage.getItem("username");
+
+    // Wenn Remember-Me aktiv (localUser vorhanden)
+    if (localUser && !sessionUser) {
+      sessionStorage.setItem("username", localUser);
+      sessionStorage.setItem("email", localStorage.getItem("email"));
+    }
+
+    if (isSignUp && (sessionUser || localUser)) {
+      window.location.href = "../summary/summary.html";
+      return;
+    }
+    
+    // Wenn auf Login-Seite und eingeloggt, zu Summary weiterleiten
+    if (isLoginPage && (sessionUser || localUser)) {
+        window.location.href = "../summary/summary.html";
+        return;
+    }
+    
+    // Wenn nicht eingeloggt und nicht auf Login-Seite
+    if (!sessionUser && !localUser && !isLoginPage && !isSignUp) {
+        window.location.href = "../login/login.html";
+        return;
     }
 }
 

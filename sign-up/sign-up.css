@@ -76,6 +76,14 @@ button:hover {
   ;
 }
 
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-left: 4px;
+  width: 302px;
+}
+
 .login-text-input {
   border: 1px solid var(--input-text);
   border-radius: 10px;
@@ -257,7 +265,6 @@ button:hover {
   display: none;
 }
 
-/*-------------------------------------------------*/
 .custom-checkbox {
   display: inline-flex;
   align-items: center;
@@ -293,4 +300,33 @@ button:hover {
 .custom-checkbox input:checked + .checkbox-icon {
   background: url('../assets/icons/checked.svg') no-repeat center center;
   background-size: contain;
+}
+
+.overlay-successfull {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: -100vw;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.25s ease-in-out;
+  background-color: #33333353;
+}
+
+.overlay-suess-contact {
+  top: 0;
+  bottom: 0;
+}
+
+.suess-contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--darkgrey);
+  padding: 10px 20px;
+  border-radius: 15px;
+  gap: 10px;
+  color: var(--item-color);
 }

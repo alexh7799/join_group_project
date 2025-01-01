@@ -1,5 +1,8 @@
 const BASE_URL = "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/users/";
 
+let rememberMeValue = false;
+
+
 function goToSignUp() {
     window.location.assign("../sign-up/sign-up.html")
 }
@@ -30,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </svg>
         `;
     }
+    checkLogin();
 });
 
 function lockImg() {
@@ -81,8 +85,6 @@ function changeType() {
 
 function guestLogin() {
     sessionStorage.setItem('username', 'Guest');
-    
-    //weiterleiteung auf Startseite window.location
     window.location.href = '../summary/summary.html';
 }
 
@@ -93,18 +95,22 @@ container.addEventListener("submit", async function (event){
 
 async function checkUser() {
     const emailInput = document.getElementById('email-input').value;
+    const passwordInput = document.getElementById('password-input').value;
     const resultDiv = document.getElementById('result');
 
     try {
-        // Abrufen aller Nutzer aus der Firebase-Datenbank
         const response = await fetch(`${BASE_URL}.json`);
         if (!response.ok) throw new Error("Fehler beim Abrufen der Datenbank.");
         const users = await response.json();
-
-        // Überprüfung auf eine Übereinstimmung
+        console.log(users);
         let foundUser = null;
+        if(emailInput === "" || passwordInput === "") {
+            resultDiv.innerHTML = "Please fill in all fields.";
+            return;
+        }
+
         for (const key in users) {
-            if (users[key].email === emailInput) {
+            if (users[key].email == emailInput && users[key].password == passwordInput) {
                 foundUser = users[key];
                 break;
             }
@@ -113,10 +119,15 @@ async function checkUser() {
         if (foundUser) {
             sessionStorage.setItem('username', foundUser.name);
             sessionStorage.setItem('email', foundUser.email);
-            //weiterleiteung auf Startseite window.location
-            window.location.href = '../summary/summary.html';
+            if (rememberMeValue) {
+                localStorage.setItem('username', foundUser.name);
+                localStorage.setItem('email', foundUser.email);
+                window.location.href = '../summary/summary.html';
+            } else {
+                window.location.href = '../summary/summary.html';
+            }
+            
         } else {
-            console.error("keine Mailadresse gefunden")
             resultDiv.innerHTML = `No matching Account found. <a href="">Join us</a> now!`;
         }
     } catch (error) {
@@ -124,3 +135,13 @@ async function checkUser() {
         resultDiv.innerHTML = "Fehler bei der Suche.";
     }
 };
+
+function toggleRememberMeBtn() {
+    const rememberMeBtn = document.getElementById('remember-me-btn');
+    rememberMeBtn.classList.toggle('checked');
+    if (rememberMeBtn.className.includes('checked')) {
+        rememberMeValue = true;
+    } else {
+        rememberMeValue = false;
+    }
+}

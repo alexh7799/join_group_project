@@ -87,6 +87,10 @@ body {
     display: none !important;
 }
 
+.d-flex {
+    display: flex;
+}
+
 .no-login-none {
     display: none !important;
 }
@@ -111,6 +115,10 @@ body {
     margin: 5px 0;
 }
 
+.mh-15 {
+    margin: 15px 0;
+}
+
 .mh-auto {
     margin: auto 0;
 }
@@ -129,6 +137,14 @@ body {
 
 .mt-20 {
     margin-top: 20px;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+
+.w-100 {
+    width: 100px;
 }
 
 .gap-2 {

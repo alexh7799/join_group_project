@@ -96,16 +96,15 @@ async function loadingNumbers() {
  * @param {json} tasks 
  */
 function loadUrgentTasks(tasks) {
+    
     let urgentNum = document.getElementById("urgentNum");
     let urgentDate = document.getElementById("urgentDate");
     const urgentTasks = [];
     for (const key in tasks) {
-        if (key !== "done" && Array.isArray(tasks[key]) && tasks) {
-            tasks[key].forEach((task) => {
-                if (task.prio === "urgent") {
-                    urgentTasks.push(task);
-                }
-            });
+        if (key !== "done" && tasks) {
+            if (tasks[key].prio === "Urgent") {
+                urgentTasks.push(tasks[key]);
+            }
         }
     }
     urgentTasks.sort((a, b) => {

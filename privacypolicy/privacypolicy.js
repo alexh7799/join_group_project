@@ -1,7 +1,6 @@
 function initPrivacyPolicy() {
     includeHTML();
     checkLink();
-    generateInitials();
     notLogin();
 }
 
@@ -20,5 +19,6 @@ function notLogin() {
         profile.classList.remove('no-login-none');
         info.classList.remove('no-login-none');
         asideNav.classList.remove('no-login-none');
+        generateInitials();
     }
 }
