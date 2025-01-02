@@ -5,6 +5,10 @@ function goBack() {
   window.history.back();
 }
 
+
+/**
+ * load nav and header
+ */
 function includeHTML() {
   let navigation = document.getElementById("navigation-container");
   navigation.innerHTML = initNav();
