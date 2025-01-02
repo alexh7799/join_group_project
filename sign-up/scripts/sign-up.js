@@ -27,6 +27,20 @@ async function loadUserCounter() {
 
 
 /**
+ * check login status
+ * @param {*} sessionUser 
+ * @returns 
+ */
+function checkPager(sessionUser) {    
+    const isSignUp = window.location.pathname.includes("join/sign-up/sign-up.html");
+    if ((sessionUser && isSignUp)) {
+        window.location.href = "../summary/summary.html";
+        return;
+    }
+}
+
+
+/**
  * event listener for sign up button
  */
 document.getElementById("login-form-container").addEventListener("submit", async function (event){

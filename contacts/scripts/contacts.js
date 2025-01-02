@@ -31,6 +31,19 @@ function toggleDropdown() {
 
 
 /**
+ * check login status
+ * @param {*} sessionUser 
+ * @returns 
+ */
+function checkPager(sessionUser) {
+    if (!sessionUser) {
+        window.location.href = "../login/login.html";
+        return;
+    }
+}
+
+
+/**
  * Fetches users from the database and sorts them alphabetically by name.
  */
 async function loadingUsers() {

@@ -321,7 +321,7 @@ function renderEditAssignedUser(assigned, selectedUser) {
 async function renderTaskAvatar(taskuser) {
     let avatarContainer = document.getElementById("avatar-container");
     avatarContainer.innerHTML = "";
-    console.log(taskuser);
+    if (taskuser.user == null) taskuser.user = [];
     taskuser.user.forEach(user => {
         let initials = user.name.split(' ').map(word => word.charAt(0).toUpperCase()).join('');
         avatarContainer.innerHTML += `

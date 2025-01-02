@@ -3,6 +3,11 @@ const BASE_URL = "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.
 let rememberMeValue = false;
 
 
+function initLogin() {
+    loadingPasswordIcons();
+    checkLogin();
+}
+
 /**
  * go to the sign up page
  */
@@ -10,7 +15,11 @@ function goToSignUp() {
     window.location.assign("../sign-up/sign-up.html")
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+
+/**
+ * loading the lock image
+ */
+function loadingPasswordIcons() {
     const passwordInput = document.getElementById("password-input");
 
     passwordInput.addEventListener("input", () => {
@@ -23,8 +32,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     hiddenImg();
-    checkLogin();
-});
+}
+
+
+/**
+ * check login status
+ * @param {*} sessionUser 
+ * @returns 
+ */
+function checkPager(sessionUser) {
+    if ((sessionUser)) {
+        window.location.href = "../summary/summary.html";
+        return;
+    }
+}
 
 
 /**

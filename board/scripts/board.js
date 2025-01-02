@@ -23,6 +23,7 @@ async function loadingTasks() {
   try {
       let response = await fetch(BASE_URL + "tasks/" + ".json");
       let tasks = await response.json();
+      if (tasks == null) tasks = {};
       tasksArray = Object.entries(tasks).map(([key, tasks]) => ({
           ...tasks,
           firebaseId: key
@@ -30,6 +31,19 @@ async function loadingTasks() {
       await decideCardType() 
   } catch (error) {
       console.error('Fehler:', error);
+  }
+}
+
+
+/**
+ * check login status
+ * @param {*} sessionUser 
+ * @returns 
+ */
+function checkPager(sessionUser) {
+  if (!sessionUser) {
+      window.location.href = "../login/login.html";
+      return;
   }
 }
 

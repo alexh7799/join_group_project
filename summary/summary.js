@@ -47,6 +47,18 @@ function getGreeting() {
     return "night";
 }
 
+/**
+ * check login status
+ * @param {*} sessionUser 
+ * @returns 
+ */
+function checkPager(sessionUser) {
+    if (!sessionUser) {
+        window.location.href = "../login/login.html";
+        return;
+    }
+}
+
 
 /**
  * go to board
@@ -63,23 +75,19 @@ async function loadingNumbers() {
     try {
         let response = await fetch(BASE_URL + ".json");
         let tasks = await response.json();
-
+        if (tasks == null) tasks = {};
         let groupedTasks = {todo: 0, progress: 0, awaiting: 0, done: 0};
-
         Object.values(tasks).forEach(task => {
             if (task.type) {
                 groupedTasks[task.type] = (groupedTasks[task.type] || 0) + 1;
             }
         });
-
         document.getElementById("toDoNum").innerText = groupedTasks.todo || 0;
         document.getElementById("progressNum").innerText = groupedTasks.progress || 0;
         document.getElementById("awaitNum").innerText = groupedTasks.awaiting || 0;
         document.getElementById("doneNum").innerText = groupedTasks.done || 0;
- 
         const totalTasks = Object.values(groupedTasks).reduce((a, b) => a + b, 0);
         document.getElementById("allTasks").innerText = totalTasks;
-
         loadUrgentTasks(tasks);
     } catch (error) {
         console.error("Error loading numbers:", error);

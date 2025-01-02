@@ -14,35 +14,24 @@ function includeHTML() {
   popUp.innerHTML = initProfilePopUp();
 }
 
+
+/**
+ * check the login status
+ */
 function checkLogin() {
   const isLoginPage = window.location.pathname.includes("join/login/login.html");
-  const isSignUp = window.location.pathname.includes("join/sign-up/sign-up.html");
-    const sessionUser = sessionStorage.getItem("username");
-    const localUser = localStorage.getItem("username");
+  const sessionUser = sessionStorage.getItem("username");
+  const localUser = localStorage.getItem("username");
 
-    // Wenn Remember-Me aktiv (localUser vorhanden)
-    if (localUser && !sessionUser) {
-      sessionStorage.setItem("username", localUser);
-      sessionStorage.setItem("email", localStorage.getItem("email"));
-    }
+  // Wenn Remember-Me aktiv (localUser vorhanden)
+  if (localUser && !sessionUser) {
+    sessionStorage.setItem("username", localUser);
+    sessionStorage.setItem("email", localStorage.getItem("email"));
+  }
 
-    if (isSignUp && (sessionUser || localUser)) {
-      window.location.href = "../summary/summary.html";
-      return;
-    }
-    
-    // Wenn auf Login-Seite und eingeloggt, zu Summary weiterleiten
-    if (isLoginPage && (sessionUser || localUser)) {
-        window.location.href = "../summary/summary.html";
-        return;
-    }
-    
-    // Wenn nicht eingeloggt und nicht auf Login-Seite
-    if (!sessionUser && !localUser && !isLoginPage && !isSignUp) {
-        window.location.href = "../login/login.html";
-        return;
-    }
+  checkPager(sessionUser);
 }
+
 
 /**
  * Generate initials for the top right corner in the header section.
@@ -64,6 +53,11 @@ function generateInitials() {
   }
 }
 
+
+/**
+ * random color function for the profile section
+ * @returns 
+ */
 function getRandomColor() {
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
@@ -71,36 +65,43 @@ function getRandomColor() {
   return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
 
+
+/**
+ * check link function to highlight the active link in the sidebar
+ */
 function checkLink() {
   const currentPath = window.location.pathname;
-    const sidebarLinks = document.querySelectorAll('#navigation-container .aside-nav a');
-    sidebarLinks.forEach(link => {
-        link.classList.remove('active');
-        let href = link.getAttribute('href').replace('../', '');
-        if (currentPath.includes("/join/"+ href)) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
+  const sidebarLinks = document.querySelectorAll('#navigation-container .aside-nav a');
+  sidebarLinks.forEach(link => {
+    link.classList.remove('active');
+    let href = link.getAttribute('href').replace('../', '');
+    if (currentPath.includes("/join/" + href)) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
 }
 
 
+/**
+ * not logged in function to hide the sidebar and profile section
+ */
 function notLogin() {
   let sidebar = document.getElementById('navigation-container');
   let profile = document.getElementById('profile');
   let info = document.getElementById('info');
   let asideNav = document.getElementById('aside-nav');
   if (sessionStorage.getItem("username") == null) {
-      sidebar.classList.add('no-login-sidebar-none');
-      profile.classList.add('no-login-none');
-      info.classList.add('no-login-none');
-      asideNav.classList.add('no-login-none');
+    sidebar.classList.add('no-login-sidebar-none');
+    profile.classList.add('no-login-none');
+    info.classList.add('no-login-none');
+    asideNav.classList.add('no-login-none');
   } else {
-      sidebar.classList.remove('no-login-sidebar-none');
-      profile.classList.remove('no-login-none');
-      info.classList.remove('no-login-none');
-      asideNav.classList.remove('no-login-none');
-      generateInitials();
+    sidebar.classList.remove('no-login-sidebar-none');
+    profile.classList.remove('no-login-none');
+    info.classList.remove('no-login-none');
+    asideNav.classList.remove('no-login-none');
+    generateInitials();
   }
 }

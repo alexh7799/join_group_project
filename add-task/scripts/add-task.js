@@ -19,6 +19,7 @@ let categoryValue = "";
 
 let taskType = sessionStorage.getItem('taskType');
 
+
 /**
  * the init function for the add task page
  */
@@ -29,4 +30,17 @@ function initAddTask() {
     generateInitials();
     addTaskTemplate();
     getAssignedUsers();
+}
+
+
+/**
+ * check login status
+ * @param {*} sessionUser 
+ * @returns 
+ */
+function checkPager(sessionUser) {
+    if (!sessionUser) {
+        window.location.href = "../login/login.html";
+        return;
+    }
 }
