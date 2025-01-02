@@ -1,3 +1,6 @@
+/**
+ * loading password icons
+ */
 document.addEventListener("DOMContentLoaded", () => {
     // Alle Passwort-Eingabefelder und ihre zugehörigen Icons abrufen
     const passwordInputs = document.querySelectorAll(".password-input");
@@ -36,6 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+
+/**
+ * show the password
+ * @param {*} currentItem 
+ */
 function showPassword(currentItem) {
     if (currentItem != 1) {
         let item = document.getElementById("password-icon-1");
@@ -66,6 +74,11 @@ function showPassword(currentItem) {
     }
 }
 
+
+/**
+ * hidden the password
+ * @param {*} currentItem 
+ */
 function hidePassword(currentItem) {
     if (currentItem != 1) {
         let item = document.getElementById("password-icon-1");

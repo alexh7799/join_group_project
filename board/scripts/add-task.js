@@ -12,12 +12,20 @@ let newTask = {
     "title": ""
 };
 
+
+/**
+ * edit task start function
+ * @param {*} firebaseId 
+ */
 function editTask(firebaseId) {
     showEditTask(firebaseId, 'editTask');
     loadTaskInEditCard(editedTask)
 }
 
 
+/**
+ * load the edit task in the edit card
+ */
 async function loadTaskInEditCard() {
     let prio = editedTask[0].prio.split(' ').map(name => name.toLowerCase()).join('');
     document.getElementById("title").value = editedTask[0].title;
@@ -33,13 +41,20 @@ async function loadTaskInEditCard() {
 }
 
 
+/**
+ * load the new date in the edited task
+ * @param {*} dateInput 
+ */
 function handleEditDate(dateInput) {
     let selectedDate = dateInput.value;
-    const formattedDate = selectedDate;
-    editedTask[0].date = formattedDate;
+    editedTask[0].date = selectedDate;
 }
 
 
+/**
+ * select the category for the edited task
+ * @param {*} cat 
+ */
 async function selectEditCategory(cat) {
     let selectCategoryText = document.getElementById('dropdown-cat-selected')
     if (cat == 'Technical Task') {
@@ -54,6 +69,11 @@ async function selectEditCategory(cat) {
 }
 
 
+/**
+ * show the error message
+ * @param {*} fieldId 
+ * @param {*} message 
+ */
 function showError(fieldId, message) {
     const errorInput = document.getElementById(fieldId)
     const errorDiv = document.getElementById('error-div-' + fieldId);
@@ -65,6 +85,10 @@ function showError(fieldId, message) {
 }
 
 
+/**
+ * fetch the users from the database
+ * @param {*} selectedUser 
+ */
 async function assignedUsers(selectedUser) {
     try {
         const response = await fetch(BASE_URL + "users/.json");
@@ -79,6 +103,11 @@ async function assignedUsers(selectedUser) {
 }
 
 
+/**
+ * load the assigned user in the edit card
+ * @param {*} usersArray 
+ * @param {*} selectedUser 
+ */
 function assignedToTemplate(usersArray, selectedUser) {
     let dropdownOptions = document.getElementById("dropdown-options");
     dropdownOptions.innerHTML = "";
@@ -88,6 +117,10 @@ function assignedToTemplate(usersArray, selectedUser) {
 }
 
 
+/**
+ * update function for the subtasks
+ * @returns 
+ */
 function updateSubtask() {
     let messagesContainer = document.getElementById('messages-container');
     messagesContainer.innerHTML = "";
@@ -98,6 +131,10 @@ function updateSubtask() {
 }
 
 
+/**
+ * edit the subtask
+ * @param {*} subtaskId 
+ */
 function editEditSubtask(subtaskId) {
     const subtask = editedTask[0].subtasks[subtaskId].title;
     let editInput = document.getElementById(`validation-messages-div-${subtaskId}`);
@@ -109,12 +146,20 @@ function editEditSubtask(subtaskId) {
 }
 
 
+/**
+ * delete the subtask
+ * @param {*} subtaskId 
+ */
 function delEditSubtask(subtaskId) {
     editedTask[0].subtasks.splice(subtaskId, 1);
     updateSubtask();
 }
 
 
+/**
+ * save the edit subtask
+ * @param {*} subtaskId 
+ */
 async function saveEditTask(subtaskId) {
     let newValue = document.getElementById(`edit-input-${subtaskId}`).value;
     if (validateName(newValue)) {
@@ -124,6 +169,10 @@ async function saveEditTask(subtaskId) {
 }
 
 
+/**
+ * show the edit subtask in edit task
+ * @param {*} newSubtaskdiv 
+ */
 function newSubtask(newSubtaskdiv) {
     const input = document.getElementById('subtask-input');
     input.focus();
@@ -134,6 +183,9 @@ function newSubtask(newSubtaskdiv) {
 }
 
 
+/**
+ * close the subtask
+ */
 function closeSubtask() {
     let closeAndCheck = document.getElementById('close-check');
     let newSubtaskdiv = document.getElementById('new-subtask');
@@ -144,6 +196,9 @@ function closeSubtask() {
 }
 
 
+/**
+ * add the subtask in the edit task
+ */
 function addEditSubtask() {
     let subtaskInput = document.getElementById('subtask-input').value;
     let isValidSubtask = true;
@@ -166,6 +221,9 @@ function addEditSubtask() {
 }
 
 
+/**
+ * clickbtn function for the edit task
+ */
 async function clickUpdateTask() {
     editedTask[0].title = document.getElementById('title').value;
     editedTask[0].descr = document.getElementById('description').value;
@@ -174,6 +232,10 @@ async function clickUpdateTask() {
 }
 
 
+/**
+ * select the priority for the edited task
+ * @param {*} priority 
+ */
 function selectEditPriority(priority) {
     const buttons = document.querySelectorAll(".prio");
     buttons.forEach(button => button.classList.remove("selected"));
@@ -183,6 +245,11 @@ function selectEditPriority(priority) {
 }
 
 
+/**
+ * toggler for the users in the edit task
+ * @param {*} avatarId 
+ * @param {*} checkbox 
+ */
 function toggleEditAvatar(avatarId, checkbox) {
     let user = usersArray.filter(u => u.id == avatarId);
     if (checkbox.checked) {

@@ -1,5 +1,3 @@
-let userArray = []; 
-
 /**
  * render the contact list
  * @param {*} usergroup - the user-group
@@ -36,6 +34,12 @@ function renderContactListItem(user) {
     `;
 }
 
+
+/**
+ * renderer the contact details
+ * @param {*} user 
+ * @returns 
+ */
 function renderContactDetails(user) {
     let initials = user.name.split(' ').map(name => name.charAt(0).toUpperCase()).join('');
     let capitalizedUserName = user.name.split(' ').map(name => name.charAt(0).toUpperCase() + name.slice(1)).join(' ');
@@ -69,6 +73,12 @@ function renderContactDetails(user) {
     </div>`;
 }
 
+
+/**
+ * renderer the edit overlay
+ * @param {*} user 
+ * @returns 
+ */
 function renderEditContact(user) {
     let initials = userArray[user].name.split(' ').map(name => name.charAt(0).toUpperCase()).join('');
     return `<div class="popup">
@@ -129,6 +139,11 @@ function renderEditContact(user) {
 </div>`
 }
 
+
+/**
+ * renderer the new contact overlay
+ * @returns 
+ */
 function renderNewContact() {    
     return `<div class="popup">
             <div class="popup-left">
@@ -197,6 +212,12 @@ function renderNewContact() {
         </div>`
 }
 
+
+/**
+ * renderer the edit and delete popup
+ * @param {*} user 
+ * @returns 
+ */
 function renderEditDeletePopup(user) {
     return `<li><button class="contact-btn" onclick="editContact('${userArray.indexOf(user)}', removeEditDel())">
                 <img src="../assets/icons/edit.svg">

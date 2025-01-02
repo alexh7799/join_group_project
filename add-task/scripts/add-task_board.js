@@ -1,3 +1,6 @@
+/**
+ * toggled User Dropdown in add-task.html and popups in board.html
+ */
 function toggleDropdown() {
     let dropdownOptions = document.getElementById("dropdown-options");
     let dropdownArrow = document.getElementById("dropdown-arrow");
@@ -9,6 +12,10 @@ function toggleDropdown() {
     }
 }
 
+
+/**
+ * toggled Category Dropdown in add-task.html and popups in board.html
+ */
 function toggleCategoryDropdown() {
     let dropdownOptions = document.getElementById("dropdown-cat-options");
     let dropdownArrow = document.getElementById("dropdown-cat-arrow");
@@ -20,12 +27,21 @@ function toggleCategoryDropdown() {
     }
 }
 
+
+/**
+ * load the add-task.html template
+ */
 function addTaskTemplate() {
     const container = document.getElementById('addtask-tem');
     const template = getAddTask(taskType); 
     container.innerHTML = template; 
 }
 
+
+/**
+ * active the new Subtask input field and focus on it
+ * @param {*} newSubtaskdiv 
+ */
 function newSubtask(newSubtaskdiv) {
     const input = document.getElementById('subtask-input');
     input.focus();
@@ -35,6 +51,10 @@ function newSubtask(newSubtaskdiv) {
     closeAndCheck.classList.remove('d-none');
 }
 
+
+/**
+ * close the new Subtask input field and show the add button
+ */
 function closeSubtask() {
     let closeAndCheck = document.getElementById('close-check');
     let newSubtaskdiv = document.getElementById('new-subtask');
@@ -45,6 +65,9 @@ function closeSubtask() {
 }
 
 
+/**
+ * focus the new Subtask input field and hide the add button
+ */
 function focusSubtask() {
     let closeAndCheck = document.getElementById('close-check');
     let newSubtaskdiv = document.getElementById('new-subtask');
@@ -52,28 +75,30 @@ function focusSubtask() {
     closeAndCheck.classList.remove('d-none');
 }
 
+
+/**
+ * hover the btn for the edited subtask
+ * @param {*} subtaskId 
+ */
 function handleHover(subtaskId) {
     let subtaskBtnContainer = document.getElementById('subtask-btn-'+ subtaskId);
     subtaskBtnContainer.classList.remove('d-none');
 }
 
+
+/**
+ * end hover the btn for the edited subtask
+ * @param {*} subtaskId 
+ */
 function handleHoverEnd(subtaskId) {
     let subtaskBtnContainer = document.getElementById('subtask-btn-'+ subtaskId);
     subtaskBtnContainer.classList.add('d-none');
 }
 
 
-function newLoadingAvatar() {
-    let avatarContainer = document.getElementById("avatar-container");
-    avatarContainer.innerHTML = "";
-    for (let i = 0; i < newTask.user.length; i++) {
-        let avatar = document.createElement("span");
-        avatar.className = "avatar color";
-        avatar.textContent = newTask.user[i];
-    }
-}
-
-
+/**
+ * show the date picker in add-task.html and board.html
+ */
 function showPicker() {
     const dateInput = document.getElementById('due-date');
 
@@ -86,10 +111,22 @@ function showPicker() {
 
 }
 
+
+/**
+ * validate the name of the task
+ * @param {*} name 
+ * @returns 
+ */
 function validateName(name) {
     return name.trim().length >= 2;
 }
 
+
+/**
+ * validate the date of the task
+ * @param {*} date 
+ * @returns 
+ */
 function validateDate(date) {
     const today = new Date().toISOString().split('T')[0];
     if (date < today) {
@@ -98,6 +135,12 @@ function validateDate(date) {
     return true;
 }
 
+
+/**
+ * validate the category of the task
+ * @param {*} cat 
+ * @returns 
+ */
 function validateCat(cat) {
     if(cat == "") {
         return false;
@@ -105,6 +148,10 @@ function validateCat(cat) {
     return true;
 }
 
+
+/**
+ * update the subtask display in add-task.html and board.html
+ */
 function updateSubtaskDisplay() {
     let messagesContainer = document.getElementById('messages-container');
     messagesContainer.innerHTML = "";
@@ -113,11 +160,21 @@ function updateSubtaskDisplay() {
     }
 }
 
+
+/**
+ * delete the subtask in add-task.html and board.html
+ * @param {*} subtaskId 
+ */
 function delSubtask(subtaskId) {
     newTask.subtasks.splice(subtaskId, 1);
     updateSubtaskDisplay();
 }
 
+
+/**
+ * edit the subtask in add-task.html and board.html
+ * @param {*} subtaskId 
+ */
 function editSubtask(subtaskId) {
     const subtask = newTask.subtasks[subtaskId].title;
     let editInput = document.getElementById(`validation-messages-div-${subtaskId}`);
@@ -128,6 +185,11 @@ function editSubtask(subtaskId) {
     editInputSubtask.focus();
 }
 
+
+/**
+ * save the edited subtask in add-task.html
+ * @param {*} subtaskId 
+ */
 function saveEdit(subtaskId) {
     let newValue = document.getElementById(`edit-input-${subtaskId}`).value;
     if (validateName(newValue)) {
@@ -136,14 +198,26 @@ function saveEdit(subtaskId) {
     }
 }
 
+
+/**
+ * save the new date in add-task.html
+ * @param {*} dateInput 
+ */
 function handleDate(dateInput) {
     let selectedDate = dateInput.value;
-    if (validateDate(selectedDate)) {
-        const formattedDate = selectedDate;
-        newTask.date = formattedDate;
+    if (validateDate(selectedDate)) { 
+        newTask.date = selectedDate;
     }
 }
 
+
+/**
+ * validate the subtask in add-task.html
+ * @param {*} title 
+ * @param {*} date 
+ * @param {*} isValid 
+ * @returns 
+ */
 function subValidate(title, date, isValid) {
     if (!validateName(title)) {
         showError('title', 'This field is required');
@@ -167,20 +241,27 @@ function subValidate(title, date, isValid) {
     return isValid;
 }
 
+
+/**
+ * toggle the avatar-checkbox in add-task.html and board.html
+ * @param {*} avatarId 
+ * @param {*} checkbox 
+ */
 function toggleAvatar(avatarId, checkbox) {
     let user = usersArray.filter(u => u.id == avatarId);
     if (checkbox.checked) {
-        newTask.user.push({
-            bgcolor: user[0].color,
-            name: user[0].name,
-            id: user[0].id
-        });
+        newTask.user.push({ bgcolor: user[0].color, name: user[0].name, id: user[0].id });
     } else {
         newTask.user = newTask.user.filter(u => u.name !== user[0].name);
     }
     renderAvatar();
 }
 
+
+/**
+ * select the priority in add-task.html and board.html
+ * @param {*} priority 
+ */
 function selectPriority(priority) {
     const buttons = document.querySelectorAll(".prio");
     buttons.forEach(button => button.classList.remove("selected"));
@@ -189,6 +270,10 @@ function selectPriority(priority) {
     newTask.prio = capitalizedPriority;
 }
 
+
+/**
+ * search the users in add-task.html and board.html
+ */
 async function getAssignedUsers() {
     try {
         const response = await fetch(BASE_URL + "users/.json");
@@ -202,6 +287,11 @@ async function getAssignedUsers() {
     }
 }
 
+
+/**
+ * render the user in add-task.html and board.html
+ * @param {*} usersArray 
+ */
 function addAssignedToTemplate(usersArray) {
     let dropdownOptions = document.getElementById("dropdown-options");
     dropdownOptions.innerHTML = "";
@@ -211,14 +301,15 @@ function addAssignedToTemplate(usersArray) {
 }
 
 
+/**
+ * save the new task in add-task.html
+ */
 function addSubtask() {
     let subtaskInput = document.getElementById('subtask-input').value;
     let isValidSubtask = true;
-
     if (!validateName(subtaskInput)) {
         isValidSubtask = false;
     }
-
     if (isValidSubtask) {
         if (!newTask.subtasks) {
             newTask.subtasks = [];
@@ -232,6 +323,10 @@ function addSubtask() {
     }
 }
 
+
+/**
+ * clear the error messages in add-task.html and board.html
+ */
 function clearErrorMessages() {
     const errorDiv = document.querySelectorAll('.error-message');
     const errorInput = document.querySelectorAll('.error');
@@ -243,6 +338,11 @@ function clearErrorMessages() {
     });
 }
 
+
+/**
+ * select the category in add-task.html and board.html
+ * @param {*} cat 
+ */
 function selectCategory(cat) {
     let selectCategoryText = document.getElementById('dropdown-cat-selected')
     if (cat == 'Technical Task') {
@@ -255,6 +355,11 @@ function selectCategory(cat) {
     toggleCategoryDropdown()
 }
 
+
+/**
+ * the last check validation in add-task.html and board.html
+ * @returns 
+ */
 function lastValidate() {
     let title = document.getElementById("title").value;
     let date = newTask.date;
@@ -263,75 +368,4 @@ function lastValidate() {
     clearErrorMessages();
 
     return subValidate(title, date, isValid)
-}
-
-
-function showError(fieldId, message) {
-    const errorInput = document.getElementById(fieldId)
-    const errorDiv = document.getElementById('error-div-' + fieldId);
-    if (errorDiv !== null) {
-        errorDiv.classList.remove('d-none');
-        errorDiv.textContent = message;
-        errorInput.classList.add('error')
-    }
-}
-
-
-
-async function createTask(type) {
-    newTask.descr = document.getElementById('description').value;
-    newTask.type = type;
-    try {
-        if(lastValidate()){
-            await postData("tasks/", newTask);
-            await clearForm();
-            await showBoardTasks();
-            await setTimeout(()=>{
-                window.location.href = "../board/board.html"
-            }, 500)
-        }
-    } catch (error) {
-        console.error('Fehler', error)
-    }
-}
-
-
-function clearForm() {
-    document.getElementById("title").value = "";
-    document.getElementById("description").value = "";
-    document.getElementById("due-date").value = "";
-    document.getElementById("category").value = "";
-    document.querySelectorAll(".priority button").forEach(button => button.classList.remove("selected"));
-    document.getElementById('medium').classList.add('selected');
-    document.querySelector("#messages-container").innerHTML = "";
-
-    newTask = {
-        "cat": "",
-        "user": [],
-        "type": "todo",
-        "descr": "",
-        "date": "",
-        "prio": "Medium",
-        "subtasks": [],
-        "title": ""
-    };
-
-    renderAvatar();
-}
-
-function showBoardTasks() {
-    let overlayDiv = document.getElementById('overlay-to-board')
-    overlayDiv.classList.add('overlay-board')
-}
-
-async function postData(path = "", data = "") { // Anlegen von Daten 
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    });
-    responseToJson = await response.json();
-    return responseToJson;
 }

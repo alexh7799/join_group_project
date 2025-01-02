@@ -1,3 +1,7 @@
+/**
+ * renderer for the navbar
+ * @returns 
+ */
 function initNav() {
     return `
         <a class="aside-logo" href="../summary/summary.html">
@@ -61,6 +65,11 @@ function initNav() {
     `;
 }
 
+
+/**
+ * renderer for the header
+ * @returns 
+ */
 function initHeader() {
     return `
         <a class="mobile-logo" href="../summary/summary.html">
@@ -96,6 +105,11 @@ function initHeader() {
     `;
 }
 
+
+/**
+ * renderer for the profile pop up
+ * @returns 
+ */
 function initProfilePopUp() {
     return `
         <ul id="profile-pop-up" onclick="doNotClose(event)">

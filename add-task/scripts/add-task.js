@@ -19,6 +19,9 @@ let categoryValue = "";
 
 let taskType = sessionStorage.getItem('taskType');
 
+/**
+ * the init function for the add task page
+ */
 function initAddTask() {
     checkLogin();
     includeHTML();

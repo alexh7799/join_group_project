@@ -1,3 +1,8 @@
+/**
+ * render function for add task
+ * @param {*} type 
+ * @returns 
+ */
 function getAddTask(type) {
     return `
     <main class="main-content" onclick="event.stopPropagation()">
@@ -114,6 +119,11 @@ function getAddTask(type) {
 }
 
 
+/**
+ * render users in the dropdown in add task
+ * @param {*} assigned 
+ * @returns 
+ */
 function renderAssignedUser(assigned) {
     let initials = assigned.name.split(' ').map(name => name.charAt(0).toUpperCase()).join('');
     let capitalizedUserName = assigned.name.split(' ').map(name => name.charAt(0).toUpperCase() + name.slice(1)).join(' ');
@@ -126,6 +136,10 @@ function renderAssignedUser(assigned) {
     `;
 }
 
+
+/**
+ * render the avatar of the user
+ */
 function renderAvatar() {
     let avatarContainer = document.getElementById("avatar-container");
     avatarContainer.innerHTML = "";
@@ -138,6 +152,12 @@ function renderAvatar() {
     });
 }
 
+
+/**
+ * render subtasks in the add task
+ * @param {*} id 
+ * @returns 
+ */
 function renderSubtasks(id) {
     return `<div class="validation" id="validation-messages-div-${id}" >
                         <div class="d-flex-sb-c validation-messages"onmouseover="handleHover(${id}, this)" onmouseout="handleHoverEnd(${id}, this)">
@@ -151,6 +171,12 @@ function renderSubtasks(id) {
                     </div>`
 }
 
+
+/**
+ * render edit subtask in the add task
+ * @param {*} id 
+ * @returns 
+ */
 function renderEditSubtask(id) {
     return `<input id="edit-input-${id}" maxlength="100" class="edit-input" placeholder="Add new subtask"/>                      
             <div id="" class="btn-div-sub gap-2 ">

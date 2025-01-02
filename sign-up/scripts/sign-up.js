@@ -6,25 +6,49 @@ let usercount;
 let userArray = []
 const BASE_URL = "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/";
 
+
+/**
+ * init function for sign up page
+ */
 async function init() {
     await checkLogin();
     await loadUserCounter();
 }
 
+
+/**
+ * load user counter for datebase
+ */
 async function loadUserCounter() {
     let response = await fetch(BASE_URL + "usercount.json");
     let responseToJson = await response.json();  
     usercount = responseToJson;
 }
 
+
+/**
+ * event listener for sign up button
+ */
 document.getElementById("login-form-container").addEventListener("submit", async function (event){
     event.preventDefault();
 })
 
+
+/**
+ * start the sign up process
+ */
 function signUp() {
     validateSignUpForm();    
 }
 
+
+/**
+ * update the user counter
+ *
+ * @param {*} path 
+ * @param {*} data 
+ * @returns 
+ */
 async function putUsercount(path="", data="") { // Anlegen von Daten 
     let response = await fetch(BASE_URL + path + ".json",{
         method: "PUT",
@@ -37,6 +61,13 @@ async function putUsercount(path="", data="") { // Anlegen von Daten
     return responseToJson = await response.json();
 }
 
+
+/**
+ * create new user in database
+ * @param {*} path 
+ * @param {*} data 
+ * @returns 
+ */
 async function postData(path="", data="") { // Anlegen von Daten 
     let response = await fetch(BASE_URL + path + ".json",{
         method: "POST",
@@ -49,6 +80,12 @@ async function postData(path="", data="") { // Anlegen von Daten
     return responseToJson = await response.json();
 }
 
+
+/**
+ * info banner for successful sign up
+ * @param {*} name 
+ * @param {*} email 
+ */
 function showSuccessMsgTasks(name,email) {
     let overlayDiv = document.getElementById('overlay-successfull');
     overlayDiv.classList.add('overlay-suess-contact');
@@ -60,6 +97,13 @@ function showSuccessMsgTasks(name,email) {
 }
 
 
+/**
+ * load user from database
+ * @param {*} name 
+ * @param {*} email 
+ * @param {*} password1 
+ * @returns 
+ */
 async function loadingSignUsers(name, email, password1) {
     try {
         const response = await fetch(BASE_URL + "users/.json");
@@ -80,6 +124,15 @@ async function loadingSignUsers(name, email, password1) {
     }
 }
 
+
+/**
+ * existing user check
+ * @param {*} existingUser 
+ * @param {*} name 
+ * @param {*} email 
+ * @param {*} password1 
+ * @returns 
+ */
 async function isExistingUser(existingUser, name, email, password1) {
     if (existingUser) {
         showError('Email is already registered');
@@ -90,6 +143,10 @@ async function isExistingUser(existingUser, name, email, password1) {
     }
 }
 
+
+/**
+ * clear error messages
+ */
 function clearErrorMessages() {
     const errorDiv = document.querySelectorAll('.error-message');
     errorDiv.forEach(error => {
@@ -97,6 +154,11 @@ function clearErrorMessages() {
     });
 }
 
+
+/**
+ * show error message
+ * @param {*} message 
+ */
 function showError(message) {
     const errorDiv = document.getElementById('error-div');
     if (errorDiv !== null) {
@@ -105,6 +167,11 @@ function showError(message) {
     }
 }
 
+
+/**
+ * validate sign up form
+ * @returns 
+ */
 async function validateSignUpForm() {
     let name = document.getElementById('name-input').value;
     let email = document.getElementById('email-input').value;
@@ -125,6 +192,13 @@ async function validateSignUpForm() {
     }
 }
 
+
+/**
+ * update user in database
+ * @param {*} key 
+ * @param {*} password 
+ * @param {*} name 
+ */
 async function updateUser(key, password, name) {
     await fetch(BASE_URL + `users/${key}.json`, {
         method: 'PATCH',
@@ -135,6 +209,13 @@ async function updateUser(key, password, name) {
     });
 }
 
+
+/**
+ * create the new user
+ * @param {*} name 
+ * @param {*} email 
+ * @param {*} password 
+ */
 async function createNewUser(name, email, password) {
     let color = getRandomColor();
     await postData(`/users/`, {"name": name, "email": email, "password": password, "id": usercount + 1,"phone": "", "color": `${color}`});
@@ -142,6 +223,17 @@ async function createNewUser(name, email, password) {
     await putUsercount(`usercount`, usercount); 
 }
 
+
+/**
+ * validate sign up form
+ * @param {*} name 
+ * @param {*} email 
+ * @param {*} password1 
+ * @param {*} password2 
+ * @param {*} checkbox 
+ * @param {*} emailRegex 
+ * @returns 
+ */
 function validateFunction(name, email, password1, password2, checkbox, emailRegex) {
     if (name.trim().length < 2) {
         showError('Name must be at least 2 characters long');
@@ -169,6 +261,12 @@ function validateFunction(name, email, password1, password2, checkbox, emailRege
     return true;
 }
 
+
+/**
+ * password validation
+ * @param {*} password 
+ * @returns 
+ */
 function validatePassword(password) {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]{8,}$/;
     console.log(password.length);

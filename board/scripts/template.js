@@ -1,3 +1,9 @@
+/**
+ * renderer card in the board
+ * @param {*} task 
+ * @param {*} subtask 
+ * @returns 
+ */
 function renderTaskCard(task, subtask) {
     let descr = textTrimmer(task.descr, 35);
     let taskCategory = task.cat.replace(/\s/g, '').toLowerCase();
@@ -36,6 +42,11 @@ function renderTaskCard(task, subtask) {
     return card;
 }
 
+
+/**
+ * renderer for the no card in the board
+ * @returns 
+ */
 function renderNoTaskCard() {
     return `<div class="split-spliter-fields" id="task">
                 <div class="no-task" id="noTask">
@@ -44,6 +55,12 @@ function renderNoTaskCard() {
             </div>`
 }
 
+
+/**
+ * renderer user avatar in the card
+ * @param {*} tasks 
+ * @returns 
+ */
 function renderEditAvatar(tasks) {
     if (!tasks || tasks.length === 0) return '';
     let avatar = "";
@@ -54,6 +71,12 @@ function renderEditAvatar(tasks) {
     return avatar;
 }
 
+
+/**
+ * rederer big card in the board
+ * @param {*} task 
+ * @returns 
+ */
 function renderCardOverlay(task) {
     let taskCategory = task[0].cat.replace(/\s/g, '').toLowerCase();
     let bigCard = `<div class="edit-card" onclick="event.stopPropagation()">
@@ -105,6 +128,12 @@ function renderCardOverlay(task) {
     return bigCard;
 }
 
+
+/**
+ * renderer for the avatar in the big card
+ * @param {*} taskAvatars 
+ * @returns 
+ */
 function renderAvatarBigCard(taskAvatars) {
     if (!taskAvatars || taskAvatars.length === 0) return '';
     let avatar = "";
@@ -120,6 +149,13 @@ function renderAvatarBigCard(taskAvatars) {
     
 }
 
+
+/**
+ * renderer for the subtask in the big card
+ * @param {*} task 
+ * @param {*} subtasks 
+ * @returns 
+ */
 function renderSubtaskBigCard(task, subtasks) {
     if (!subtasks || subtasks.length === 0) return '';
     let subtask = "";
@@ -142,6 +178,11 @@ function renderSubtaskBigCard(task, subtasks) {
     return subtask;
 }
 
+
+/**
+ * renderer for the add task overlay
+ * @returns 
+ */
 function renderEditOverlay() {
     return `<div class="main-content" onclick="event.stopPropagation()">
         <div class="d-flex-end-c btn" onclick="closeEditOverlay()">
@@ -252,6 +293,13 @@ function renderEditOverlay() {
     </div>`
 }
 
+
+/**
+ * renderer user-dropdown for the add-task overlay
+ * @param {*} assigned 
+ * @param {*} selectedUser 
+ * @returns 
+ */
 function renderEditAssignedUser(assigned, selectedUser) {
     let initials = assigned.name.split(' ').map(name => name.charAt(0).toUpperCase()).join('');
     let capitalizedUserName = assigned.name.split(' ').map(name => name.charAt(0).toUpperCase() + name.slice(1)).join(' ');
@@ -265,6 +313,11 @@ function renderEditAssignedUser(assigned, selectedUser) {
     `;
 }
 
+
+/**
+ * renderer the assigned user in the add-task overlay
+ * @param {*} taskuser 
+ */
 async function renderTaskAvatar(taskuser) {
     let avatarContainer = document.getElementById("avatar-container");
     avatarContainer.innerHTML = "";
@@ -278,6 +331,13 @@ async function renderTaskAvatar(taskuser) {
     });
 }
 
+
+/**
+ * renderer the subtask in the add-task overlay
+ * @param {*} id 
+ * @param {*} task 
+ * @returns 
+ */
 function renderEditSubtasks(id, task) {
     return `<div class="validation" id="validation-messages-div-${id}" >
                         <div class="d-flex-sb-c validation-messages" onmouseover="handleHover(${id}, this)" onmouseout="handleHoverEnd(${id}, this)">
@@ -291,6 +351,12 @@ function renderEditSubtasks(id, task) {
                     </div>`
 }
 
+
+/**
+ * renderer the edit subtask in the add-task overlay
+ * @param {*} id 
+ * @returns 
+ */
 function renderEditTaskSubtask(id) {
     return `<input id="edit-input-${id}" maxlength="100" class="edit-input" placeholder="Add new subtask"/>                      
             <div id="" class="btn-div-sub gap-2 ">

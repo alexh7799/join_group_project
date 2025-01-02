@@ -1,5 +1,7 @@
 const BASE_URL = "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/";
 let usercount;
+let userArray = []; 
+
 
 /**
  * initializes the contacts page.
@@ -11,6 +13,7 @@ function initContacts() {
     generateInitials();
     loadingUsers();
 }
+
 
 /**
  * toogle the dropdown menu
@@ -25,6 +28,7 @@ function toggleDropdown() {
         dropdownArrow.innerHTML = `<img src="img/assets/icons/arrow-dropdown.svg">`;
     }
 }
+
 
 /**
  * Fetches users from the database and sorts them alphabetically by name.
@@ -54,6 +58,7 @@ async function loadingUsers() {
     }
 }
 
+
 /**
  * load the contact list.
  * @param {*} groupedUsers - the grouped users
@@ -67,6 +72,7 @@ function loadRenderContactList(groupedUsers) {
     });
 }
 
+
 /**
  * load the add contact form.
  */
@@ -78,6 +84,7 @@ function addContact() {
     document.body.style.overflow = 'hidden';
 }
 
+
 /**
  * close the add contact form.
  */
@@ -87,6 +94,12 @@ function closeContactForm() {
     document.body.style.overflow = 'auto';
 }
 
+
+/**
+ * show the contact details.
+ * @param {*} userId 
+ * @returns 
+ */
 function showContactDetails(userId) {
     try {
         let contactDetails = document.getElementById("contact-details");
@@ -106,18 +119,30 @@ function showContactDetails(userId) {
     }
 }
 
+
+/**
+ * toggle the edit and delete popup.
+ */
 function toggleEditDeletePopup() {
     let contactButtons = document.getElementById("edit-delete-container");
     contactButtons.style.right = "calc(0px)";
     contactButtons.style.left = "0";
 }
 
+
+/**
+ * remove the edit and delete popup.
+ */
 function removeEditDel() {
     let contactButtons = document.getElementById("edit-delete-container");
     contactButtons.style.right = "calc(-100vw)";
     contactButtons.style.left = "";
 }
 
+
+/**
+ * close the contact details.
+ */
 function closeContactDetails() {
     let contactDetails = document.getElementById("contact-details");
     let btnMobilePopup = document.getElementById("btn-mobile-popup");
@@ -126,12 +151,21 @@ function closeContactDetails() {
     btnMobilePopup.classList.add('d-none');
 }
 
+
+/**
+ * load the user counter.
+ */
 async function loadUserCounter() {
     let response = await fetch(BASE_URL + "usercount/.json");
     let responseToJson = await response.json();
     usercount = responseToJson;
 }
 
+
+/**
+ * create the new contact
+ * @returns 
+ */
 async function createContact() {
     try {
         if (!validateContactForm()) {
@@ -164,6 +198,13 @@ async function createContact() {
     }
 }
 
+
+/**
+ * update the counter
+ * @param {*} path 
+ * @param {*} data 
+ * @returns 
+ */
 async function putUsercount(path = "", data = "") { // Anlegen von Daten 
     let response = await fetch(BASE_URL + "usercount/" + ".json", {
         method: "PUT",
@@ -175,6 +216,13 @@ async function putUsercount(path = "", data = "") { // Anlegen von Daten
     return responseToJson = await response.json();
 }
 
+
+/**
+ * post the new contact
+ * @param {*} path 
+ * @param {*} data 
+ * @returns 
+ */
 async function postUser(path = "", data = "") { // Anlegen von Daten 
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
@@ -187,6 +235,11 @@ async function postUser(path = "", data = "") { // Anlegen von Daten
     return responseToJson;
 }
 
+
+/**
+ * delete the contact
+ * @param {*} id 
+ */
 async function deleteUser(id) {
     let url = BASE_URL + "users/" + id + "/" + ".json";
     let response = await fetch(url, {
@@ -199,6 +252,11 @@ async function deleteUser(id) {
     window.location.reload();
 }
 
+
+/**
+ * edit the contact
+ * @param {*} user 
+ */
 function editContact(user) {
     let popupOverlay = document.getElementById("popup-overlay");
     popupOverlay.innerHTML = "";
@@ -207,6 +265,12 @@ function editContact(user) {
     document.body.style.overflow = 'hidden';
 }
 
+
+/**
+ * update the contact
+ * @param {*} user 
+ * @returns 
+ */
 async function updateUser(user) {
     try {
         if (!validateContactForm()) {
@@ -234,6 +298,11 @@ async function updateUser(user) {
     }
 }
 
+
+/**
+ * validate the contact form
+ * @returns 
+ */
 function validateContactForm() {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
@@ -260,20 +329,44 @@ function validateContactForm() {
     return isValid;
 }
 
+
+/**
+ * function for the validation of the name
+ * @param {*} name 
+ * @returns 
+ */
 function validateName(name) {
     return name.trim().length >= 2;
 }
 
+
+/**
+ * function for the validation of the email
+ * @param {*} email 
+ * @returns 
+ */
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
+
+/**
+ * function for the validation of the phone
+ * @param {*} phone 
+ * @returns 
+ */
 function validatePhone(phone) {
     const phoneRegex = /^[\d\s\+\-\(\)]{6,}$/;
     return phoneRegex.test(phone);
 }
 
+
+/**
+ * show the error message
+ * @param {*} fieldId 
+ * @param {*} message 
+ */
 function showError(fieldId, message) {
     const errorDiv = document.getElementById('error-div-' + fieldId);
     if (errorDiv !== null) {
@@ -282,6 +375,10 @@ function showError(fieldId, message) {
     }
 }
 
+
+/**
+ * clear the error messages
+ */
 function clearErrorMessages() {
     const errorDiv = document.querySelectorAll('.error-message');
     errorDiv.forEach(error => {
@@ -289,11 +386,19 @@ function clearErrorMessages() {
     });
 }
 
+
+/**
+ * show the success message
+ */
 function showSuccessMsgTasks() {
     let overlayDiv = document.getElementById('overlay-successfull');
     overlayDiv.classList.add('overlay-suess-contact');
 }
 
+
+/**
+ * hidden the success message
+ */
 function hiddenSuccessMsgTasks() {
     let overlayDiv = document.getElementById('overlay-successfull');
     overlayDiv.classList.remove('overlay-suess-contact');

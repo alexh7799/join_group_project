@@ -14,14 +14,6 @@ function initSummary() {
     generateInitials();
 }
 
-function includeHTML() {
-    let navigation = document.getElementById("navigation-container");
-    navigation.innerHTML = initNav();
-    let header = document.getElementById("header-container");
-    header.innerHTML = initHeader();
-    let popUp = document.getElementById("overlay-container");
-    popUp.innerHTML = initProfilePopUp();
-}
 
 /**
  * generate the greets
@@ -41,6 +33,7 @@ function generateGreets() {
     }
 }
 
+
 /**
  * return the timevalue
  * @returns {string}
@@ -54,12 +47,14 @@ function getGreeting() {
     return "night";
 }
 
+
 /**
  * go to board
  */
 function goToBoard() {
     window.location.href = "../board/board.html";
 }
+
 
 /**
  * loading the numbers for der summary page of the database
@@ -90,6 +85,7 @@ async function loadingNumbers() {
         console.error("Error loading numbers:", error);
     }
 }
+
 
 /**
  * loading the urgent number and date

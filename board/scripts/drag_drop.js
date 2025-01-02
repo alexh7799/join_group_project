@@ -1,20 +1,41 @@
 let draggedTaskId;
 
+
+/**
+ * event handler for drag and drop
+ * @param {*} event 
+ */
 function allowDrop(event) {
     event.preventDefault();
 }
 
+
+/**
+ * drag event handler
+ * @param {*} taskId 
+ */
 function handleDrag(taskId) {
     const element = document.getElementById(`task${taskId}`);
     element.classList.add('dragging');
     draggedTaskId = taskId;
 }
 
+
+/**
+ * drag end event handler
+ * @param {*} event 
+ * @param {*} taskId 
+ */
 function handleDragEnd(event, taskId) {
     const element = document.getElementById(`task${taskId}`);
     element.classList.remove('dragging');
 }
 
+
+/**
+ * drag leave event handler
+ * @param {*} id 
+ */
 function handleDragLeave(id) {
     document.getElementById(id).classList.remove('drag-over');
 }

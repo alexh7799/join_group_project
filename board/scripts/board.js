@@ -3,6 +3,10 @@ const BASE_URL = "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.
 let tasksArray = [];
 let editedTask = [];
 
+
+/**
+ * initialize the board
+ */
 async function initBoard() {
   checkLogin();
   includeHTML();
@@ -11,6 +15,10 @@ async function initBoard() {
   await loadingTasks()
 }
 
+
+/**
+ * load the tasks from the database
+ */
 async function loadingTasks() {
   try {
       let response = await fetch(BASE_URL + "tasks/" + ".json");
@@ -25,12 +33,28 @@ async function loadingTasks() {
   }
 }
 
+
+/**
+ * render the task card in the decided container
+ */
 function decideCardType() {
   let todoTasks = tasksArray.filter(task => task.type === 'todo');
   let progressTasks = tasksArray.filter(task => task.type === 'progress');
   let awaitingTasks = tasksArray.filter(task => task.type === 'awaiting');
   let doneTasks = tasksArray.filter(task => task.type === 'done');
 
+  loadRenderCard(todoTasks, progressTasks, awaitingTasks, doneTasks);
+}
+
+
+/**
+ * load the Cards in the task-containers
+ * @param {*} todoTasks 
+ * @param {*} progressTasks 
+ * @param {*} awaitingTasks 
+ * @param {*} doneTasks 
+ */
+function loadRenderCard(todoTasks, progressTasks, awaitingTasks, doneTasks) {
   if(todoTasks.length > 0) {
     renderTasks('todo-container', todoTasks);
   }else {
@@ -56,6 +80,12 @@ function decideCardType() {
   }  
 }
 
+
+/**
+ * render the task card
+ * @param {*} containerId 
+ * @param {*} tasks 
+ */
 function renderTasks(containerId, tasks) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
@@ -69,16 +99,34 @@ function renderTasks(containerId, tasks) {
   });
 }
 
+
+/**
+ * render the no task card
+ * @param {*} containerId 
+ */
 function renderNoTask(containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
   container.innerHTML += renderNoTaskCard();
 }
 
+
+/**
+ * trimmt the text
+ * @param {*} text 
+ * @param {*} textLength 
+ * @returns 
+ */
 function textTrimmer(text, textLength) {
   return text.length > textLength ? text.substring(0, textLength) + "..." : text;
 }
 
+
+/**
+ * renderValues for the prossesbar
+ * @param {*} task 
+ * @returns 
+ */
 function subtaskCal(task) {
   if(task == undefined) return 0;
   let min = 0
@@ -93,6 +141,12 @@ function subtaskCal(task) {
   }
 }
 
+
+/**
+ * show the edit task or the big card
+ * @param {*} taskId 
+ * @param {*} showType 
+ */
 function showEditTask(taskId, showType) {
   let overlayDiv = document.getElementById('overlay-edit-task');
   overlayDiv.classList.add('overlay-edit');
@@ -106,18 +160,33 @@ function showEditTask(taskId, showType) {
   document.body.style.overflowY = "hidden";
 }
 
+
+/**
+ * close the edit overlay
+ */
 function closeEditOverlay() {
   let overlayDiv = document.getElementById('overlay-edit-task')
   overlayDiv.classList.remove('overlay-edit');
   document.body.style.overflowY = "auto";
 }
 
+
+/**
+ * close the pop overlay
+ */
 function closePopOverlay() {
   let overlayDiv = document.getElementById('addtask-tem')
   overlayDiv.classList.remove('overlay-edit');
   document.body.style.overflowY = "auto";
 }
 
+
+/**
+ * toggle the checkboxen the subtask
+ * @param {*} firebaseId 
+ * @param {*} completed 
+ * @param {*} id 
+ */
 async function toggleSubtask(firebaseId, completed, id) {
   try {
     task[0].subtasks[id].completed = !completed;
@@ -128,6 +197,12 @@ async function toggleSubtask(firebaseId, completed, id) {
  }
 }
 
+
+/**
+ * update the task
+ *
+ * @param {*} editCard 
+ */
 async function updateTask(editCard) {
   try {
     const updatedData = {
@@ -151,6 +226,11 @@ async function updateTask(editCard) {
   }
 }
 
+
+/**
+ * delete the task
+ * @param {*} id 
+ */
 async function deleteTask(id) {
   let url = BASE_URL + "tasks/" + id + "/" + ".json";
   let response = await fetch(url, {
@@ -162,6 +242,10 @@ async function deleteTask(id) {
 }
 
 
+/**
+ * filter function for the search Input
+ * @returns 
+ */
 function filterTasks() {
   let searchTerm = document.getElementById("find-task-input").value;
   
@@ -178,6 +262,11 @@ function filterTasks() {
   renderFilteredTasks(filteredTasks);
 }
 
+
+/**
+ * render the filtered tasks
+ * @param {*} filteredTasks 
+ */
 function renderFilteredTasks(filteredTasks) {
   const todoContainer = document.getElementById('todo-container');
   const progressContainer = document.getElementById('progress-container');
@@ -199,6 +288,12 @@ function renderFilteredTasks(filteredTasks) {
   });
 }
 
+
+/**
+ * show the overlay for new Task
+ * @param {*} type 
+ * @returns 
+ */
 async function showAddTaskDetails(type) {
   try {
       if (window.innerWidth <= 826) {
@@ -218,4 +313,3 @@ async function showAddTaskDetails(type) {
       return false;
   }
 }
-
