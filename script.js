@@ -60,7 +60,7 @@ function generateInitials() {
 
 /**
  * random color function for the profile section
- * @returns 
+ * @returns {string}
  */
 function getRandomColor() {
   const r = Math.floor(Math.random() * 256);
