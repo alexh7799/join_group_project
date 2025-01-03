@@ -1,3 +1,6 @@
+let currentSubtaskId = [];
+
+
 /**
  * toggled User Dropdown in add-task.html and popups in board.html
  */
@@ -26,6 +29,21 @@ function toggleCategoryDropdown() {
         dropdownArrow.innerHTML = `<img src="../assets/icons/arrow-dropdown.svg">`;
     }
 }
+
+
+/**
+ * close all dropdown
+ */
+function closeDropdown() {
+    let dropdownCatOptions = document.getElementById("dropdown-cat-options");
+    let dropdownOptions = document.getElementById("dropdown-options");
+    let dropdownArrow = document.querySelectorAll(".dropdown-arrow");
+    dropdownOptions.classList.remove("show");
+    dropdownCatOptions.classList.remove("show");
+    dropdownArrow.forEach(arrow => {
+        arrow.innerHTML = `<img src="../assets/icons/arrow-dropdown.svg">`;
+    });
+} 
 
 
 /**
@@ -101,8 +119,9 @@ function handleHoverEnd(subtaskId) {
  */
 function showPicker() {
     const dateInput = document.getElementById('due-date');
-
+    const today = new Date().toISOString().split('T')[0];
     if(activePicker == false) {
+        dateInput.min = today;
         dateInput.showPicker();
         activePicker = true;
     } else {
@@ -118,7 +137,7 @@ function showPicker() {
  * @returns 
  */
 function validateName(name) {
-    return name.trim().length >= 2;
+    return name.trim().length >= 1;
 }
 
 
@@ -178,11 +197,16 @@ function delSubtask(subtaskId) {
 function editSubtask(subtaskId) {
     const subtask = newTask.subtasks[subtaskId].title;
     let editInput = document.getElementById(`validation-messages-div-${subtaskId}`);
-    
     editInput.innerHTML = renderEditSubtask(subtaskId);
     let editInputSubtask = document.getElementById(`edit-input-${subtaskId}`);
     editInputSubtask.value = subtask;
     editInputSubtask.focus();
+    editInputSubtask.addEventListener('blur', function() {
+        if (editInputSubtask.value.trim() === '') {
+            delSubtask(subtaskId)
+            currentSubtaskId = null;
+        }
+    });
 }
 
 
@@ -195,6 +219,8 @@ function saveEdit(subtaskId) {
     if (validateName(newValue)) {
         newTask.subtasks[subtaskId].title = newValue;
         updateSubtaskDisplay();
+    }else {
+        delSubtask(subtaskId);
     }
 }
 
@@ -368,4 +394,31 @@ function lastValidate() {
     clearErrorMessages();
 
     return subValidate(title, date, isValid)
+}
+
+
+/**
+ * render the Avatar for max 6 users
+ * @returns 
+ */
+function renderAvatar() {
+    let userLength;
+    let overflowValue;
+    let avatarContainer = document.getElementById("avatar-container");
+    avatarContainer.innerHTML = "";
+    if(newTask.user.length > 6) {
+        for (let i=0; i <  6 ; i++) {
+            avatarContainer.innerHTML += rendererAvatar(newTask.user[i])
+        }
+        overflowValue = newTask.user.length - 6;
+        avatarContainer.innerHTML +=  `<span class="avatar-overflow" style="background-color: #505050">${overflowValue}<img src="../assets/icons/add-white.svg"><span>`
+    }else if (newTask.user.length > 0){
+        userLength = newTask.user.length;
+        for (let i=0; i < userLength; i++) {
+            avatarContainer.innerHTML += rendererAvatar(newTask.user[i])
+        }
+    }else {
+        avatarContainer.innerHTML = '';
+        return;
+    }
 }

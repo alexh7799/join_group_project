@@ -138,11 +138,17 @@ function updateSubtask() {
 function editEditSubtask(subtaskId) {
     const subtask = editedTask[0].subtasks[subtaskId].title;
     let editInput = document.getElementById(`validation-messages-div-${subtaskId}`);
-
+    currentSubtaskId = subtaskId;
     editInput.innerHTML = renderEditTaskSubtask(subtaskId);
     let editInputSubtask = document.getElementById(`edit-input-${subtaskId}`);
     editInputSubtask.value = subtask;
     editInputSubtask.focus();
+    editInputSubtask.addEventListener('blur', function() {
+        if (editInputSubtask.value.trim() === '') {
+            delEditSubtask(subtaskId)
+            currentSubtaskId = null;
+        }
+    });
 }
 
 
@@ -180,6 +186,29 @@ function newSubtask(newSubtaskdiv) {
     let closeAndCheck = document.getElementById('close-check');
     newSubtaskdiv.classList.add('d-none');
     closeAndCheck.classList.remove('d-none');
+}
+
+
+/**
+ * render the edit Task User
+ * @returns 
+ */
+function renderEditAvatar(task) {
+    let avatarContainer = document.getElementById("avatar-container"+ task.firebaseId);
+    avatarContainer.innerHTML = "";
+    if (!task.user || task.user.length == 0) return
+    if(task.user.length > 6) {
+        for (let i=0; i <  6 ; i++) {
+            avatarContainer.innerHTML += rendererEditAvatar(task.user[i])
+        }
+        let overflowValue = task.user.length - 6;
+        avatarContainer.innerHTML +=  `<span class="avatar-overflow" style="background-color: #505050">${overflowValue}<img src="../assets/icons/add-white.svg"><span>`
+    }else if (task.user.length > 0){
+        let userLength = task.user.length;
+        for (let i=0; i < userLength; i++) {
+            avatarContainer.innerHTML += rendererEditAvatar(task.user[i])
+        }
+    }
 }
 
 
@@ -228,7 +257,7 @@ async function clickUpdateTask() {
     editedTask[0].title = document.getElementById('title').value;
     editedTask[0].descr = document.getElementById('description').value;
     await updateTask(editedTask[0]);
-    await closeEditOverlay();
+    await showEditTask(editedTask[0].firebaseId, 'bigCard')
 }
 
 
@@ -252,6 +281,7 @@ function selectEditPriority(priority) {
  */
 function toggleEditAvatar(avatarId, checkbox) {
     let user = usersArray.filter(u => u.id == avatarId);
+    if(!editedTask[0].user) editedTask[0].user = []
     if (checkbox.checked) {
         editedTask[0].user.push({
             bgcolor: user[0].color,

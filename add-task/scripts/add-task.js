@@ -17,7 +17,7 @@ let usersArray = [];
 
 let categoryValue = "";
 
-let taskType = sessionStorage.getItem('taskType');
+let taskType = 'todo';
 
 
 /**

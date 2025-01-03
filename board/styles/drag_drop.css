@@ -27,3 +27,21 @@
     cursor: grabbing;
     pointer-events: none;
 }
+
+.overlay-not-task-find {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .move-btn {
+        display: none !important;
+    }
+    
+    .move-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}

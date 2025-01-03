@@ -50,18 +50,33 @@ function handleDragOver(id) {
 }
   
 
+/**
+ * event handler for the drop action
+ * @param {*} event 
+ * @param {*} newType 
+ */
 async function handleDrop(event, newType) {
-    event.preventDefault();
     const taskId = draggedTaskId;
+    fetchNewType(event, newType, taskId)
+}
+
+
+
+/**
+ * fetch function for the type
+ * @param {*} event 
+ * @param {*} newType 
+ * @param {*} taskId 
+ */
+async function fetchNewType(event, newType, taskId) {
+    event.preventDefault();
     
     try {
-        // Update Firebase
-        await fetch(`${BASE_URL}tasks/${taskId}.json`, {
+        await fetch(BASE_URL + "tasks/" + taskId + ".json", {
             method: 'PATCH',
             body: JSON.stringify({ type: newType })
         });
-        
-        // Update UI
+
         await loadingTasks();
     } catch (error) {
         console.error('Error updating task:', error);

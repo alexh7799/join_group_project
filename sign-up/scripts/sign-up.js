@@ -121,8 +121,7 @@ function showSuccessMsgTasks(name,email) {
 async function loadingSignUsers(name, email, password1) {
     try {
         const response = await fetch(BASE_URL + "users/.json");
-        const users = await response.json();
-            
+        const users = await response.json(); 
         let existingUser = null;
         for (let key in users) {
             if (users[key].email === email) {
@@ -173,8 +172,8 @@ function clearErrorMessages() {
  * show error message
  * @param {*} message 
  */
-function showError(message) {
-    const errorDiv = document.getElementById('error-div');
+function showError(div, message) {
+    const errorDiv = document.getElementById('error-div-'+ div);
     if (errorDiv !== null) {
         errorDiv.classList.remove('d-none');
         errorDiv.textContent = message;
@@ -250,12 +249,12 @@ async function createNewUser(name, email, password) {
  */
 function validateFunction(name, email, password1, password2, checkbox, emailRegex) {
     if (name.trim().length < 2) {
-        showError('Name must be at least 2 characters long');
+        showError('name','Name must be at least 2 characters long');
         return false;
     }
 
     if (!emailRegex.test(email)) {
-        showError('Please enter a valid email address');
+        showError('email','Please enter a valid email address');
         return false;
     }
     
@@ -264,12 +263,12 @@ function validateFunction(name, email, password1, password2, checkbox, emailRege
     }
 
     if (password1 !== password2) {
-        showError('Passwords do not match');
+        showError('pass2','Passwords do not match');
         return false;
     }
 
     if (!checkbox.checked) {
-        showError('Please accept the privacy policy');
+        showError('check','Please accept the privacy policy');
         return false;
     }
     return true;
@@ -283,9 +282,8 @@ function validateFunction(name, email, password1, password2, checkbox, emailRege
  */
 function validatePassword(password) {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]{8,}$/;
-    console.log(password.length);
     if (!(password.length >= 8) || password.includes(' ')) {
-        showError('Password must be at least 8 characters long and must not contain spaces');
+        showError('pass1','Password must be at least 8 characters long and must not contain spaces');
         return false;
     }
     

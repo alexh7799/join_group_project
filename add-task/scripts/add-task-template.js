@@ -5,7 +5,7 @@
  */
 function getAddTask(type) {
     return `
-    <main class="main-content" onclick="event.stopPropagation()">
+    <main class="main-content" onclick="event.stopPropagation(); closeDropdown();">
         <div class="main-title d-flex-sb-c">
             <h1>Add Task</h1>
             <div class="btn d-flex-c-c d-none" id="popup-btn" onclick="closePopOverlay()">
@@ -24,14 +24,14 @@ function getAddTask(type) {
                 <textarea id="description" name="description" placeholder="Enter a Description"></textarea>
 
                 <p>Assigned to</p>
-                <div class="dropdown" id="assigned-to">
-                    <div class="dropdown-header" onclick="toggleDropdown()">
+                <div class="dropdown" id="assigned-to" onclick="event.stopPropagation(); closeDropdown();">
+                    <div class="dropdown-header" onclick="event.stopPropagation(); toggleDropdown();">
                         <span id="dropdown-selected">Select contacts to assign</span>
                         <span class="dropdown-arrow" id="dropdown-arrow">
                             <img src="../assets/icons/arrow-dropdown.svg">
                         </span>
                     </div>
-                    <div class="dropdown-options" id="dropdown-options">
+                    <div class="dropdown-options" id="dropdown-options" onclick="event.stopPropagation();">
                     </div>
                 </div>
                 <div id="avatar-container">
@@ -45,7 +45,7 @@ function getAddTask(type) {
                 <p>Date<span class="required">*</span></p>
                 <div>
                     <div class="input-date-container">
-                        <input class="input-text" type="date" id="due-date" name="due_date" onchange=" handleDate(this)">
+                        <input class="input-text" type="date" id="due-date" name="due_date" onchange="handleDate(this)">
                         <div class="calendar-icon" onclick="showPicker()"></div>
                     </div>
                     <div class="error-message" id="error-div-due-date"> </div>
@@ -68,23 +68,23 @@ function getAddTask(type) {
 
                 <p>Category<span class="required">*</span></p>
                 <div>
-                    <div class="dropdown" id="category">
-                        <div class="dropdown-header" onclick="toggleCategoryDropdown()">
+                    <div class="dropdown" id="category" onclick="event.stopPropagation(); toggleCategoryDropdown();">
+                        <div class="dropdown-header" onclick="event.stopPropagation(); toggleCategoryDropdown();">
                             <span id="dropdown-cat-selected">Select task category</span>
-                            <span class="dropdown-arrow-cat" id="dropdown-cat-arrow">
+                            <span class="dropdown-arrow" id="dropdown-cat-arrow">
                                 <img src="../assets/icons/arrow-dropdown.svg">
                             </span>
                         </div>
-                        <div class="dropdown-options" id="dropdown-cat-options">
-                            <div class="dropdown-item" onclick="selectCategory('Technical Task')">
+                        <div class="dropdown-options" id="dropdown-cat-options" onclick="event.stopPropagation();">
+                            <div class="dropdown-item btn" onclick="selectCategory('Technical Task'); closeDropdown();">
                                 <p>Technical Task</p>
                             </div>
-                            <div class="dropdown-item" onclick="selectCategory('User Story')">
+                            <div class="dropdown-item btn" onclick="selectCategory('User Story'); closeDropdown();">
                                 <p>User Story</p>
                             </div>
                         </div>
                     </div>
-                    <div class="error-message" id="error-div-category"> </div>
+                    <div class="error-message" id="error-div-category"></div>
                 </div>
 
                 <p>Subtasks</p>
@@ -131,7 +131,7 @@ function renderAssignedUser(assigned) {
         <div class="dropdown-item">
             <span class="avatar color" style="background-color: ${assigned.color}">${initials}</span>
             <p>${capitalizedUserName}</p>
-            <input class="icon" type="checkbox" id="${assigned.id}" name="assigned_to" value="0" onclick="toggleAvatar(${assigned.id}, this)">
+            <input class="icon" type="checkbox" id="${assigned.id}" name="assigned_to" value="0" onclick="event.stopPropagation(); toggleAvatar(${assigned.id}, this)">
         </div>
     `;
 }
@@ -140,16 +140,12 @@ function renderAssignedUser(assigned) {
 /**
  * render the avatar of the user
  */
-function renderAvatar() {
-    let avatarContainer = document.getElementById("avatar-container");
-    avatarContainer.innerHTML = "";
-    newTask.user.forEach(user => {
-        let initials = user.name.split(' ').map(word => word.charAt(0).toUpperCase()).join('');
-        avatarContainer.innerHTML += `
-            <span class="avatar" style="background-color:${user.bgcolor}">
-                ${initials}
-            </span>`;
-    });
+function rendererAvatar(user) {   
+    let initials = user.name.split(' ').map(name => name.charAt(0).toUpperCase()).join('');
+    return `<span class="avatar-overflow" style="background-color:${user.bgcolor}">
+            ${initials}
+        </span>`;
+
 }
 
 

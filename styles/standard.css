@@ -38,6 +38,10 @@ body {
     cursor: pointer;
 }
 
+h1 {
+    margin-top: 20px;
+}
+
 .d-flex-c-c {
     display: flex;
     justify-content: center;

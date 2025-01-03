@@ -107,8 +107,10 @@ function renderTasks(containerId, tasks) {
     if (task.subtasks != undefined) {
       let subtask = subtaskCal(task.subtasks);
       container.innerHTML += renderTaskCard(task, subtask);
+      renderEditAvatar(task);
     } else {
       container.innerHTML += renderTaskCard(task, 0);
+      renderEditAvatar(task);
     }
   });
 }
@@ -260,20 +262,24 @@ async function deleteTask(id) {
  * filter function for the search Input
  * @returns 
  */
-function filterTasks() {
-  let searchTerm = document.getElementById("find-task-input").value;
-  
-  if (searchTerm === '') {
-      loadingTasks();
-      return;
+function filterTasks(searchInput) {
+  let searchTerm = searchInput.value;
+  if (searchTerm == '') {
+    closeFilteredTasks()
+    loadingTasks();
+    return;
   }
   const filteredTasks = tasksArray.filter(task => { 
-    if((task.title.toLowerCase().trim('') == searchTerm.toLowerCase()) || (task.descr.toLowerCase().trim('') == searchTerm.toLowerCase())) {
+    if((task.title.toLowerCase().includes(searchTerm.toLowerCase())) || (task.descr.toLowerCase().includes(searchTerm.toLowerCase()))) {
       return task;
     }
-
   });
-  renderFilteredTasks(filteredTasks);
+  if(filteredTasks == 0) {
+    loadFilteredTasks();
+  } else {
+    closeFilteredTasks();
+    renderFilteredTasks(filteredTasks);
+  }
 }
 
 
@@ -300,6 +306,30 @@ function renderFilteredTasks(filteredTasks) {
         container.innerHTML += renderTaskCard(task, subtask);
       }
   });
+}
+
+
+/**
+ * load the filter banner
+ */
+function loadFilteredTasks() {
+  let taskContainer = document.getElementById('container-tasker')
+  let overlayNotTaskFind = document.getElementById('overlay-not-task-find')
+  overlayNotTaskFind.classList.remove('d-none')
+  overlayNotTaskFind.innerHTML = renderNotFindTask();
+  taskContainer.classList.add('d-none')
+}
+
+
+/**
+ * close the filter banner
+ */
+function closeFilteredTasks() {
+  let taskContainer = document.getElementById('container-tasker')
+  let overlayNotTaskFind = document.getElementById('overlay-not-task-find')
+  overlayNotTaskFind.classList.add('d-none')
+  overlayNotTaskFind.innerHTML = renderNotFindTask();
+  taskContainer.classList.remove('d-none')
 }
 
 

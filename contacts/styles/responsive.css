@@ -154,7 +154,7 @@
     }
 }
 
-@media (max-width: 370px) {
+@media (max-width: 420px) {
     .details-title {
         font-size: 20px;
     }

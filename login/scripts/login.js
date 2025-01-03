@@ -2,11 +2,14 @@ const BASE_URL = "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.
 
 let rememberMeValue = false;
 
-
+/**
+ * init function for login Page
+ */
 function initLogin() {
     loadingPasswordIcons();
     checkLogin();
 }
+
 
 /**
  * go to the sign up page
@@ -70,47 +73,80 @@ container.addEventListener("submit", async function (event){
  * check if the user in database
  */
 async function checkUser() {
+    const resultDiv = document.getElementById('result');
     const emailInput = document.getElementById('email-input').value;
     const passwordInput = document.getElementById('password-input').value;
-    const resultDiv = document.getElementById('result');
-
     try {
-        const response = await fetch(`${BASE_URL}.json`);
-        if (!response.ok) throw new Error("Fehler beim Abrufen der Datenbank.");
-        const users = await response.json();
-        console.log(users);
-        let foundUser = null;
-        if(emailInput === "" || passwordInput === "") {
-            resultDiv.innerHTML = "Please fill in all fields.";
-            return;
-        }
-
-        for (const key in users) {
-            if (users[key].email == emailInput && users[key].password == passwordInput) {
-                foundUser = users[key];
-                break;
-            }
-        }
-
-        if (foundUser) {
-            sessionStorage.setItem('username', foundUser.name);
-            sessionStorage.setItem('email', foundUser.email);
-            if (rememberMeValue) {
-                localStorage.setItem('username', foundUser.name);
-                localStorage.setItem('email', foundUser.email);
-                window.location.href = '../summary/summary.html';
-            } else {
-                window.location.href = '../summary/summary.html';
-            }
-            
-        } else {
-            resultDiv.innerHTML = `No matching Account found. <a href="">Join us</a> now!`;
-        }
+        await loadUsers(resultDiv,emailInput,passwordInput);
     } catch (error) {
         console.error(error);
         resultDiv.innerHTML = "Fehler bei der Suche.";
     }
 };
+
+
+/**
+ * fetch all users in the datebase
+ * @param {*} resultDiv 
+ * @param {*} emailInput 
+ * @param {*} passwordInput 
+ * @returns 
+ */
+async function loadUsers(resultDiv,emailInput,passwordInput) {
+    let users;
+    let foundUser = null;
+    const response = await fetch(`${BASE_URL}.json`);
+    if (!response.ok) throw new Error("Fehler beim Abrufen der Datenbank.");
+    users = await response.json();
+        if(emailInput === "" || passwordInput === "") {
+            resultDiv.innerHTML = "Please fill in all fields.";
+            return;
+        }
+
+    await validateUser(foundUser, users, resultDiv,emailInput,passwordInput);
+}
+
+
+/**
+ * validate currentUser and database User
+ * @param {*} foundUser 
+ * @param {*} users 
+ * @param {*} resultDiv 
+ * @param {*} emailInput 
+ * @param {*} passwordInput 
+ */
+async function validateUser(foundUser, users, resultDiv,emailInput,passwordInput) {
+    for (const key in users) {
+        if (users[key].email == emailInput && users[key].password == passwordInput) {
+            foundUser = users[key];
+            break;
+        }
+    }
+    await saveCurrentUser(resultDiv, foundUser)
+}
+
+
+/**
+ * save the current user in sessionSorage
+ * @param {*} resultDiv 
+ * @param {*} foundUser 
+ */
+function saveCurrentUser(resultDiv, foundUser) {
+    if (foundUser) {
+        sessionStorage.setItem('username', foundUser.name);
+        sessionStorage.setItem('email', foundUser.email);
+        if (rememberMeValue) {
+            localStorage.setItem('username', foundUser.name);
+            localStorage.setItem('email', foundUser.email);
+            window.location.href = '../summary/summary.html';
+        } else {
+            window.location.href = '../summary/summary.html';
+        }
+        
+    } else {
+        resultDiv.innerHTML = `No matching Account found. <a href="">Join us</a> now!`;
+    }
+}
 
 
 /**

@@ -10,10 +10,12 @@ function renderTaskCard(task, subtask) {
     let prio = task.prio.toLowerCase();
     let card = `<div class="spliter-fields" id="task${task.firebaseId}" onclick="showEditTask('${task.firebaseId}', 'bigCard')" draggable="true" ondragstart="handleDrag('${task.firebaseId}')" ondragend="handleDragEnd(event, '${task.firebaseId}')">
                 <div class="task">
-                    <div class="task-header d-flex-sb-c">
-                        <div class="${taskCategory}-task-header">
-                            ${task.cat}
-                        </div>
+                    <div class="task-header">
+                        <div class="d-flex-sb-c">
+                            <div class="${taskCategory}-task-header">
+                                ${task.cat}
+                            </div>`
+    card += renderArrow(task) + `</div>
                         <div>
                         </div>
                     </div>
@@ -31,8 +33,8 @@ function renderTaskCard(task, subtask) {
                     <p style="font-size: 12px;">${subtask.min}/${subtask.max} Subtasks</p>
                 </div>`
     }
-    card += `<div class="task-footer"><div class="avatar-div">`
-    card += renderEditAvatar(task.user) + `</div>
+    card += `<div class="task-footer"><div class="avatar-div" id="avatar-container${task.firebaseId}">
+                </div>
                         <div>
                             <img src="../assets/icons/${prio}.svg" alt="">
                         </div>
@@ -57,18 +59,55 @@ function renderNoTaskCard() {
 
 
 /**
+ * render the Not Find Banner
+ * @returns 
+ */
+function renderNotFindTask() {
+    return `<div class="split-spliter-fields">
+                <div class="not-task-find">
+                    <p style="color: #a8a8a8;">No task find!</p>
+                </div>
+            </div>`
+}
+
+
+
+/**
+ * render arrow in the card
+ * @param {*} task 
+ * @returns 
+ */
+function renderArrow(task) {
+    if(task.type == 'todo') {
+        return `<div class="move-btn">
+            <img src="../assets/icons/arrow-dropdown.svg" onclick="event.stopPropagation(); fetchNewType(event, 'progress', '${task.firebaseId}')">
+        </div>`
+    } else if(task.type == 'progress') {
+        return `<div class="d-flex-c-c gap-5 move-btn">
+            <img src="../assets/icons/arrow-up-dropdown.svg" onclick="event.stopPropagation(); fetchNewType(event, 'todo', '${task.firebaseId}')">
+            <img src="../assets/icons/arrow-dropdown.svg" onclick="event.stopPropagation(); fetchNewType(event, 'awaiting', '${task.firebaseId}')">
+        </div>`
+    } else if(task.type == 'awaiting') {
+        return `<div class="d-flex-c-c gap-5 move-btn">
+            <img src="../assets/icons/arrow-up-dropdown.svg" onclick="event.stopPropagation(); fetchNewType(event, 'progress', '${task.firebaseId}')">
+            <img src="../assets/icons/arrow-dropdown.svg" onclick="event.stopPropagation(); fetchNewType(event, 'done', '${task.firebaseId}')">
+        </div>`
+    } else if(task.type == 'done') {
+        return `<div class="move-btn">
+            <img src="../assets/icons/arrow-up-dropdown.svg" onclick="event.stopPropagation(); fetchNewType(event, 'awaiting', '${task.firebaseId}')">
+        </div>`
+    }
+}
+
+
+/**
  * renderer user avatar in the card
  * @param {*} tasks 
  * @returns 
  */
-function renderEditAvatar(tasks) {
-    if (!tasks || tasks.length === 0) return '';
-    let avatar = "";
-    for (let i = 0; i < tasks.length; i++) {
-        let initials = tasks[i].name.split(' ').map(name => name.charAt(0).toUpperCase()).join('');
-        avatar += `<span class="avatar" style="background-color: ${tasks[i].bgcolor}; margin-left: -18px;">${initials}</span>`
-    }
-    return avatar;
+function rendererEditAvatar(tasks) {
+    let initials = tasks.name.split(' ').map(name => name.charAt(0).toUpperCase()).join('');
+    return `<span class="avatar" style="background-color: ${tasks.bgcolor}; margin-left: -18px;">${initials}</span>`;
 }
 
 
@@ -78,13 +117,14 @@ function renderEditAvatar(tasks) {
  * @returns 
  */
 function renderCardOverlay(task) {
+    let prio = task[0].prio.toLowerCase();
     let taskCategory = task[0].cat.replace(/\s/g, '').toLowerCase();
     let bigCard = `<div class="edit-card" onclick="event.stopPropagation()">
                     <div class="edit-header d-flex-sb-c">
                         <div class="${taskCategory}-header">
                             ${task[0].cat}
                         </div>
-                        <div class="btn d-flex-c-c" onclick="closeEditOverlay()">
+                        <div class="btn d-flex-c-c" onclick="event.stopPropagation(); closeEditOverlay()">
                             <img src="../assets/icons/close.svg" alt="close">
                         </div>
                     </div>
@@ -103,7 +143,7 @@ function renderCardOverlay(task) {
                             <p class="w-100">Priority:</p>
                             <div class="d-flex-sb-c">
                                 <p>${task[0].prio}</p>
-                                <img src="../assets/icons/${task[0].prio}.svg" alt="">
+                                <img src="../assets/icons/${prio}.svg" alt="">
                             </div>
                         </div>
                         <div>
@@ -140,9 +180,9 @@ function renderAvatarBigCard(taskAvatars) {
     for (let i = 0; i < taskAvatars.length; i++) {
         let initials = taskAvatars[i].name.split(' ').map(name => name.charAt(0).toUpperCase()).join('');
         let capitalizedName = taskAvatars[i].name.split(' ').map(name => name.charAt(0).toUpperCase() + name.slice(1)).join(' ');
-        avatar += `<div class="d-flex-start-c gap-5 mh-15">
+        avatar += `<div class="d-flex-start-c gap-20 mh-15">
                     <span class="avatar-card ml-20" style="background-color: ${taskAvatars[i].bgcolor};">${initials}</span>
-                    <p>${capitalizedName}</p>
+                    <p class="ml-20">${capitalizedName}</p>
                 </div>`
     }
     return avatar;
@@ -184,7 +224,7 @@ function renderSubtaskBigCard(task, subtasks) {
  * @returns 
  */
 function renderEditOverlay() {
-    return `<div class="main-content" onclick="event.stopPropagation()">
+    return `<div class="main-content" onclick="event.stopPropagation(); closeDropdown();">
         <div class="d-flex-end-c btn" onclick="closeEditOverlay()">
             <img src="../assets/icons/close.svg" alt="close">
         </div>
@@ -201,16 +241,16 @@ function renderEditOverlay() {
 
                 <p>Assigned to</p>
                 <div class="dropdown" id="assigned-to">
-                    <div class="dropdown-header" onclick="toggleDropdown()">
+                    <div class="dropdown-header" onclick="event.stopPropagation(); toggleDropdown()">
                         <span id="dropdown-selected">Select contacts to assign</span>
                         <span class="dropdown-arrow" id="dropdown-arrow">
                             <img src="../assets/icons/arrow-dropdown.svg">
                         </span>
                     </div>
-                    <div class="dropdown-options" id="dropdown-options">
+                    <div class="dropdown-options" id="dropdown-options" onclick="event.stopPropagation();">
                     </div>
                 </div>
-                <div id="avatar-container">
+                <div id="avatar-container" style="margin-left: 14px;" class="d-flex-start-c">
                     
                 </div>
             </div>
@@ -245,17 +285,17 @@ function renderEditOverlay() {
                 <p>Category</p>
                 <div>
                     <div class="dropdown" id="category">
-                        <div class="dropdown-header" onclick="toggleCategoryDropdown()">
+                        <div class="dropdown-header" onclick="event.stopPropagation(); toggleCategoryDropdown();">
                             <span id="dropdown-cat-selected">Select task category</span>
                             <span class="dropdown-arrow-cat" id="dropdown-cat-arrow">
                                 <img src="../assets/icons/arrow-dropdown.svg">
                             </span>
                         </div>
-                        <div class="dropdown-options" id="dropdown-cat-options">
-                            <div class="dropdown-item" onclick="selectEditCategory('Technical Task')">
+                        <div class="dropdown-options" id="dropdown-cat-options" onclick="event.stopPropagation();">
+                            <div class="dropdown-item btn" onclick="selectEditCategory('Technical Task')">
                                 <p>Technical Task</p>
                             </div>
-                            <div class="dropdown-item" onclick="selectEditCategory('User Story')">
+                            <div class="dropdown-item btn" onclick="selectEditCategory('User Story')">
                                 <p>User Story</p>
                             </div>
                         </div>
@@ -303,32 +343,60 @@ function renderEditOverlay() {
 function renderEditAssignedUser(assigned, selectedUser) {
     let initials = assigned.name.split(' ').map(name => name.charAt(0).toUpperCase()).join('');
     let capitalizedUserName = assigned.name.split(' ').map(name => name.charAt(0).toUpperCase() + name.slice(1)).join(' ');
-    let isChecked = selectedUser.some(user => user.id === assigned.id);
-    return `                        
-        <div class="dropdown-item">
-            <span class="avatar color" style="background-color: ${assigned.color}">${initials}</span>
-            <p>${capitalizedUserName}</p>
-            <input class="icon btn" type="checkbox" id="${assigned.id}" name="assigned_to" ${isChecked ? 'checked' : ''} onclick="toggleEditAvatar(${assigned.id}, this)">
-        </div>
-    `;
+    if (!selectedUser) {
+        return `                        
+            <div class="dropdown-item">
+                <span class="avatar color" style="background-color: ${assigned.color}">${initials}</span>
+                <p>${capitalizedUserName}</p>
+                <input class="icon btn" type="checkbox" id="${assigned.id}" name="assigned_to" onclick="toggleEditAvatar(${assigned.id}, this)">
+            </div>
+        `;
+    } else {
+        let isChecked = selectedUser.some(user => user.id === assigned.id);
+        return `                        
+            <div class="dropdown-item">
+                <span class="avatar color" style="background-color: ${assigned.color}">${initials}</span>
+                <p>${capitalizedUserName}</p>
+                <input class="icon btn" type="checkbox" id="${assigned.id}" name="assigned_to" ${isChecked ? 'checked' : ''} onclick="toggleEditAvatar(${assigned.id}, this)">
+            </div>
+        `;
+    }
 }
 
 
 /**
- * renderer the assigned user in the add-task overlay
+ * renderer the assigned user in the add-task overlay  
  * @param {*} taskuser 
  */
-async function renderTaskAvatar(taskuser) {
-    let avatarContainer = document.getElementById("avatar-container");
-    avatarContainer.innerHTML = "";
-    if (taskuser.user == null) taskuser.user = [];
-    taskuser.user.forEach(user => {
-        let initials = user.name.split(' ').map(word => word.charAt(0).toUpperCase()).join('');
-        avatarContainer.innerHTML += `
-            <span class="avatar" style="background-color:${user.bgcolor}">
+async function rendererTaskAvatar(taskuser) {
+    let initials = taskuser.name.split(' ').map(word => word.charAt(0).toUpperCase()).join('');
+    return `<span class="avatar-edit-card" style="background-color:${taskuser.bgcolor}">
                 ${initials}
             </span>`;
-    });
+    
+}
+
+
+/**
+ * render Task user
+ * @returns 
+ */
+async function renderTaskAvatar(task) {
+    let avatarContainer = document.getElementById("avatar-container");
+    avatarContainer.innerHTML = "";
+    if (!task.user || task.user.length == 0) return
+    if(task.user.length > 6) {
+        for (let i=0; i <  6 ; i++) {
+            avatarContainer.innerHTML += await rendererTaskAvatar(task.user[i])
+        }
+        let overflowValue = task.user.length - 6;
+        avatarContainer.innerHTML +=  `<span class="avatar-overflow" style="background-color: #505050">${overflowValue}<img src="../assets/icons/add-white.svg"><span>`
+    }else if (task.user.length > 0){
+        let userLength = task.user.length;
+        for (let i=0; i < userLength; i++) {
+            avatarContainer.innerHTML += await rendererTaskAvatar(task.user[i])
+        }
+    }
 }
 
 

@@ -204,7 +204,8 @@ input[type="date"]:focus {
     box-sizing: border-box;
     transition: all 0.3s ease;
     background-color: white !important;
-    height: 30px;
+    height: 28px;
+    margin-bottom: 2px;
 }
 
 .edit-input:focus {
@@ -326,7 +327,6 @@ p {
     border-radius: 8px;
     padding: 10px 15px;
     margin-bottom: 10px;
-    cursor: pointer;
     color: #333;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -390,4 +390,8 @@ input[type="date"] {
     width: 32px;
     height: 13px;
     content: url('../../assets/icons/urgent-white.svg');
+}
+
+.show img {
+    content: url('../../assets/icons/arrow-up-dropdown.svg');
 }

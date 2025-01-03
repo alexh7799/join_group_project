@@ -1,3 +1,58 @@
+@media (max-width: 480px) {
+    input, select, textarea {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .required-message {
+        margin-top: 10px;
+        font-size: 10px;
+    }
+
+    .text {
+        font-size: 12px;
+    }
+
+    .validation-msg {
+        font-size: 12px;
+    }
+
+    .btn-cre-cle {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .dropdown-header {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .dropdown-item {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 350px) {
+    .priority {
+        display: flex;
+        gap: 5px;
+        margin: 0 !important;
+    }
+
+    .prio {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        padding: 0;
+        gap: 0px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+}
+
 @media (max-width: 380px) {
     .form-actions {
         flex-direction: column;
@@ -82,71 +137,32 @@
     h1 {
         font-size: 61px;
     }
-}
 
-@media (max-width: 900px) {
     .task-form {
         gap: 0;
     }
 }
 
-@media (min-width: 1920px) {
-    #addtask-tem {
-        width: 1920px;
+@media (min-width: 1080px) {
+    .task-form {
+        gap: 20px;
     }
 }
 
-@media (max-width: 350px) {
-    .priority {
-        display: flex;
-        gap: 5px;
-        margin: 0 !important;
+@media (min-width: 1100px) {
+    .task-form {
+        gap: 30px;
     }
-
-    .prio {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex: 1;
-        padding: 0;
-        gap: 0px;
-        border-radius: 8px;
-        cursor: pointer;
-    }
-
 }
 
-@media (max-width: 480px) {
-    input, select, textarea {
-        font-size: 12px;
-        padding: 8px;
+@media (min-width: 1190px) {
+    .task-form {
+        gap: 40px;
     }
+}
 
-    .required-message {
-        margin-top: 10px;
-        font-size: 10px;
-    }
-
-    .text {
-        font-size: 12px;
-    }
-
-    .validation-msg {
-        font-size: 12px;
-    }
-
-    .btn-cre-cle {
-        font-size: 12px;
-        padding: 8px 10px;
-    }
-
-    .dropdown-header {
-        font-size: 14px;
-        padding: 8px;
-    }
-
-    .dropdown-item {
-        font-size: 12px;
-        padding: 8px;
+@media (min-width: 1440px) {
+    .task-form {
+        gap: 50px;
     }
 }

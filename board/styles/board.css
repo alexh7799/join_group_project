@@ -12,7 +12,7 @@ main {
     align-items: start;
     flex-direction: column;
     margin: 0 16px;
-    padding-top: 100px;
+    padding-top: 0px;
 }
 
 .add-task-overlay {
@@ -47,7 +47,7 @@ main {
 .find-task-input {
     border: none;
     padding: 8px 16px;
-    font-size: 16px;
+    font-size: 12px;
     outline: none;
     background: transparent;
     flex: 1; 
@@ -56,8 +56,8 @@ main {
 .find-task-button {
     border: none;
     cursor: pointer;
-    margin-right: 5px;
-    padding: 4px 0 2px 0;
+    margin: 4px 5px 2px 0;
+    padding: 2px;
     transition: none;
     background-color: transparent;
 }
@@ -65,10 +65,20 @@ main {
 .find-task-button img {
     height: 30px;
     width: 30px;
+    margin: 0;
+    padding: 2px;
+    border-radius: 50%;
 }
 
 .find-task-button:hover {
-    border-radius: 50%;
+    background-color: transparent !important;
+}
+
+.find-task-input:focus {
+    background-color: transparent;
+}
+
+.find-task-button img:hover {
     background-color: rgba(0, 0, 0, 0.103);
 } 
 
@@ -139,20 +149,58 @@ main {
 }
 
 .avatar-div {
+    display: flex;
+    align-items: center;
     margin-left: 18px;
 }
 
 .avatar {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
     margin-right: 8px;
     font-size: 12px;
     color: #fff;
     text-align: center;
     line-height: 30px;
     border-radius: 50%;
-    cursor: pointer;
+}
+
+.avatar-edit-card {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    margin-left: -14px;
+    margin-right: 4px;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+}
+
+.avatar-overflow {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    margin-left: -18px;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    line-height: 24px;
+    border-radius: 50%;
+}
+
+.avatar-overflow img {
+    height: 12px;
+    width: 12px;
+    margin-left: -2px;
 }
 
 .task {
@@ -185,7 +233,7 @@ main {
 
 .task-text-bold {
     font-weight: bold;
-    margin-bottom: 10px;
+    margin: 18px 0 10px 0;
     height: 19.3px;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -252,7 +300,6 @@ main {
     border-radius: 8px;
     padding-top: 4px;
     padding-bottom: 4px;
-    margin-bottom: 18px;
 }
 
 .technicaltask-header {
@@ -279,6 +326,8 @@ main {
     overflow: hidden;
     width: 350px;
     height: 550px;
+    max-width: 90%;
+    max-height: 90%;
 }
 
 .edit-header {
@@ -312,13 +361,12 @@ main {
     display: inline-block;
     width: 30px;
     height: 30px;
-    margin-right: 8px;
+    margin-right: -8px;
     font-size: 12px;
     color: #fff;
     text-align: center;
     line-height: 30px;
     border-radius: 50%;
-    cursor: pointer;
 }
 
 .edit-body {
@@ -404,4 +452,31 @@ main {
     background-color: #2a3647;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.overlay-edit-task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -200vw;
+    z-index: 1000;
+    transition: all 0.25s ease-in-out;
+    background-color: #33333353;
+}
+
+.overlay-edit {
+    left: 0;
+    right: 0;
+}
+
+#addtask-tem .overlay-edit-task {
+    display: none !important;
+
+}
+
+#addtask-tem .overlay-edit {
+    right: -200vw;
 }

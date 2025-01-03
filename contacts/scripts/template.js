@@ -108,33 +108,36 @@ function renderEditContact(user) {
                 <img src="../assets/icons/close-default.svg" alt="">
             </button>
         </div>
-        <div class="popup-form">
+        <form class="popup-form" onsubmit="event.preventDefault(); updateUser(${user});">
             <div class="form-group">
                 <div class="input-icon">
-                    <input type="text" id="name" placeholder="Name" required value="${userArray[user].name}">
+                    <input type="text" id="name" placeholder="Name" required value="${userArray[user].name}" onchange="validateContactForm()">
                     <img src="../assets/icons/person.svg">
                 </div>
+                <div class="error-message" id="error-div-name"> </div>
             </div>
             <div class="form-group">
                 <div class="input-icon">
-                    <input type="email" id="email" placeholder="Email" required value="${userArray[user].email}">
+                    <input type="email" id="email" placeholder="Email" required value="${userArray[user].email}" onchange="validateContactForm()">
                     <img src="../assets/icons/mail.svg">
                 </div>
+                <div class="error-message" id="error-div-email"> </div>
             </div>
             <div class="form-group">
                 <div class="input-icon">
-                    <input type="tel" id="phone" placeholder="Phone" value="${userArray[user].phone}">
+                    <input type="tel" id="phone" placeholder="Phone" required value="${userArray[user].phone}" onchange="validateContactForm()">
                     <img src="../assets/icons/phone.svg">
                 </div>
+                <div class="error-message" id="error-div-phone"> </div>
             </div>
              <div class="btn">
-                <button class="delete-btn btn-center" onclick="deleteUser('${userArray[user].firebaseId}')">Delete</button>
-                <button class="save-btn gap btn-center" onclick="updateUser(${user})">
+                <button type="button" class="delete-btn btn-center" onclick="deleteUser('${userArray[user].firebaseId}')">Delete</button>
+                <button type="submit" class="save-btn gap btn-center">
                     Save
                     <img src="../assets/icons/check-white.svg">
                 </button>
             </div> 
-        </div>
+        </form>
     </div>
 </div>`
 }
@@ -175,39 +178,39 @@ function renderNewContact() {
                         <img src="../assets/icons/close-default.svg" alt="">
                     </button>
                 </div>
-                <div class="popup-form">
+                <form class="popup-form" onsubmit="event.preventDefault(); createUserContact();">
                     <div class="form-group">
                         <div class="input-icon">
-                            <input type="text" id="name" placeholder="Name" required>
+                            <input type="text" id="name" placeholder="Name" required onchange="validateContactForm()">
                             <img src="../assets/icons/person.svg">
                         </div>
                         <div class="error-message" id="error-div-name"> </div>
                     </div>
                     <div class="form-group">
                         <div class="input-icon">
-                            <input type="email" id="email" placeholder="Email" required>
+                            <input type="email" id="email" placeholder="Email" required onchange="validateContactForm()">
                             <img src="../assets/icons/mail.svg">
                         </div>
                         <div class="error-message" id="error-div-email"> </div>
                     </div>
                     <div class="form-group">
                         <div class="input-icon">
-                            <input type="tel" id="phone" placeholder="Phone">
+                            <input type="tel" id="phone" placeholder="Phone" required onchange="validateContactForm()">
                             <img src="../assets/icons/phone.svg">
                         </div>
-                        <div class="error-message" id="error-div-tel"> </div>
+                        <div class="error-message" id="error-div-phone"> </div>
                     </div>
                     <div class="btn">
-                        <button class="cancel-btn btn-center" onclick="closeContactForm()">
+                        <button type="button" class="cancel-btn btn-center" onclick="clearContactForm()">
                             Cancel
                             <img src="../assets/icons/close-default.svg">
                         </button>
-                        <button class="create-btn btn-center gap" onclick="createContact()">
+                        <button type="submit" class="create-btn btn-center gap">
                             Create contact
                             <img src="../assets/icons/check-white.svg">
                         </button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>`
 }

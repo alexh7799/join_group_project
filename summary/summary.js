@@ -82,12 +82,7 @@ async function loadingNumbers() {
                 groupedTasks[task.type] = (groupedTasks[task.type] || 0) + 1;
             }
         });
-        document.getElementById("toDoNum").innerText = groupedTasks.todo || 0;
-        document.getElementById("progressNum").innerText = groupedTasks.progress || 0;
-        document.getElementById("awaitNum").innerText = groupedTasks.awaiting || 0;
-        document.getElementById("doneNum").innerText = groupedTasks.done || 0;
-        const totalTasks = Object.values(groupedTasks).reduce((a, b) => a + b, 0);
-        document.getElementById("allTasks").innerText = totalTasks;
+        await writeNumber(groupedTasks)
         loadUrgentTasks(tasks);
     } catch (error) {
         console.error("Error loading numbers:", error);
@@ -96,14 +91,43 @@ async function loadingNumbers() {
 
 
 /**
+ * write the numbers in summary
+ * @param {*} groupedTasks 
+ */
+function writeNumber(groupedTasks) {
+    document.getElementById("toDoNum").innerText = groupedTasks.todo || 0;
+        document.getElementById("progressNum").innerText = groupedTasks.progress || 0;
+        document.getElementById("awaitNum").innerText = groupedTasks.awaiting || 0;
+        document.getElementById("doneNum").innerText = groupedTasks.done || 0;
+        const totalTasks = Object.values(groupedTasks).reduce((a, b) => a + b, 0);
+        document.getElementById("allTasks").innerText = totalTasks;
+}
+
+
+/**
  * loading the urgent number and date
  * @param {json} tasks 
  */
-function loadUrgentTasks(tasks) {
-    
+async function loadUrgentTasks(tasks) {   
     let urgentNum = document.getElementById("urgentNum");
     let urgentDate = document.getElementById("urgentDate");
-    const urgentTasks = [];
+    let urgentTasks = [];
+    await sortUrgentTask(tasks, urgentNum, urgentTasks);
+    if (urgentTasks.length === 0) {
+        urgentDate.innerText = "";
+    } else {
+        urgentDate.innerText = urgentTasks[0].date;
+    }
+}
+
+
+/**
+ * sort the urgent Task
+ * @param {*} tasks 
+ * @param {*} urgentNum 
+ * @param {*} urgentTasks 
+ */
+function sortUrgentTask(tasks, urgentNum, urgentTasks) {
     for (const key in tasks) {
         if (key !== "done" && tasks) {
             if (tasks[key].prio === "Urgent") {
@@ -117,9 +141,4 @@ function loadUrgentTasks(tasks) {
         return dateA - dateB;
     });
     urgentNum.innerText = urgentTasks.length;
-    if (urgentTasks.length === 0) {
-        urgentDate.innerText = "";
-    } else {
-        urgentDate.innerText = urgentTasks[0].date;
-    }
 }

@@ -1,14 +1,12 @@
+@media (min-width:360px) {
+    .find-task-input {
+        font-size: 16px;
+    }
+}
+
 @media(min-width: 827px) {
     main {
         padding-left: 234px;
-    }
-
-    .head-desktop {
-        display: block;
-        align-items: start;
-        flex-direction: column;
-        margin: 0 16px;
-        padding-top: 100px;
     }
 
     .find-add-task {
@@ -47,10 +45,6 @@
         gap: 10px;
     }
 
-    .head {
-        display: none;
-    }
-
     .board {
         font-size: 57px;
     }
@@ -83,20 +77,20 @@
         cursor: pointer;
     }
 
-    .overlay-edit-task {
+    #addtask-tem .overlay-edit-task {
         display: flex;
         justify-content: center;
         align-items: center;
         position: fixed;
         top: 0;
         bottom: 0;
-        right: -100vw;
+        right: -200vw;
         z-index: 1000;
         transition: all 0.25s ease-in-out;
         background-color: #33333353;
     }
-
-    .overlay-edit {
+    
+    #addtask-tem .overlay-edit {
         left: 0;
         right: 0;
     }
@@ -132,7 +126,26 @@
         border-radius: 50%;
         background-color: rgba(0, 0, 0, 0.103);
     } 
+}
+
+@media (min-width:900px) {
+    .board {
+        font-size: 61px;
+        margin-bottom: 20px;
+    }
+
+    .head-desktop {
+        display: block;
+        align-items: start;
+        flex-direction: column;
+        margin: 0 16px;
+        padding-top: 0px;
+    }    
     
+    .head {
+        display: none;
+    }
+
     .add-task {
         display: flex;
         align-items: center;
@@ -153,13 +166,7 @@
     }
 }
 
-@media (min-width:865px) {
-    .board {
-        font-size: 61px;
-    }
-}
-
-@media (min-width:1380px) {
+@media (min-width:1570px) {
     .split {
         flex-direction: row;
     }

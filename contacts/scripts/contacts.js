@@ -1,5 +1,5 @@
 const BASE_URL = "https://join-c39f7-default-rtdb.europe-west1.firebasedatabase.app/";
-let usercount;
+let usercount = 0;
 let userArray = []; 
 
 
@@ -44,15 +44,26 @@ function checkPager(sessionUser) {
 
 
 /**
+ * clear the contact form
+ */
+function clearContactForm() {
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("phone").value = "";
+    clearErrorMessages();
+}
+
+
+/**
  * Fetches users from the database and sorts them alphabetically by name.
  */
 async function loadingUsers() {
     try {
-        let response = await fetch(BASE_URL + "users/" + ".json");
-        let user = await response.json();
+        let responseUser = await fetch(BASE_URL + "users" + ".json");
+        let user = await responseUser.json();
         let usersArray = Object.entries(user).map(([key, user]) => ({
             ...user,
-            firebaseId: key  // Add Firebase key to user object
+            firebaseId: key
         }));
 
         usersArray.sort((a, b) => a.name.localeCompare(b.name));
@@ -169,9 +180,13 @@ function closeContactDetails() {
  * load the user counter.
  */
 async function loadUserCounter() {
-    let response = await fetch(BASE_URL + "usercount/.json");
-    let responseToJson = await response.json();
-    usercount = responseToJson;
+    try {
+        let response = await fetch(BASE_URL  + "usercount" + ".json");
+        let responseToJson = await response.json();
+        usercount = responseToJson;
+    } catch (error) {
+        console.error('Fehler:', error);
+    }
 }
 
 
@@ -179,16 +194,15 @@ async function loadUserCounter() {
  * create the new contact
  * @returns 
  */
-async function createContact() {
+async function createUserContact() {
     try {
         if (!validateContactForm()) {
             return;
         } else {
+            await loadUserCounter();
             let name = document.getElementById("name").value;
             let email = document.getElementById("email").value;
             let phone = document.getElementById("phone").value;
-            await loadUserCounter();
-
             const response = await postUser(`users/`, {
                 "name": name,
                 "email": email,
@@ -218,7 +232,7 @@ async function createContact() {
  * @param {*} data 
  * @returns 
  */
-async function putUsercount(path = "", data = "") { // Anlegen von Daten 
+async function putUsercount(path = "", data = "") {
     let response = await fetch(BASE_URL + "usercount/" + ".json", {
         method: "PUT",
         headers: {
@@ -299,16 +313,24 @@ async function updateUser(user) {
                 const index = userArray.findIndex(u => u.id === updatedData.id);
                 updatedData.firebaseId = userArray[user].firebaseId;
                 if (index !== -1) userArray[index] = updatedData;
-                await loadingUsers();
-                showContactDetails(updatedData.id);
-                closeContactForm();
-                await showSuccessMsgTasks();
-                await setTimeout(() => {hiddenSuccessMsgTasks()}, 800)
+                await reUpdateUser();
             }
         }
     } catch (error) {
         console.error('Fehler:', error);
     }
+}
+
+
+/**
+ * update function for updateuser
+ */
+async function reUpdateUser() {
+    await loadingUsers();
+    showContactDetails(updatedData.id);
+    closeContactForm();
+    await showSuccessMsgTasks();
+    await setTimeout(() => {hiddenSuccessMsgTasks()}, 800)
 }
 
 
@@ -321,24 +343,19 @@ function validateContactForm() {
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
     let isValid = true;
-
     clearErrorMessages();
-
     if (!validateName(name)) {
         showError('name', 'Name is required and must be at least 2 characters long');
         isValid = false;
     }
-
     if (!validateEmail(email)) {
         showError('email', 'Email is required and must be a valid email address');
         isValid = false;
     }
-
-    if (phone && !validatePhone(phone)) {
+    if (!validatePhone(phone)) {
         showError('phone', 'phone is required and must be a valid phone number');
         isValid = false;
     }
-
     return isValid;
 }
 

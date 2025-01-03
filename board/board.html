@@ -15,10 +15,11 @@
     <link rel="stylesheet" href="../add-task/styles/task-all.css">
     <link rel="stylesheet" href="./styles/task_popup.css">
     <link rel="stylesheet" href="./styles/mobileboard.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
 
-    <link rel="stylesheet" href="../templates/header-sidebar.css">
-    <script src="../templates/header-sidebar.js"></script>
-    <script src="../templates/templates.js"></script>
+    <link rel="stylesheet" href="../header-sidebar/header-sidebar.css">
+    <script src="../header-sidebar/header-sidebar.js"></script>
+    <script src="../header-sidebar/templates.js"></script>
     <script src="./scripts/template.js"></script>
     <script src="../add-task/scripts/add-task-template.js"></script>
     <script src="./scripts/add-task.js"></script>
@@ -31,15 +32,15 @@
     <header id="header-container"></header>
     <aside id="navigation-container"></aside>
 
-    <main>
+    <main class="responsive-content">
         <div class="head-desktop">
             <div class="header-board">
                 <h1 class="board">Board</h1>
                 <div class="find-add-task-container">
                     <div class="find-task" id="findTask" tabindex="0">
-                        <input class="find-task-input" id="find-task-input" type="search" placeholder="Find Task" oninput="filterTasks()">
+                        <input class="find-task-input" id="find-task-input-desktop" type="search" placeholder="Find Task" oninput="filterTasks(this)">
                         <img src="../assets/icons/line.svg" alt="">
-                        <button class="find-task-button" type="submit"><img src="../assets/icons/search-default.svg" alt=""></button>
+                        <button class="find-task-button" type="submit" oninput="filterTasks('find-task-input-desktop')"><img src="../assets/icons/search-default.svg" alt=""></button>
                     </div>
                     <div class="add-task" onclick="showAddTaskDetails('todo')">
                         Add Task
@@ -57,17 +58,20 @@
             </div>
             <div class="find-add-task">
                 <div class="find-task" id="findTask" tabindex="0">
-                    <input class="find-task-input" id="find-task-input" type="search" placeholder="Find Task"  oninput="filterTasks()">
+                    <input class="find-task-input" id="find-task-input-mobile" type="search" placeholder="Find Task"  oninput="filterTasks(this)">
                     <div class="d-flex-c-c gap-5">
                         <img src="../assets/icons/line.svg" alt="">
-                        <button class="find-task-button" type="submit"><img src="../assets/icons/search-default.svg" alt=""></button>
+                        <button class="find-task-button" oninput="filterTasks('find-task-input-mobile')" type="submit"><img src="../assets/icons/search-default.svg" alt=""></button>
                     </div>
                 </div>
                 
             </div>
         </div>
+        <div class="overlay-not-task-find" id="overlay-not-task-find">
 
-        <div class="split">
+        </div>
+
+        <div class="split" id="container-tasker">
             <div>
                 <div class="spliter-header">
                     <p style="font-size: 18px; font-weight: bold; color: #42526e;">To do</p>
@@ -109,6 +113,7 @@
             </div>
         </div>
     </main>
+
     <div class="overlay-edit-task" id="overlay-edit-task" onclick="closeEditOverlay(event)">
 
     </div>
